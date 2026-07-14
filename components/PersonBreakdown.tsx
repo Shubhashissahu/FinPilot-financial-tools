@@ -1,4 +1,5 @@
 import { PersonBillResult } from "@/types/bill";
+import ShareActions from "@/components/ShareActions";
 
 interface PersonBreakdownProps {
   result: PersonBillResult;
@@ -72,6 +73,7 @@ export default function PersonBreakdown({
             ₹{result.total.toFixed(2)}
           </span>
         </div>
+        <ShareActions result={result} />
       </div>
     </div>
   );
