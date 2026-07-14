@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import { PersonBillResult } from "@/types/bill";
 import { generateShareMessage } from "@/lib/generateShareMessage";
+import { generateBillPdf } from "@/lib/generateBillPdf";
 
 interface ShareActionsProps {
   result: PersonBillResult;
@@ -59,6 +60,12 @@ export default function ShareActions({
         >
           Share on WhatsApp
         </button>
+        <button
+  onClick={() => generateBillPdf(result)}
+  className="rounded-lg border border-green-600 px-4 py-2 text-sm font-medium text-green-700 transition hover:bg-green-50"
+>
+  Download PDF
+</button>
       </div>
     </div>
   );

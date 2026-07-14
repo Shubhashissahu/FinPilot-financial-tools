@@ -1,6 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import {
+  useRef,
+  useState,
+} from "react";
 import Link from "next/link";
 
 import PeopleInput from "@/components/Peopleinput";
@@ -8,6 +11,7 @@ import BillItemForm from "@/components/BillItemForm";
 import TaxTipInput from "@/components/TaxTipInput";
 import { calculateSplit } from "@/lib/calculateSplit";
 import PersonBreakdown from "@/components/PersonBreakdown";
+import { generateFullBillPdf } from "@/lib/generateBillPdf";
 
 import {
   BillItem,
@@ -20,10 +24,10 @@ export default function SplitPage() {
   const [items, setItems] = useState<BillItem[]>([]);
   const [gst, setGst] = useState(0);
 const [tip, setTip] = useState(0);
+const resultsRef = useRef<HTMLElement | null>(null);
 const [results, setResults] = useState<
   PersonBillResult[]
 >([]);
-
 const handleSplitBill = () => {
   if (people.length < 2) {
     alert("Add at least two people.");
@@ -43,6 +47,12 @@ const handleSplitBill = () => {
   );
 
   setResults(calculatedResults);
+
+  setTimeout(() => {
+    resultsRef.current?.scrollIntoView({
+      behavior: "smooth",
+    });
+  }, 100);
 };
   return (
     <main className="min-h-screen bg-white px-6 py-12">
@@ -86,7 +96,7 @@ const handleSplitBill = () => {
   Split Bill
 </button>
 {results.length > 0 && (
-  <section className="mt-12">
+ <section ref={resultsRef} className="mt-12">
     <h2 className="text-2xl font-bold text-gray-900">
       Bill breakdown
     </h2>
@@ -94,6 +104,12 @@ const handleSplitBill = () => {
     <p className="mt-2 text-gray-500">
       Here s what everyone needs to pay.
     </p>
+    <button
+    onClick={() => generateFullBillPdf(results)}
+    className="rounded-xl border border-green-600 px-4 py-2 text-sm font-medium text-green-700 transition hover:bg-green-50"
+  >
+    Download Full PDF
+  </button>
 
     <div className="mt-6 grid gap-6 sm:grid-cols-2">
       {results.map((result) => (
