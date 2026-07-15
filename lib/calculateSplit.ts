@@ -4,64 +4,145 @@ import {
   PersonBillResult,
 } from "@/types/bill";
 
+import {
+  allocateProportionally,
+  rupeesToPaise,
+  paiseToRupees,
+} from "@/lib/money";
+
+interface InternalItemShare {
+  itemId: string;
+  name: string;
+  amountPaise: number;
+}
+
+interface InternalPersonResult {
+  personId: string;
+  name: string;
+  items: InternalItemShare[];
+  subtotalPaise: number;
+}
+
+function splitPaiseEqually(
+  totalPaise: number,
+  peopleCount: number
+): number[] {
+  if (peopleCount <= 0) {
+    return [];
+  }
+
+  return allocateProportionally(
+    totalPaise,
+    Array(peopleCount).fill(1)
+  );
+}
+
 export function calculateSplit(
   people: Person[],
   items: BillItem[],
   gst: number,
   tip: number
 ): PersonBillResult[] {
-  const results: PersonBillResult[] = people.map(
-    (person) => ({
+  const internalResults: InternalPersonResult[] =
+    people.map((person) => ({
       personId: person.id,
       name: person.name,
       items: [],
-      subtotal: 0,
-      gstAmount: 0,
-      tipAmount: 0,
-      total: 0,
-    })
-  );
+      subtotalPaise: 0,
+    }));
 
+  // Split each item's cost equally among assigned people
   items.forEach((item) => {
     if (item.assignedTo.length === 0) {
       return;
     }
 
-    const share =
-      item.price / item.assignedTo.length;
+    const itemPricePaise = rupeesToPaise(item.price);
 
-    item.assignedTo.forEach((personId) => {
-      const personResult = results.find(
-        (result) =>
-          result.personId === personId
-      );
+    const shares = splitPaiseEqually(
+      itemPricePaise,
+      item.assignedTo.length
+    );
 
-      if (!personResult) {
-        return;
+    item.assignedTo.forEach(
+      (personId, index) => {
+        const personResult = internalResults.find(
+          (result) => result.personId === personId
+        );
+
+        if (!personResult) {
+          return;
+        }
+
+        const sharePaise = shares[index];
+
+        personResult.items.push({
+          itemId: item.id,
+          name: item.name,
+          amountPaise: sharePaise,
+        });
+
+        personResult.subtotalPaise += sharePaise;
       }
+    );
+  });
 
-      personResult.items.push({
-        itemId: item.id,
+  // Calculate GST and Tip proportionally based on subtotal
+  const subtotalWeights = internalResults.map(
+    (result) => result.subtotalPaise
+  );
+
+  const totalSubtotalPaise = subtotalWeights.reduce(
+    (sum, value) => sum + value,
+    0
+  );
+
+  const totalGstPaise = Math.round(
+    totalSubtotalPaise * (gst / 100)
+  );
+
+  const totalTipPaise = Math.round(
+    totalSubtotalPaise * (tip / 100)
+  );
+
+  const gstShares = allocateProportionally(
+    totalGstPaise,
+    subtotalWeights
+  );
+
+  const tipShares = allocateProportionally(
+    totalTipPaise,
+    subtotalWeights
+  );
+
+  return internalResults.map((result, index) => {
+    const gstPaise = gstShares[index];
+    const tipPaise = tipShares[index];
+
+    const totalPaise =
+      result.subtotalPaise +
+      gstPaise +
+      tipPaise;
+
+    return {
+      personId: result.personId,
+      name: result.name,
+
+      items: result.items.map((item) => ({
+        itemId: item.itemId,
         name: item.name,
-        amount: share,
-      });
+        amount: paiseToRupees(item.amountPaise),
+      })),
 
-      personResult.subtotal += share;
-    });
+      subtotal: paiseToRupees(
+        result.subtotalPaise
+      ),
+
+      gstAmount: paiseToRupees(gstPaise),
+
+      tipAmount: paiseToRupees(tipPaise),
+
+      total: paiseToRupees(totalPaise),
+    };
   });
-
-  results.forEach((result) => {
-    result.gstAmount =
-      result.subtotal * (gst / 100);
-
-    result.tipAmount =
-      result.subtotal * (tip / 100);
-
-    result.total =
-      result.subtotal +
-      result.gstAmount +
-      result.tipAmount;
-  });
-
-  return results;
 }
