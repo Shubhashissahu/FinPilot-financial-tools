@@ -1,3 +1,4 @@
+//components/BillitemForm
 "use client";
 
 import { useState } from "react";
@@ -30,14 +31,7 @@ export default function BillItemForm({
 
   const handleSharedChange = (checked: boolean) => {
     setIsShared(checked);
-
-    if (checked) {
-      setSelectedPeople(
-        people.map((person) => person.id)
-      );
-    } else {
-      setSelectedPeople([]);
-    }
+    setSelectedPeople([]);
   };
 
   const addItem = () => {
@@ -51,7 +45,7 @@ export default function BillItemForm({
       return;
     }
 
-    if (selectedPeople.length === 0) {
+    if (!isShared && selectedPeople.length === 0) {
       setError("Select at least one person.");
       return;
     }
@@ -60,14 +54,11 @@ export default function BillItemForm({
       id: crypto.randomUUID(),
       name: itemName.trim(),
       price: Number(price),
-      assignedTo: selectedPeople,
+      assignedTo: isShared ? [] : selectedPeople,
       isShared,
     };
 
-    setItems((prev) => [
-      ...prev,
-      newItem,
-    ]);
+    setItems((prev) => [...prev, newItem]);
 
     setItemName("");
     setPrice("");
@@ -77,50 +68,62 @@ export default function BillItemForm({
   };
 
   const removeItem = (itemId: string) => {
+    setItems((prev) => prev.filter((item) => item.id !== itemId));
+  };
+
+  // Lets someone fix assignment on ANY item already in the list — critical
+  // for OCR-imported items, which land here with assignedTo: [] and no
+  // other way to assign them short of deleting and re-adding manually.
+  const toggleItemAssignee = (itemId: string, personId: string) => {
     setItems((prev) =>
-      prev.filter((item) => item.id !== itemId)
+      prev.map((item) => {
+        if (item.id !== itemId) return item;
+        const has = item.assignedTo.includes(personId);
+        return {
+          ...item,
+          isShared: false,
+          assignedTo: has
+            ? item.assignedTo.filter((id) => id !== personId)
+            : [...item.assignedTo, personId],
+        };
+      })
+    );
+  };
+
+  const setItemShared = (itemId: string) => {
+    setItems((prev) =>
+      prev.map((item) =>
+        item.id === itemId ? { ...item, isShared: true, assignedTo: [] } : item
+      )
     );
   };
 
   return (
     <section className="mt-6 rounded-2xl border border-gray-200 p-6">
-      <h2 className="text-xl font-semibold text-gray-900">
-        Add bill items
-      </h2>
-
+      <h2 className="text-xl font-semibold text-gray-900">Add bill items</h2>
       <p className="mt-1 text-sm text-gray-500">
         Enter each item and choose who ordered it.
       </p>
 
       <div className="mt-6 grid gap-4 sm:grid-cols-2">
         <div>
-          <label className="text-sm font-medium text-gray-700">
-            Item name
-          </label>
-
+          <label className="text-sm font-medium text-gray-700">Item name</label>
           <input
             type="text"
             placeholder="e.g. Pizza"
             value={itemName}
-            onChange={(e) =>
-              setItemName(e.target.value)
-            }
+            onChange={(e) => setItemName(e.target.value)}
             className="mt-2 w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-green-500"
           />
         </div>
 
         <div>
-          <label className="text-sm font-medium text-gray-700">
-            Price
-          </label>
-
+          <label className="text-sm font-medium text-gray-700">Price</label>
           <input
             type="number"
             placeholder="₹0"
             value={price}
-            onChange={(e) =>
-              setPrice(e.target.value)
-            }
+            onChange={(e) => setPrice(e.target.value)}
             className="mt-2 w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-green-500"
           />
         </div>
@@ -131,20 +134,14 @@ export default function BillItemForm({
           <input
             type="checkbox"
             checked={isShared}
-            onChange={(e) =>
-              handleSharedChange(e.target.checked)
-            }
+            onChange={(e) => handleSharedChange(e.target.checked)}
           />
-
           Shared by everyone
         </label>
       </div>
 
       <div className="mt-6">
-        <p className="text-sm font-medium text-gray-700">
-          Who ordered this?
-        </p>
-
+        <p className="text-sm font-medium text-gray-700">Who ordered this?</p>
         <div className="mt-3 flex flex-wrap gap-3">
           {people.map((person) => (
             <label
@@ -157,24 +154,17 @@ export default function BillItemForm({
             >
               <input
                 type="checkbox"
-                checked={selectedPeople.includes(person.id)}
+                checked={isShared ? true : selectedPeople.includes(person.id)}
                 disabled={isShared}
-                onChange={() =>
-                  togglePerson(person.id)
-                }
+                onChange={() => togglePerson(person.id)}
               />
-
               {person.name}
             </label>
           ))}
         </div>
       </div>
 
-      {error && (
-        <p className="mt-4 text-sm text-red-600">
-          {error}
-        </p>
-      )}
+      {error && <p className="mt-4 text-sm text-red-600">{error}</p>}
 
       <button
         type="button"
@@ -184,57 +174,83 @@ export default function BillItemForm({
         Add Item
       </button>
 
-
-      {/* Added items */}
       {items.length > 0 && (
         <div className="mt-8 border-t border-gray-200 pt-6">
-          <h3 className="font-semibold text-gray-900">
-            Added items
-          </h3>
-
+          <h3 className="font-semibold text-gray-900">Added items</h3>
           <div className="mt-4 space-y-3">
-            {items.map((item) => (
-              <div
-                key={item.id}
-                className="flex items-start justify-between rounded-xl bg-gray-50 p-4"
-              >
-                <div>
-                  <p className="font-medium text-gray-900">
-                    {item.name}
-                  </p>
+            {items.map((item) => {
+              const isUnassigned = !item.isShared && item.assignedTo.length === 0;
+              return (
+                <div
+                  key={item.id}
+                  className={`rounded-xl p-4 ${
+                    isUnassigned ? "bg-red-50 border border-red-200" : "bg-gray-50"
+                  }`}
+                >
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <p className="font-medium text-gray-900">{item.name}</p>
+                      <p className={`mt-1 text-sm ${isUnassigned ? "text-red-600" : "text-gray-500"}`}>
+                        {item.isShared
+                          ? "Shared by everyone"
+                          : item.assignedTo.length > 0
+                          ? item.assignedTo
+                              .map((personId) => people.find((p) => p.id === personId)?.name)
+                              .filter(Boolean)
+                              .join(", ")
+                          : "Not assigned yet — pick who ordered this below"}
+                      </p>
+                    </div>
 
-                  <p className="mt-1 text-sm text-gray-500">
-                    {item.isShared
-                      ? "Shared by everyone"
-                      : item.assignedTo
-                          .map((personId) =>
-                            people.find(
-                              (person) =>
-                                person.id === personId
-                            )?.name
-                          )
-                          .filter(Boolean)
-                          .join(", ")}
-                  </p>
+                    <div className="flex items-center gap-4">
+                      <p className="font-semibold text-gray-900">₹{item.price.toFixed(2)}</p>
+                      <button
+                        type="button"
+                        onClick={() => removeItem(item.id)}
+                        className="text-sm text-gray-400 hover:text-red-600"
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Assignment chips for items that already exist — this is
+                      what lets OCR-imported items get assigned, since they
+                      never went through the form above. */}
+                  <div className="mt-3 flex flex-wrap items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setItemShared(item.id)}
+                      className={`text-xs font-medium px-3 py-1.5 rounded-full border ${
+                        item.isShared
+                          ? "bg-green-600 border-green-600 text-white"
+                          : "border-gray-300 text-gray-500 hover:border-green-300"
+                      }`}
+                    >
+                      Shared by everyone
+                    </button>
+                    <span className="text-xs text-gray-400">or assign to:</span>
+                    {people.map((person) => {
+                      const active = !item.isShared && item.assignedTo.includes(person.id);
+                      return (
+                        <button
+                          key={person.id}
+                          type="button"
+                          onClick={() => toggleItemAssignee(item.id, person.id)}
+                          className={`text-xs font-medium px-3 py-1.5 rounded-full border ${
+                            active
+                              ? "bg-gray-900 border-gray-900 text-white"
+                              : "border-gray-300 text-gray-500 hover:border-green-300"
+                          }`}
+                        >
+                          {person.name}
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
-
-                <div className="flex items-center gap-4">
-                  <p className="font-semibold text-gray-900">
-                    ₹{item.price.toFixed(2)}
-                  </p>
-
-                  <button
-                    type="button"
-                    onClick={() =>
-                      removeItem(item.id)
-                    }
-                    className="text-sm text-gray-400 hover:text-red-600"
-                  >
-                    Remove
-                  </button>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       )}
