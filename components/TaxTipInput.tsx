@@ -1,3 +1,4 @@
+//components/TaxTipinput.tsx
 interface TaxTipInputProps {
   gst: number;
   setGst: React.Dispatch<React.SetStateAction<number>>;
@@ -11,6 +12,18 @@ export default function TaxTipInput({
   tip,
   setTip,
 }: TaxTipInputProps) {
+  // Clamp at the point of entry so a negative value can never reach state,
+  // regardless of whether it came from typing, pasting, or the spinner.
+  const handleGstChange = (value: string) => {
+    const n = Number(value);
+    setGst(Number.isFinite(n) ? Math.max(0, n) : 0);
+  };
+
+  const handleTipChange = (value: string) => {
+    const n = Number(value);
+    setTip(Number.isFinite(n) ? Math.max(0, n) : 0);
+  };
+
   return (
     <section className="mt-6 rounded-2xl border border-gray-200 p-6">
       <h2 className="text-xl font-semibold text-gray-900">
@@ -31,9 +44,7 @@ export default function TaxTipInput({
             type="number"
             min="0"
             value={gst}
-            onChange={(e) =>
-              setGst(Number(e.target.value))
-            }
+            onChange={(e) => handleGstChange(e.target.value)}
             className="mt-2 w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-green-500"
           />
         </div>
@@ -47,9 +58,7 @@ export default function TaxTipInput({
             type="number"
             min="0"
             value={tip}
-            onChange={(e) =>
-              setTip(Number(e.target.value))
-            }
+            onChange={(e) => handleTipChange(e.target.value)}
             className="mt-2 w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-green-500"
           />
         </div>

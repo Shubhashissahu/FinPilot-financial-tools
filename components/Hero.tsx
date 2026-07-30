@@ -1,3 +1,4 @@
+//components/Hero.tsx
 import Link from "next/link";
 
 export default function Hero() {

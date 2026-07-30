@@ -1,3 +1,4 @@
+//lib/calculateSplit
 import {
   BillItem,
   Person,
@@ -51,9 +52,17 @@ export function calculateSplit(
       subtotalPaise: 0,
     }));
 
-  // Split each item's cost equally among assigned people
   items.forEach((item) => {
-    if (item.assignedTo.length === 0) {
+    // Shared items are resolved against the CURRENT people list at calc
+    // time, not whatever list existed when the item was created. This is
+    // the fix: previously assignedTo was frozen at checkbox-click time,
+    // so adding someone to the bill later silently left them owing
+    // nothing on items marked "shared by everyone."
+    const assignees = item.isShared
+      ? people.map((p) => p.id)
+      : item.assignedTo;
+
+    if (assignees.length === 0) {
       return;
     }
 
@@ -61,33 +70,30 @@ export function calculateSplit(
 
     const shares = splitPaiseEqually(
       itemPricePaise,
-      item.assignedTo.length
+      assignees.length
     );
 
-    item.assignedTo.forEach(
-      (personId, index) => {
-        const personResult = internalResults.find(
-          (result) => result.personId === personId
-        );
+    assignees.forEach((personId, index) => {
+      const personResult = internalResults.find(
+        (result) => result.personId === personId
+      );
 
-        if (!personResult) {
-          return;
-        }
-
-        const sharePaise = shares[index];
-
-        personResult.items.push({
-          itemId: item.id,
-          name: item.name,
-          amountPaise: sharePaise,
-        });
-
-        personResult.subtotalPaise += sharePaise;
+      if (!personResult) {
+        return;
       }
-    );
+
+      const sharePaise = shares[index];
+
+      personResult.items.push({
+        itemId: item.id,
+        name: item.name,
+        amountPaise: sharePaise,
+      });
+
+      personResult.subtotalPaise += sharePaise;
+    });
   });
 
-  // Calculate GST and Tip proportionally based on subtotal
   const subtotalWeights = internalResults.map(
     (result) => result.subtotalPaise
   );
@@ -134,14 +140,9 @@ export function calculateSplit(
         amount: paiseToRupees(item.amountPaise),
       })),
 
-      subtotal: paiseToRupees(
-        result.subtotalPaise
-      ),
-
+      subtotal: paiseToRupees(result.subtotalPaise),
       gstAmount: paiseToRupees(gstPaise),
-
       tipAmount: paiseToRupees(tipPaise),
-
       total: paiseToRupees(totalPaise),
     };
   });

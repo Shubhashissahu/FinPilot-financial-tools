@@ -1,3 +1,4 @@
+//lib/generateShareMessage
 import { PersonBillResult } from "@/types/bill";
 
 export function generateShareMessage(

@@ -1,3 +1,4 @@
+//components/PersonBreakdown.tsx
 import { PersonBillResult } from "@/types/bill";
 import ShareActions from "@/components/ShareActions";
 
