@@ -9,6 +9,7 @@ const navLinks = [
   { href: "/", label: "Home" },
   { href: "/tax-calculator", label: "Tax Calculator" },
   { href: "/emi-calculator", label: "EMI Calculator" },
+  { href:"/fd-calculator", label: "FD Calculator" },
 ];
 
 export default function Navbar() {
