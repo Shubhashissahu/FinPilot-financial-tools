@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/tax-calculator", label: "Tax Calculator" },
+  { href: "/emi-calculator", label: "EMI Calculator" },
 ];
 
 export default function Navbar() {
