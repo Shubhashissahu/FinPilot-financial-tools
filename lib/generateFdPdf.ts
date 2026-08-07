@@ -4,7 +4,8 @@ import { FdResult } from "@/lib/fdCalculator";
 export function generateFdPdf(
   result: FdResult,
   annualRate: number,
-  tenureYears: number
+  tenureYears: number,
+  compoundingLabel: string = "quarterly"
 ) {
   const pdf = new jsPDF();
 
@@ -22,7 +23,7 @@ export function generateFdPdf(
 
   const rows: [string, string][] = [
     ["Principal Amount", `Rs. ${result.principal.toLocaleString("en-IN")}`],
-    ["Annual Interest Rate", `${annualRate}% (compounded quarterly)`],
+    ["Annual Interest Rate", `${annualRate}% (compounded ${compoundingLabel})`],
     ["Tenure", `${tenureYears} years`],
     ["Maturity Value", `Rs. ${result.maturityValue.toLocaleString("en-IN")}`],
     ["Total Interest Earned", `Rs. ${result.totalInterest.toLocaleString("en-IN")}`],
