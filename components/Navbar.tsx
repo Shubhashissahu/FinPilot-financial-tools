@@ -11,10 +11,8 @@ const navLinks = [
   { href: "/emi-calculator", label: "EMI Calculator" },
   { href:"/fd-calculator", label: "FD Calculator" },
   { href:"/currency-converter", label: "currency-converter" },
-  { href:"/sip-calculator", label: "  SIP Calculator"}
-
-
-
+  { href:"/sip-calculator", label: "  SIP Calculator"},
+  { href:"/ctc-calculator", label: "  CTC-Calculator"}
 ];
 
 export default function Navbar() {
