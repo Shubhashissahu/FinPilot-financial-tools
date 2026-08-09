@@ -1,4 +1,4 @@
-//app/layout.tsx
+
 //app/layout.tsx
 import type { Metadata } from "next";
 import "./globals.css";
@@ -6,8 +6,8 @@ import "./globals.css";
 import AppShell from "@/components/AppShell";
 
 export const metadata: Metadata = {
-  title: "SplitEasy",
-  description: "Smart bill splitting",
+  title: "FinanceKit",
+  description: "Your personal finance toolkit",
 };
 
 export default function RootLayout({

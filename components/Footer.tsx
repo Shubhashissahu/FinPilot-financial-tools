@@ -1,111 +1,78 @@
 // components/Footer.tsx
-
+// components/Footer.tsx
 import Link from "next/link";
+
+const toolLinks = [
+  { href: "/split", label: "Bill Splitter" },
+  { href: "/currency-converter", label: "Currency Converter" },
+  { href: "/tax-calculator", label: "Tax Calculator" },
+  { href: "/ctc-calculator", label: "CTC Calculator" },
+  { href: "/emi-calculator", label: "EMI Calculator" },
+  { href: "/sip-calculator", label: "SIP Calculator" },
+  { href: "/fd-calculator", label: "FD Calculator" },
+];
+
+const companyLinks = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/privacy", label: "Privacy" },
+  { href: "/terms", label: "Terms" },
+  { href: "/contact", label: "Contact" },
+];
 
 export default function Footer() {
   return (
-    <footer className="border-t border-gray-200 bg-gray-950 text-white">
+    <footer className="border-t border-gray-800 bg-gray-950 text-white">
       <div className="mx-auto max-w-7xl px-6 py-14 lg:px-8">
-
         {/* Main Footer */}
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
-
           {/* Brand */}
           <div className="lg:col-span-2">
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 text-2xl font-bold tracking-tight"
-            >
-              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-indigo-600 text-sm font-bold shadow-lg shadow-indigo-600/20">
-                S
+            <Link href="/" className="group inline-flex items-center gap-2.5 text-2xl font-extrabold tracking-tight">
+              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-green-500 to-emerald-700 text-base font-bold text-white shadow-md shadow-green-600/25 transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-105">
+                ₹
               </span>
-
               <span>
-                Split<span className="text-indigo-400">Easy</span>
+                Finance<span className="text-green-500">Kit</span>
               </span>
             </Link>
 
             <p className="mt-5 max-w-md text-sm leading-6 text-gray-400">
-              Split bills with friends, roommates, and groups without the
-              awkward math. Simple, fast, and stress-free.
+              Seven free financial tools in one place — split bills, calculate
+              taxes, EMIs, SIPs, and more, without the spreadsheet math.
             </p>
 
-            {/* Mini Trust Badge */}
             <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-gray-800 bg-gray-900 px-4 py-2 text-xs text-gray-400">
-              <span className="h-2 w-2 rounded-full bg-emerald-400" />
-              Built for simple, stress-free splitting
+              <span className="h-2 w-2 rounded-full bg-green-500" />
+              7 tools · Free forever · No sign-up
             </div>
           </div>
 
-          {/* Product */}
+          {/* Tools */}
           <div>
-            <h3 className="text-sm font-semibold text-white">
-              Product
-            </h3>
-
+            <h3 className="text-sm font-semibold text-white">Tools</h3>
             <ul className="mt-5 space-y-3 text-sm text-gray-400">
-              <li>
-                <Link
-                  href="/"
-                  className="transition hover:text-white"
-                >
-                  Bill Splitter
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  href="/calculator"
-                  className="transition hover:text-white"
-                >
-                  Calculator
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  href="/about"
-                  className="transition hover:text-white"
-                >
-                  About SplitEasy
-                </Link>
-              </li>
+              {toolLinks.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="transition hover:text-green-400">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Resources */}
+          {/* Company */}
           <div>
-            <h3 className="text-sm font-semibold text-white">
-              Resources
-            </h3>
-
+            <h3 className="text-sm font-semibold text-white">Company</h3>
             <ul className="mt-5 space-y-3 text-sm text-gray-400">
-              <li>
-                <Link
-                  href="/how-it-works"
-                  className="transition hover:text-white"
-                >
-                  How it works
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  href="/privacy"
-                  className="transition hover:text-white"
-                >
-                  Privacy
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  href="/terms"
-                  className="transition hover:text-white"
-                >
-                  Terms
-                </Link>
-              </li>
+              {companyLinks.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="transition hover:text-green-400">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
@@ -115,35 +82,20 @@ export default function Footer() {
 
         {/* Bottom Footer */}
         <div className="flex flex-col gap-4 text-sm text-gray-500 sm:flex-row sm:items-center sm:justify-between">
-
-          <p>
-            © {new Date().getFullYear()} SplitEasy. All rights reserved.
-          </p>
+          <p>© {new Date().getFullYear()} FinanceKit. All rights reserved.</p>
 
           <div className="flex items-center gap-5">
-            <Link
-              href="/privacy"
-              className="transition hover:text-gray-300"
-            >
+            <Link href="/privacy" className="transition hover:text-gray-300">
               Privacy
             </Link>
-
-            <Link
-              href="/terms"
-              className="transition hover:text-gray-300"
-            >
+            <Link href="/terms" className="transition hover:text-gray-300">
               Terms
             </Link>
-
-            <Link
-              href="/contact"
-              className="transition hover:text-gray-300"
-            >
+            <Link href="/contact" className="transition hover:text-gray-300">
               Contact
             </Link>
           </div>
         </div>
-
       </div>
     </footer>
   );

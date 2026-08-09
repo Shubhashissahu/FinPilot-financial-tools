@@ -7,7 +7,7 @@ export function generateEmiPdf(result: EmiResult, annualRate: number) {
   let y = 20;
 
   pdf.setFontSize(22);
-  pdf.text("SplitEasy", 20, y);
+  pdf.text("FinanceKit", 20, y);
 
   y += 10;
   pdf.setFontSize(11);

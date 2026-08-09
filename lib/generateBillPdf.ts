@@ -5,8 +5,6 @@ import { PersonBillResult } from "@/types/bill";
 
 const PAGE_BOTTOM = 270; // leave margin below 297mm A4 height
 
-// Strip characters that break filenames across OSes / browsers (esp. "/"
-// being read as a path separator).
 function safeFileName(name: string): string {
   const cleaned = name.replace(/[\\/:*?"<>|]/g, "").trim();
   return cleaned || "guest";
@@ -18,7 +16,7 @@ export function generateBillPdf(result: PersonBillResult) {
   let y = 20;
 
   pdf.setFontSize(22);
-  pdf.text("SplitEasy", 20, y);
+  pdf.text("FinanceKit", 20, y);
 
   y += 10;
 
@@ -81,7 +79,7 @@ export function generateFullBillPdf(results: PersonBillResult[]) {
   );
 
   pdf.setFontSize(22);
-  pdf.text("SplitEasy", 20, y);
+  pdf.text("FinanceKit", 20, y);
 
   y += 10;
 
@@ -133,5 +131,5 @@ export function generateFullBillPdf(results: PersonBillResult[]) {
     y += 10;
   });
 
-  pdf.save("SplitSmart-full-bill.pdf");
+  pdf.save("FinanceKit-full-bill.pdf");
 }

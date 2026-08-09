@@ -7,7 +7,7 @@ export function generateCtcPdf(annualCtc: number, result: CtcBreakdown) {
   let y = 20;
 
   pdf.setFontSize(22);
-  pdf.text("SplitEasy", 20, y);
+  pdf.text("FinanceKit", 20, y);
   y += 10;
   pdf.setFontSize(11);
   pdf.text("CTC Breakdown — New Tax Regime FY 2026-27", 20, y);
