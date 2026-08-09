@@ -3,7 +3,7 @@
 
 import { useRef, useState } from "react";
 
-import PeopleInput from "@/components/PeopleInput";
+import PeopleInput from "@/components/Peopleinput";
 import BillItemForm from "@/components/BillItemForm";
 import TaxTipInput from "@/components/TaxTipInput";
 import ReceiptUpload from "@/components/ReceiptUpload";

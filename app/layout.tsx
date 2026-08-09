@@ -1,9 +1,9 @@
 //app/layout.tsx
+//app/layout.tsx
 import type { Metadata } from "next";
 import "./globals.css";
 
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import AppShell from "@/components/AppShell";
 
 export const metadata: Metadata = {
   title: "SplitEasy",
@@ -18,11 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Navbar />
-
-        {children}
-
-        <Footer />
+        <AppShell>{children}</AppShell>
       </body>
     </html>
   );
