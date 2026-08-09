@@ -1,0 +1,63 @@
+export interface Tool {
+  href: string;
+  label: string;
+  description: string;
+  icon: string;
+  category: "Daily" | "Tax" | "Invest";
+}
+
+// Single source of truth — used by both the Navbar drawer and the homepage
+// tool grid, so adding/removing a tool only ever happens in one place.
+export const tools: Tool[] = [
+  {
+    href: "/split",
+    label: "Bill Splitter",
+    description: "Split restaurant bills",
+    icon: "🧾",
+    category: "Daily",
+  },
+  {
+    href: "/currency-converter",
+    label: "Currency Converter",
+    description: "Live exchange rates",
+    icon: "💱",
+    category: "Daily",
+  },
+  {
+    href: "/tax-calculator",
+    label: "Tax Calculator",
+    description: "New regime, FY 2026-27",
+    icon: "🧮",
+    category: "Tax",
+  },
+  {
+    href: "/ctc-calculator",
+    label: "CTC Calculator",
+    description: "CTC to in-hand",
+    icon: "💼",
+    category: "Tax",
+  },
+  {
+    href: "/emi-calculator",
+    label: "EMI Calculator",
+    description: "Loan amortization",
+    icon: "🏦",
+    category: "Invest",
+  },
+  {
+    href: "/sip-calculator",
+    label: "SIP Calculator",
+    description: "Mutual fund growth",
+    icon: "📈",
+    category: "Invest",
+  },
+  {
+    href: "/fd-calculator",
+    label: "FD Calculator",
+    description: "Fixed deposit maturity",
+    icon: "🏛️",
+    category: "Invest",
+  },
+];
+
+export const categoryOrder: Tool["category"][] = ["Daily", "Tax", "Invest"];

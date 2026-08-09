@@ -4,26 +4,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-interface NavItem {
-  href: string;
-  label: string;
-  description: string;
-  icon: string;
-  category: "Daily" | "Tax" | "Invest";
-}
-
-const navItems: NavItem[] = [
-  { href: "/split", label: "Bill Splitter", description: "Split restaurant bills", icon: "🧾", category: "Daily" },
-  { href: "/currency-converter", label: "Currency Converter", description: "Live exchange rates", icon: "💱", category: "Daily" },
-  { href: "/tax-calculator", label: "Tax Calculator", description: "New regime, FY 2026-27", icon: "🧮", category: "Tax" },
-  { href: "/ctc-calculator", label: "CTC Calculator", description: "CTC to in-hand", icon: "💼", category: "Tax" },
-  { href: "/emi-calculator", label: "EMI Calculator", description: "Loan amortization", icon: "🏦", category: "Invest" },
-  { href: "/sip-calculator", label: "SIP Calculator", description: "Mutual fund growth", icon: "📈", category: "Invest" },
-  { href: "/fd-calculator", label: "FD Calculator", description: "Fixed deposit maturity", icon: "🏛️", category: "Invest" },
-];
-
-const categoryOrder: NavItem["category"][] = ["Daily", "Tax", "Invest"];
+import { tools, categoryOrder } from "@/lib/tools";
 
 const topLinks = [
   {
@@ -66,8 +47,8 @@ export default function Navbar({ drawerOpen, onToggle, onClose }: NavbarProps) {
 
   const filteredItems = useMemo(() => {
     const q = query.trim().toLowerCase();
-    if (!q) return navItems;
-    return navItems.filter(
+    if (!q) return tools;
+    return tools.filter(
       (item) =>
         item.label.toLowerCase().includes(q) ||
         item.description.toLowerCase().includes(q)
@@ -153,9 +134,6 @@ export default function Navbar({ drawerOpen, onToggle, onClose }: NavbarProps) {
           drawerOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        {/* Just the brand mark here — closing is handled by the single
-            hamburger/✕ toggle in the header, so there's only ever one
-            close control on screen instead of two. */}
         <Link href="/" onClick={onClose} className="flex items-center gap-2 px-5 pt-5">
           <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-green-500 to-emerald-700 text-base font-bold text-white">
             ₹
@@ -163,7 +141,7 @@ export default function Navbar({ drawerOpen, onToggle, onClose }: NavbarProps) {
           <div>
             <p className="text-base font-bold leading-tight">FinanceKit</p>
             <p className="text-xs text-gray-400">
-              {navItems.length} tools · Free forever
+              {tools.length} tools · Free forever
             </p>
           </div>
         </Link>
