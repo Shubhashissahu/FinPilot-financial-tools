@@ -58,6 +58,7 @@ export const tools: Tool[] = [
     icon: "🏛️",
     category: "Invest",
   },
+  { href: "/expense-tracker", label: "Expense Tracker", description: "Income vs. expenses", icon: "💰", category: "Daily" },
 ];
 
 export const categoryOrder: Tool["category"][] = ["Daily", "Tax", "Invest"];
