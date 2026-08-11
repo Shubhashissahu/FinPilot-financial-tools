@@ -88,7 +88,7 @@ export default function Navbar({ drawerOpen, onToggle, onClose }: NavbarProps) {
               ₹
             </div>
             <span className="whitespace-nowrap text-lg font-extrabold tracking-tight text-gray-900">
-              Finance<span className="text-green-600">Kit</span>
+              FinPilot
             </span>
           </Link>
 
@@ -139,9 +139,9 @@ export default function Navbar({ drawerOpen, onToggle, onClose }: NavbarProps) {
             ₹
           </div>
           <div>
-            <p className="text-base font-bold leading-tight">FinanceKit</p>
+            <p className="text-base font-bold leading-tight"> FinPilot</p>
             <p className="text-xs text-gray-400">
-              {tools.length} tools · Free forever
+              {tools.length} tools · Free 
             </p>
           </div>
         </Link>
@@ -209,7 +209,7 @@ export default function Navbar({ drawerOpen, onToggle, onClose }: NavbarProps) {
         </nav>
 
         <div className="border-t border-gray-800 px-5 py-4 text-center text-xs text-gray-500">
-          Free forever · No sign-up · No data stored
+          Free  · No sign-up · No data stored
         </div>
       </div>
     </>

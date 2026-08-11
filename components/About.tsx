@@ -65,7 +65,7 @@ export default function About() {
               send your numbers somewhere.
             </p>
             <p>
-              FinanceKit is the opposite: open a tool, type in your numbers,
+              FinPilot is the opposite: open a tool, type in your numbers,
               get an answer. No sign-up, no data collection, no waiting.
               Every calculator is tuned specifically for how money works in
               India — lakhs and crores, GST slabs, EPF ceilings, and the

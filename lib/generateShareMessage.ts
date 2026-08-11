@@ -23,5 +23,5 @@ Tip: ₹${result.tipAmount.toFixed(2)}
 
 Total to pay: ₹${result.total.toFixed(2)}
 
-Split with SplitEasy`;
+Split with  FinPilot`;
 }

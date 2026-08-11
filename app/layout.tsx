@@ -6,7 +6,7 @@ import "./globals.css";
 import AppShell from "@/components/AppShell";
 
 export const metadata: Metadata = {
-  title: "FinanceKit",
+  title: "FinPilot",
   description: "Your personal finance toolkit",
 };
 

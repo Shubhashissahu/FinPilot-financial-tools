@@ -213,10 +213,6 @@ export default function BillItemForm({
                       </button>
                     </div>
                   </div>
-
-                  {/* Assignment chips for items that already exist — this is
-                      what lets OCR-imported items get assigned, since they
-                      never went through the form above. */}
                   <div className="mt-3 flex flex-wrap items-center gap-2">
                     <button
                       type="button"

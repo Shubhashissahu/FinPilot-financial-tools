@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { calculateSip, formatLakh } from "@/lib/sipCalculator";
+import { calculateSip, formatLakh } from "@/lib/calculators/sip";
 
 export default function SipCalculatorPage() {
   const [monthlyAmount, setMonthlyAmount] = useState(10000);

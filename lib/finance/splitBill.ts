@@ -2,13 +2,6 @@ import { BillItem, Person, PersonBillResult, PersonItemShare } from "@/types/bil
 
 const round2 = (n: number) => Math.round((n + Number.EPSILON) * 100) / 100;
 
-/**
- * Rounds a list of raw amounts to 2dp so they sum EXACTLY to targetTotal.
- * Naive independent rounding drifts a paisa or two whenever GST/tip split
- * across an odd number of people. Largest-remainder method fixes that:
- * floor everyone, then hand out leftover paisa to whoever had the biggest
- * fractional remainder.
- */
 function reconcileRounding(rawAmounts: number[], targetTotal: number): number[] {
   const targetCents = Math.round(targetTotal * 100);
   const floors = rawAmounts.map((a) => Math.floor(a * 100));

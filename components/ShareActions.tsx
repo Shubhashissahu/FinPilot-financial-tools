@@ -5,7 +5,7 @@ import { useState } from "react";
 
 import { PersonBillResult } from "@/types/bill";
 import { generateShareMessage } from "@/lib/generateShareMessage";
-import { generateBillPdf } from "@/lib/generateBillPdf";
+import { generateBillPdf } from "@/lib/pdf/BillPdf";
 
 interface ShareActionsProps {
   result: PersonBillResult;
