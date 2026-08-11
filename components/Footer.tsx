@@ -1,4 +1,4 @@
-// components/Footer.tsx
+
 // components/Footer.tsx
 import Link from "next/link";
 
@@ -33,7 +33,7 @@ export default function Footer() {
                 ₹
               </span>
               <span>
-                Finance<span className="text-green-500">Kit</span>
+                FinPilot
               </span>
             </Link>
 

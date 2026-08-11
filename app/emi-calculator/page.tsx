@@ -1,8 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { calculateEmi } from "@/lib/emiCalculator";
-import { generateEmiPdf } from "@/lib/generateEmiPdf";
+import { calculateEmi } from "@/lib/calculators/emi";
+import { generateEmiPdf } from "@/lib/pdf/EmiPdf";
 
 const MIN_AMOUNT = 100000; // ₹1L
 const MAX_AMOUNT = 10000000; // ₹1Cr
@@ -24,10 +24,6 @@ type YearRow = {
   balance: number;
 };
 
-// Builds a reducing-balance amortization schedule from the same inputs
-// used for the headline EMI, then rolls the 12 monthly rows for each
-// year into a single summary row — this keeps the table matching the
-// live sliders instead of drifting from a separately-computed schedule.
 function buildYearlySchedule(
   principal: number,
   annualRate: number,
@@ -45,8 +41,6 @@ function buildYearlySchedule(
     const interestForMonth = balance * monthlyRate;
     let principalForMonth = monthlyEmi - interestForMonth;
 
-    // Guard the last installment against floating-point drift so the
-    // balance lands on exactly zero instead of a stray paisa amount.
     if (month === tenureMonths || principalForMonth > balance) {
       principalForMonth = balance;
     }

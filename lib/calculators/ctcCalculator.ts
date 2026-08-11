@@ -1,6 +1,6 @@
 // lib/ctcCalculator.ts
 
-import { compareTax } from "@/lib/taxCalculator";
+import { compareTax } from "@/lib/calculators/tax";
 
 export interface CtcBreakdown {
   basic: number;

@@ -9,7 +9,7 @@ import {
   allocateProportionally,
   rupeesToPaise,
   paiseToRupees,
-} from "@/lib/money";
+} from "@/lib/finance/money";
 
 interface InternalItemShare {
   itemId: string;

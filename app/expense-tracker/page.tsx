@@ -2,7 +2,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { calculateExpenses, ExpenseInputs } from "@/lib/expenseTracker";
+import { calculateExpenses, ExpenseInputs } from "@/lib/finance/expenseTracker";
 
 function progressHeadline(percent: number): string {
   if (percent >= 100) return "🎉 Goal reached!";

@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { calculateCtc, CtcInputs } from "@/lib/ctcCalculator";
-import { generateCtcPdf } from "@/lib/generateCtcPdf";
+import { calculateCtc, CtcInputs } from "@/lib/calculators/ctcCalculator";
+import { generateCtcPdf } from "@/lib/pdf/CtcPdf";
 
 const DEFAULTS = {
   hraPercent: 20,

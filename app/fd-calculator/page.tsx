@@ -1,8 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { calculateFd } from "@/lib/fdCalculator";
-import { generateFdPdf } from "@/lib/generateFdPdf";
+import { calculateFd } from "@/lib/calculators/fd";
+import { generateFdPdf } from "@/lib/pdf/FdPdf";
 
 const MIN_PRINCIPAL = 1000;
 const MAX_PRINCIPAL = 5000000; // ₹50L

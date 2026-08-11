@@ -1,5 +1,5 @@
 import { jsPDF } from "jspdf";
-import { FdResult } from "@/lib/fdCalculator";
+import { FdResult } from "@/lib/calculators/fd";
 
 export function generateFdPdf(
   result: FdResult,
@@ -12,7 +12,7 @@ export function generateFdPdf(
   let y = 20;
 
   pdf.setFontSize(22);
-  pdf.text("FinanceKit", 20, y);
+  pdf.text(" FinPilot", 20, y);
 
   y += 10;
   pdf.setFontSize(11);

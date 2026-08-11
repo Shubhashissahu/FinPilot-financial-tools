@@ -9,8 +9,8 @@ import TaxTipInput from "@/components/TaxTipInput";
 import ReceiptUpload from "@/components/ReceiptUpload";
 import PersonBreakdown from "@/components/PersonBreakdown";
 
-import { calculateSplit } from "@/lib/calculateSplit";
-import { generateFullBillPdf } from "@/lib/generateBillPdf";
+import { calculateSplit } from "@/lib/calculators/calculateSplit";
+import { generateFullBillPdf } from "@/lib/pdf/BillPdf";
 
 import { BillItem, Person, PersonBillResult } from "@/types/bill";
 

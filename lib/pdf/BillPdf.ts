@@ -16,7 +16,7 @@ export function generateBillPdf(result: PersonBillResult) {
   let y = 20;
 
   pdf.setFontSize(22);
-  pdf.text("FinanceKit", 20, y);
+  pdf.text(" FinPilot", 20, y);
 
   y += 10;
 

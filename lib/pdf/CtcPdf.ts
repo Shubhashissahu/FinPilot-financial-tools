@@ -1,13 +1,13 @@
 //lib/generatedCtcpdf
 import { jsPDF } from "jspdf";
-import { CtcBreakdown } from "@/lib/ctcCalculator";
+import { CtcBreakdown } from "@/lib/calculators/ctcCalculator";
 
 export function generateCtcPdf(annualCtc: number, result: CtcBreakdown) {
   const pdf = new jsPDF();
   let y = 20;
 
   pdf.setFontSize(22);
-  pdf.text("FinanceKit", 20, y);
+  pdf.text(" FinPilot", 20, y);
   y += 10;
   pdf.setFontSize(11);
   pdf.text("CTC Breakdown — New Tax Regime FY 2026-27", 20, y);

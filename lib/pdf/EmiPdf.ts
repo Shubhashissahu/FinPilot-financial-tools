@@ -1,5 +1,5 @@
 import { jsPDF } from "jspdf";
-import { EmiResult } from "@/lib/emiCalculator";
+import { EmiResult } from "@/lib/calculators/emi";
 
 export function generateEmiPdf(result: EmiResult, annualRate: number) {
   const pdf = new jsPDF();
@@ -7,7 +7,7 @@ export function generateEmiPdf(result: EmiResult, annualRate: number) {
   let y = 20;
 
   pdf.setFontSize(22);
-  pdf.text("FinanceKit", 20, y);
+  pdf.text(" FinPilot", 20, y);
 
   y += 10;
   pdf.setFontSize(11);

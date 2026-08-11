@@ -2,7 +2,7 @@
 "use client";
 
 import { useState } from "react";
-import { compareTax, TaxResult } from "@/lib/taxCalculator";
+import { compareTax, TaxResult } from "@/lib/calculators/tax";
 
 export default function TaxCalculatorPage() {
   const [incomeInput, setIncomeInput] = useState("");

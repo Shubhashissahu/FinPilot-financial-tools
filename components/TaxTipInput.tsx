@@ -12,8 +12,6 @@ export default function TaxTipInput({
   tip,
   setTip,
 }: TaxTipInputProps) {
-  // Clamp at the point of entry so a negative value can never reach state,
-  // regardless of whether it came from typing, pasting, or the spinner.
   const handleGstChange = (value: string) => {
     const n = Number(value);
     setGst(Number.isFinite(n) ? Math.max(0, n) : 0);
