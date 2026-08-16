@@ -124,7 +124,7 @@ export function calculateCtc(inputs: CtcInputs): CtcBreakdown {
   const employeeEsi = esiApplicable ? round2(grossSalary * ESI_EMPLOYEE_RATE) : 0;
   const employerEsi = esiApplicable ? round2(grossSalary * ESI_EMPLOYER_RATE) : 0;
 
-  const professionalTax = professionalTaxApplicable
+  const professionalTax = (professionalTaxApplicable && grossSalary > 0)
     ? FLAT_PROFESSIONAL_TAX_MONTHLY * 12
     : 0;
 
