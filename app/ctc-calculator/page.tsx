@@ -83,7 +83,22 @@ export default function CtcCalculatorPage() {
   const ctcTooLow = !ctcEmpty && annualCtc < MIN_REALISTIC_CTC;
   const showBreakdown = !ctcEmpty && !ctcTooLow;
 
-  const inputs: CtcInputs = {
+  const result = useMemo(() => {
+    const inputs: CtcInputs = {
+      annualCtc,
+      hraPercent,
+      daPercent,
+      ltaPercent,
+      specialAllowancePercent,
+      performanceBonusPercent,
+      epfApplicable,
+      pfWageCapped,
+      employeeEpfPercent,
+      employerEpfPercent,
+      professionalTaxApplicable,
+    };
+    return calculateCtc(inputs);
+  }, [
     annualCtc,
     hraPercent,
     daPercent,
@@ -95,8 +110,8 @@ export default function CtcCalculatorPage() {
     employeeEpfPercent,
     employerEpfPercent,
     professionalTaxApplicable,
-  };
-  const result = useMemo(() => calculateCtc(inputs), [inputs]);
+  ]);
+
 
   const allocatedPercent = hraPercent + daPercent + ltaPercent + specialAllowancePercent + performanceBonusPercent;
   const basicPercent = Math.max(0, 100 - allocatedPercent);
@@ -137,7 +152,11 @@ export default function CtcCalculatorPage() {
   const toggleFaq = (index: number) =>
     setOpenFaq((prev) => {
       const next = new Set(prev);
-      next.has(index) ? next.delete(index) : next.add(index);
+      if (next.has(index)) {
+        next.delete(index);
+      } else {
+        next.add(index);
+      }
       return next;
     });
 
