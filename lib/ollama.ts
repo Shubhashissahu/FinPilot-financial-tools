@@ -50,10 +50,15 @@ export async function extractReceiptFromText(ocrText: string): Promise<RawExtrac
       options: { temperature: 0 }, // deterministic-ish extraction, not creative writing
     });
   } catch (err) {
-    if (axios.isAxiosError(err) && err.code === "ECONNREFUSED") {
-      throw new Error(
-        `Can't reach Ollama at ${OLLAMA_HOST}. Is "ollama serve" running, and is the model pulled ("ollama pull ${OLLAMA_MODEL}")?`
-      );
+    if (axios.isAxiosError(err)) {
+      if (err.code === "ECONNREFUSED") {
+        throw new Error(
+          `Can't reach Ollama at ${OLLAMA_HOST}. Is "ollama serve" running, and is the model pulled ("ollama pull ${OLLAMA_MODEL}")?`
+        );
+      }
+      if (err.code === "ECONNABORTED" || err.message.includes("timeout")) {
+        throw new Error("Ollama request timed out. The model might be too large or the image text too complex.");
+      }
     }
     throw new Error(`Ollama request failed: ${err instanceof Error ? err.message : String(err)}`);
   }
