@@ -33,7 +33,16 @@ export async function extractText(file: File): Promise<string> {
   const buffer = Buffer.from(arrayBuffer);
 
   const worker = await getWorker();
-  const { data } = await worker.recognize(buffer);
+  
+  const timeoutPromise = new Promise<never>((_, reject) =>
+    setTimeout(() => reject(new Error("OCR took too long and timed out. Try a simpler or smaller image.")), 30000)
+  );
+
+  const { data } = (await Promise.race([
+    worker.recognize(buffer),
+    timeoutPromise,
+  ])) as any;
+
 
   const text = data.text?.trim();
   if (!text) {
