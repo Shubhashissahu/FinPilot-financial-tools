@@ -99,20 +99,20 @@ export default function EmiCalculatorPage() {
   };
 
   return (
-    <main className="min-h-screen bg-gray-50 px-6 py-16">
+    <main className="min-h-screen bg-gray-50 dark:bg-neutral-900/50 px-6 py-16">
       <div className="mx-auto max-w-5xl">
         <h1 className="text-center text-4xl font-black text-green-700">
           EMI Calculator
         </h1>
-        <p className="mt-4 text-center text-gray-600">
+        <p className="mt-4 text-center text-gray-600 dark:text-gray-400 dark:text-gray-500">
           Drag the sliders to see your EMI update instantly.
         </p>
 
         <div className="mt-10 grid gap-6 lg:grid-cols-[1fr_1fr]">
           {/* Loan details card */}
-          <section className="rounded-2xl bg-white p-8 shadow-sm">
-            <h2 className="text-lg font-bold text-gray-900">Loan details</h2>
-            <div className="mt-2 border-t border-gray-100" />
+          <section className="rounded-2xl bg-white dark:bg-neutral-900 p-8 shadow-sm">
+            <h2 className="text-lg font-bold text-gray-900 dark:text-white">Loan details</h2>
+            <div className="mt-2 border-t border-gray-100 dark:border-neutral-800" />
 
             <SliderField
               label="Loan amount"
@@ -159,9 +159,9 @@ export default function EmiCalculatorPage() {
               <StatCard label="Total Payment" value={result.totalPayment} tone="blue" />
             </div>
 
-            <section className="rounded-2xl bg-white p-6 shadow-sm">
-              <h2 className="text-lg font-bold text-gray-900">Summary</h2>
-              <div className="mt-2 divide-y divide-gray-100 border-t border-gray-100">
+            <section className="rounded-2xl bg-white dark:bg-neutral-900 p-6 shadow-sm">
+              <h2 className="text-lg font-bold text-gray-900 dark:text-white">Summary</h2>
+              <div className="mt-2 divide-y divide-gray-100 border-t border-gray-100 dark:border-neutral-800">
                 <SummaryLine label="Principal" value={`₹${result.principal.toLocaleString("en-IN")}`} />
                 <SummaryLine label="Total interest" value={`₹${result.totalInterest.toLocaleString("en-IN")}`} />
                 <SummaryLine
@@ -175,7 +175,7 @@ export default function EmiCalculatorPage() {
               <div className="mt-6 flex flex-wrap gap-3">
                 <button
                   onClick={() => generateEmiPdf(result, interestRate)}
-                  className="flex-1 rounded-lg border border-green-600 px-4 py-3 text-sm font-medium text-green-700 transition hover:bg-green-50"
+                  className="flex-1 rounded-lg border border-green-600 px-4 py-3 text-sm font-medium text-green-700 transition hover:bg-green-50 dark:bg-[#0a0a0a]"
                 >
                   Download PDF
                 </button>
@@ -191,24 +191,24 @@ export default function EmiCalculatorPage() {
         </div>
 
         {/* Amortization schedule */}
-        <section className="mt-6 rounded-2xl bg-white p-6 shadow-sm">
-          <h2 className="text-lg font-bold text-gray-900">Amortization schedule</h2>
-          <div className="mt-2 border-t border-gray-100" />
+        <section className="mt-6 rounded-2xl bg-white dark:bg-neutral-900 p-6 shadow-sm">
+          <h2 className="text-lg font-bold text-gray-900 dark:text-white">Amortization schedule</h2>
+          <div className="mt-2 border-t border-gray-100 dark:border-neutral-800" />
 
           <div className="mt-2 max-h-[420px] overflow-y-auto">
             <table className="w-full text-sm">
-              <thead className="sticky top-0 bg-white">
-                <tr className="border-b border-gray-100 text-left">
-                  <th className="py-3 text-xs font-semibold uppercase tracking-wide text-gray-400">
+              <thead className="sticky top-0 bg-white dark:bg-neutral-900">
+                <tr className="border-b border-gray-100 dark:border-neutral-800 text-left">
+                  <th className="py-3 text-xs font-semibold uppercase tracking-wide text-gray-400 dark:text-gray-500">
                     Year
                   </th>
-                  <th className="py-3 text-right text-xs font-semibold uppercase tracking-wide text-gray-400">
+                  <th className="py-3 text-right text-xs font-semibold uppercase tracking-wide text-gray-400 dark:text-gray-500">
                     Principal (₹)
                   </th>
-                  <th className="py-3 text-right text-xs font-semibold uppercase tracking-wide text-gray-400">
+                  <th className="py-3 text-right text-xs font-semibold uppercase tracking-wide text-gray-400 dark:text-gray-500">
                     Interest (₹)
                   </th>
-                  <th className="py-3 text-right text-xs font-semibold uppercase tracking-wide text-gray-400">
+                  <th className="py-3 text-right text-xs font-semibold uppercase tracking-wide text-gray-400 dark:text-gray-500">
                     Balance (₹)
                   </th>
                 </tr>
@@ -216,14 +216,14 @@ export default function EmiCalculatorPage() {
               <tbody>
                 {schedule.map((row) => (
                   <tr key={row.year} className="border-b border-gray-50">
-                    <td className="py-3 text-gray-700">Year {row.year}</td>
+                    <td className="py-3 text-gray-700 dark:text-gray-300">Year {row.year}</td>
                     <td className="py-3 text-right font-semibold text-green-600">
                       {row.principalPaid.toLocaleString("en-IN")}
                     </td>
                     <td className="py-3 text-right font-semibold text-amber-600">
                       {row.interestPaid.toLocaleString("en-IN")}
                     </td>
-                    <td className="py-3 text-right font-semibold text-gray-900">
+                    <td className="py-3 text-right font-semibold text-gray-900 dark:text-white">
                       {row.balance.toLocaleString("en-IN")}
                     </td>
                   </tr>
@@ -261,7 +261,7 @@ function SliderField({
   return (
     <div className="mt-6 first:mt-6">
       <div className="flex items-center justify-between">
-        <label className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+        <label className="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 dark:text-gray-500">
           {label}
         </label>
         <span className="text-sm font-bold text-green-700">{display}</span>
@@ -275,7 +275,7 @@ function SliderField({
         onChange={(e) => onChange(Number(e.target.value))}
         className="mt-3 w-full accent-green-600"
       />
-      <div className="mt-1 flex justify-between text-xs text-gray-400">
+      <div className="mt-1 flex justify-between text-xs text-gray-400 dark:text-gray-500">
         <span>{minLabel}</span>
         <span>{maxLabel}</span>
       </div>
@@ -293,7 +293,7 @@ function StatCard({
   tone: "green" | "amber" | "blue";
 }) {
   const styles = {
-    green: { bg: "bg-green-50", label: "text-green-700", value: "text-green-700" },
+    green: { bg: "bg-green-50 dark:bg-[#0a0a0a]", label: "text-green-700", value: "text-green-700" },
     amber: { bg: "bg-amber-50", label: "text-amber-700", value: "text-amber-600" },
     blue: { bg: "bg-blue-50", label: "text-blue-700", value: "text-blue-700" },
   }[tone];
@@ -320,9 +320,9 @@ function SummaryLine({
   highlight?: boolean;
 }) {
   return (
-    <div className={`flex items-center justify-between py-3 px-2 -mx-2 rounded-lg ${highlight ? "bg-green-50" : ""}`}>
-      <span className="text-sm text-gray-500">{label}</span>
-      <span className={`text-sm font-bold ${highlight ? "text-green-700" : "text-gray-900"}`}>
+    <div className={`flex items-center justify-between py-3 px-2 -mx-2 rounded-lg ${highlight ? "bg-green-50 dark:bg-[#0a0a0a]" : ""}`}>
+      <span className="text-sm text-gray-500 dark:text-gray-400 dark:text-gray-500">{label}</span>
+      <span className={`text-sm font-bold ${highlight ? "text-green-700" : "text-gray-900 dark:text-white"}`}>
         {value}
       </span>
     </div>

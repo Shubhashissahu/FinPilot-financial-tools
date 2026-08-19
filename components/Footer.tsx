@@ -37,12 +37,12 @@ export default function Footer() {
               </span>
             </Link>
 
-            <p className="mt-5 max-w-md text-sm leading-6 text-gray-400">
+            <p className="mt-5 max-w-md text-sm leading-6 text-gray-400 dark:text-gray-500">
               Seven free financial tools in one place — split bills, calculate
               taxes, EMIs, SIPs, and more, without the spreadsheet math.
             </p>
 
-            <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-gray-800 bg-gray-900 px-4 py-2 text-xs text-gray-400">
+            <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-gray-800 bg-gray-900 px-4 py-2 text-xs text-gray-400 dark:text-gray-500">
               <span className="h-2 w-2 rounded-full bg-green-500" />
               7 tools · Free forever · No sign-up
             </div>
@@ -51,7 +51,7 @@ export default function Footer() {
           {/* Tools */}
           <div>
             <h3 className="text-sm font-semibold text-white">Tools</h3>
-            <ul className="mt-5 space-y-3 text-sm text-gray-400">
+            <ul className="mt-5 space-y-3 text-sm text-gray-400 dark:text-gray-500">
               {toolLinks.map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} className="transition hover:text-green-400">
@@ -65,7 +65,7 @@ export default function Footer() {
           {/* Company */}
           <div>
             <h3 className="text-sm font-semibold text-white">Company</h3>
-            <ul className="mt-5 space-y-3 text-sm text-gray-400">
+            <ul className="mt-5 space-y-3 text-sm text-gray-400 dark:text-gray-500">
               {companyLinks.map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} className="transition hover:text-green-400">
@@ -81,7 +81,7 @@ export default function Footer() {
         <div className="my-10 h-px bg-gray-800" />
 
         {/* Bottom Footer */}
-        <div className="flex flex-col gap-4 text-sm text-gray-500 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-4 text-sm text-gray-500 dark:text-gray-400 dark:text-gray-500 sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} FinanceKit. All rights reserved.</p>
 
           <div className="flex items-center gap-5">

@@ -41,18 +41,18 @@ export default function TaxCalculatorPage() {
         <h1 className="text-center text-4xl font-black text-blue-700">
           Income Tax Changes for Tax Year 2026-27
         </h1>
-        <p className="mt-4 text-center text-gray-600">
+        <p className="mt-4 text-center text-gray-600 dark:text-gray-400 dark:text-gray-500">
           Budget 2026 kept the new-regime slabs, rebate, standard deduction, and
           marginal relief unchanged. Compare FY 2024-25 with the current Tax
           Year 2026-27 rules.
         </p>
 
-        <section className="mt-10 rounded-2xl bg-white p-8 shadow-sm">
-          <h2 className="flex items-center gap-2 text-xl font-bold text-gray-900">
+        <section className="mt-10 rounded-2xl bg-white dark:bg-neutral-900 p-8 shadow-sm">
+          <h2 className="flex items-center gap-2 text-xl font-bold text-gray-900 dark:text-white">
             🧮 Tax Calculator
           </h2>
 
-          <label className="mt-6 block text-sm font-medium text-gray-700">
+          <label className="mt-6 block text-sm font-medium text-gray-700 dark:text-gray-300">
             Annual Income (₹)
           </label>
           <div className="mt-2 flex gap-3">
@@ -63,7 +63,7 @@ export default function TaxCalculatorPage() {
               value={incomeInput}
               onChange={(e) => handleIncomeChange(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleCalculate()}
-              className="flex-1 rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-green-500 focus:ring-2 focus:ring-blue-200"
+              className="flex-1 rounded-lg border border-gray-300 dark:border-neutral-700 px-4 py-3 text-gray-900 dark:text-white outline-none focus:border-green-500 focus:ring-2 focus:ring-blue-200"
             />
             <button
               onClick={handleCalculate}
@@ -119,9 +119,9 @@ export default function TaxCalculatorPage() {
               <TaxCard title="Current Tax Year 2026-27 Calculation" result={result.fy2026_27} tone="blue" />
             </div>
 
-            <div className="mt-6 rounded-2xl bg-green-50 p-6">
-              <h3 className="text-lg font-bold text-gray-900">Your Tax Savings</h3>
-              <p className="mt-2 text-gray-700">
+            <div className="mt-6 rounded-2xl bg-green-50 dark:bg-[#0a0a0a] p-6">
+              <h3 className="text-lg font-bold text-gray-900 dark:text-white">Your Tax Savings</h3>
+              <p className="mt-2 text-gray-700 dark:text-gray-300">
                 Compared with FY 2024-25 new-regime rules, the current rules
                 make you{" "}
                 {savings >= 0 ? (
@@ -138,7 +138,7 @@ export default function TaxCalculatorPage() {
           </>
         )}
 
-        <p className="mt-10 text-center text-xs text-gray-400">
+        <p className="mt-10 text-center text-xs text-gray-400 dark:text-gray-500">
           This calculator covers the New Tax Regime only and is for
           informational purposes — not tax advice. Verify against the
           official Income Tax Department resources before filing.
@@ -160,26 +160,26 @@ function TaxCard({
   return (
     <div
       className={`rounded-2xl p-6 ${
-        tone === "blue" ? "bg-blue-50" : "bg-gray-50"
+        tone === "blue" ? "bg-blue-50" : "bg-gray-50 dark:bg-neutral-900/50"
       }`}
     >
-      <h3 className="text-lg font-bold text-gray-900">{title}</h3>
+      <h3 className="text-lg font-bold text-gray-900 dark:text-white">{title}</h3>
 
-      <div className="mt-4 space-y-3 border-t border-gray-200 pt-4">
+      <div className="mt-4 space-y-3 border-t border-gray-200 dark:border-neutral-800 pt-4">
         <div className="flex justify-between">
-          <span className="text-gray-500">Total Tax:</span>
-          <span className="font-semibold text-gray-900">
+          <span className="text-gray-500 dark:text-gray-400 dark:text-gray-500">Total Tax:</span>
+          <span className="font-semibold text-gray-900 dark:text-white">
             ₹{result.totalTax.toLocaleString("en-IN")}
           </span>
         </div>
         <div className="flex justify-between">
-          <span className="text-gray-500">Effective Tax Rate:</span>
-          <span className="font-semibold text-gray-900">
+          <span className="text-gray-500 dark:text-gray-400 dark:text-gray-500">Effective Tax Rate:</span>
+          <span className="font-semibold text-gray-900 dark:text-white">
             {result.effectiveRate.toFixed(2)}%
           </span>
         </div>
         <div className="flex justify-between">
-          <span className="text-gray-500">Net Income:</span>
+          <span className="text-gray-500 dark:text-gray-400 dark:text-gray-500">Net Income:</span>
           <span className="font-semibold text-green-600">
             ₹{result.netIncome.toLocaleString("en-IN")}
           </span>
@@ -187,17 +187,17 @@ function TaxCard({
       </div>
 
       <div className="mt-4">
-        <p className="text-sm font-medium text-gray-700">Tax Breakdown:</p>
-        <div className="mt-2 rounded-lg bg-white p-3">
+        <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Tax Breakdown:</p>
+        <div className="mt-2 rounded-lg bg-white dark:bg-neutral-900 p-3">
           {result.breakdown.length === 0 ? (
-            <p className="text-sm text-gray-400">No tax applicable</p>
+            <p className="text-sm text-gray-400 dark:text-gray-500">No tax applicable</p>
           ) : (
             result.breakdown.map((row, i) => (
               <div key={i} className="flex justify-between py-1 text-sm">
-                <span className="text-gray-600">{row.label}</span>
+                <span className="text-gray-600 dark:text-gray-400 dark:text-gray-500">{row.label}</span>
                 <span
                   className={`font-medium ${
-                    row.amount < 0 ? "text-green-600" : "text-gray-900"
+                    row.amount < 0 ? "text-green-600" : "text-gray-900 dark:text-white"
                   }`}
                 >
                   {row.amount < 0 ? "-" : ""}₹
@@ -222,26 +222,26 @@ function SlabReferenceCard({
   features: string[];
 }) {
   return (
-    <div className="rounded-2xl bg-white p-6 shadow-sm">
-      <h3 className="text-xl font-bold text-gray-900">{title}</h3>
+    <div className="rounded-2xl bg-white dark:bg-neutral-900 p-6 shadow-sm">
+      <h3 className="text-xl font-bold text-gray-900 dark:text-white">{title}</h3>
 
-      <h4 className="mt-4 text-sm font-semibold text-gray-700">Tax Slabs</h4>
-      <div className="mt-2 overflow-hidden rounded-lg border border-gray-200">
+      <h4 className="mt-4 text-sm font-semibold text-gray-700 dark:text-gray-300">Tax Slabs</h4>
+      <div className="mt-2 overflow-hidden rounded-lg border border-gray-200 dark:border-neutral-800">
         <table className="w-full text-sm">
-          <thead className="bg-gray-50">
+          <thead className="bg-gray-50 dark:bg-neutral-900/50">
             <tr>
-              <th className="px-4 py-2 text-left font-medium text-gray-700">
+              <th className="px-4 py-2 text-left font-medium text-gray-700 dark:text-gray-300">
                 Income Range (₹)
               </th>
-              <th className="px-4 py-2 text-left font-medium text-gray-700">
+              <th className="px-4 py-2 text-left font-medium text-gray-700 dark:text-gray-300">
                 Tax Rate
               </th>
             </tr>
           </thead>
           <tbody>
             {rows.map((row, i) => (
-              <tr key={i} className={i % 2 === 1 ? "bg-gray-50" : ""}>
-                <td className="px-4 py-2 text-gray-700">{row.range}</td>
+              <tr key={i} className={i % 2 === 1 ? "bg-gray-50 dark:bg-neutral-900/50" : ""}>
+                <td className="px-4 py-2 text-gray-700 dark:text-gray-300">{row.range}</td>
                 <td className="px-4 py-2 font-medium text-green-700">{row.rate}</td>
               </tr>
             ))}
@@ -249,10 +249,10 @@ function SlabReferenceCard({
         </table>
       </div>
 
-      <h4 className="mt-6 text-sm font-semibold text-gray-700">Key Features</h4>
+      <h4 className="mt-6 text-sm font-semibold text-gray-700 dark:text-gray-300">Key Features</h4>
       <ul className="mt-2 space-y-2">
         {features.map((feature, i) => (
-          <li key={i} className="flex items-start gap-2 text-sm text-gray-600">
+          <li key={i} className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-400 dark:text-gray-500">
             <span className="mt-0.5 text-green-600">✓</span>
             {feature}
           </li>

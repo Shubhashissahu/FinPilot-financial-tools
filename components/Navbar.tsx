@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { tools, categoryOrder } from "@/lib/tools";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const topLinks = [
   {
@@ -63,7 +64,7 @@ export default function Navbar({ drawerOpen, onToggle, onClose }: NavbarProps) {
   return (
     <>
       <header
-        className={`sticky top-0 z-40 border-b border-gray-200 bg-white shadow-[0_1px_3px_rgba(0,0,0,0.06),0_1px_2px_rgba(0,0,0,0.04)] transition-all duration-300 ${
+        className={`sticky top-0 z-40 border-b border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900/80 dark:bg-neutral-900/80 backdrop-blur-md shadow-[0_1px_3px_rgba(0,0,0,0.06),0_1px_2px_rgba(0,0,0,0.04)] transition-all duration-300 ${
           drawerOpen ? "lg:ml-80" : "lg:ml-0"
         }`}
       >
@@ -72,7 +73,7 @@ export default function Navbar({ drawerOpen, onToggle, onClose }: NavbarProps) {
             onClick={onToggle}
             aria-label={drawerOpen ? "Close menu" : "Open menu"}
             aria-expanded={drawerOpen}
-            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-gray-600 transition hover:bg-gray-100 hover:text-gray-900 active:scale-95"
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-gray-600 dark:text-gray-300 transition hover:bg-gray-100 dark:hover:bg-neutral-800 hover:text-gray-900 dark:hover:text-white active:scale-95"
           >
             <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               {drawerOpen ? (
@@ -87,12 +88,12 @@ export default function Navbar({ drawerOpen, onToggle, onClose }: NavbarProps) {
             <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-green-500 to-emerald-700 text-base font-bold text-white shadow-md shadow-green-600/25 transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-105">
               ₹
             </div>
-            <span className="whitespace-nowrap text-lg font-extrabold tracking-tight text-gray-900">
+            <span className="whitespace-nowrap text-lg font-extrabold tracking-tight text-gray-900 dark:text-white">
               FinPilot
             </span>
           </Link>
 
-          <nav className="ml-auto flex items-center gap-1 rounded-xl bg-gray-100 p-1">
+          <nav className="ml-auto flex items-center gap-1 rounded-xl bg-gray-100 dark:bg-neutral-800 p-1">
             {topLinks.map((link) => {
               const isActive = pathname === link.href;
               return (
@@ -101,8 +102,8 @@ export default function Navbar({ drawerOpen, onToggle, onClose }: NavbarProps) {
                   href={link.href}
                   className={`flex items-center gap-1.5 rounded-lg px-3.5 py-2 text-sm font-medium transition ${
                     isActive
-                      ? "bg-white text-green-700 shadow-sm"
-                      : "text-gray-600 hover:text-gray-900"
+                      ? "bg-white text-green-700 dark:bg-neutral-700 dark:text-green-400 shadow-sm"
+                      : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
                   }`}
                 >
                   <svg
@@ -119,6 +120,9 @@ export default function Navbar({ drawerOpen, onToggle, onClose }: NavbarProps) {
               );
             })}
           </nav>
+          <div className="ml-2">
+            <ThemeToggle />
+          </div>
         </div>
       </header>
 
@@ -140,7 +144,7 @@ export default function Navbar({ drawerOpen, onToggle, onClose }: NavbarProps) {
           </div>
           <div>
             <p className="text-base font-bold leading-tight"> FinPilot</p>
-            <p className="text-xs text-gray-400">
+            <p className="text-xs text-gray-400 dark:text-gray-500">
               {tools.length} tools · Free 
             </p>
           </div>
@@ -148,7 +152,7 @@ export default function Navbar({ drawerOpen, onToggle, onClose }: NavbarProps) {
 
         <div className="px-5 pt-5">
           <div className="flex items-center gap-2 rounded-lg border border-gray-800 bg-gray-900 px-3 py-2.5 transition focus-within:border-green-600">
-            <svg className="h-4 w-4 shrink-0 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <svg className="h-4 w-4 shrink-0 text-gray-500 dark:text-gray-400 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <circle cx="11" cy="11" r="7" />
               <path strokeLinecap="round" d="M21 21l-4.3-4.3" />
             </svg>
@@ -156,7 +160,7 @@ export default function Navbar({ drawerOpen, onToggle, onClose }: NavbarProps) {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search tools..."
-              className="w-full bg-transparent text-sm text-white outline-none placeholder:text-gray-500"
+              className="w-full bg-transparent text-sm text-white outline-none placeholder:text-gray-500 dark:text-gray-400 dark:text-gray-500"
             />
           </div>
         </div>
@@ -166,7 +170,7 @@ export default function Navbar({ drawerOpen, onToggle, onClose }: NavbarProps) {
             ({ category, items }) =>
               items.length > 0 && (
                 <div key={category}>
-                  <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-gray-500">
+                  <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 dark:text-gray-500">
                     {category}
                   </p>
                   <div className="space-y-1">
@@ -188,7 +192,7 @@ export default function Navbar({ drawerOpen, onToggle, onClose }: NavbarProps) {
                             <span className="block text-sm font-medium text-white">
                               {item.label}
                             </span>
-                            <span className="block text-xs text-gray-500">
+                            <span className="block text-xs text-gray-500 dark:text-gray-400 dark:text-gray-500">
                               {item.description}
                             </span>
                           </span>
@@ -204,11 +208,11 @@ export default function Navbar({ drawerOpen, onToggle, onClose }: NavbarProps) {
           )}
 
           {filteredItems.length === 0 && (
-            <p className="text-sm text-gray-500">No tools match &ldquo;{query}&rdquo;.</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400 dark:text-gray-500">No tools match &ldquo;{query}&rdquo;.</p>
           )}
         </nav>
 
-        <div className="border-t border-gray-800 px-5 py-4 text-center text-xs text-gray-500">
+        <div className="border-t border-gray-800 px-5 py-4 text-center text-xs text-gray-500 dark:text-gray-400 dark:text-gray-500">
           Free  · No sign-up · No data stored
         </div>
       </div>

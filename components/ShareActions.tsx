@@ -42,15 +42,15 @@ export default function ShareActions({
   };
 
   return (
-    <div className="mt-6 border-t border-gray-200 pt-5">
-      <p className="text-sm font-medium text-gray-700">
+    <div className="mt-6 border-t border-gray-200 dark:border-neutral-800 pt-5">
+      <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
         Share bill
       </p>
 
       <div className="mt-3 flex flex-wrap gap-3">
         <button
           onClick={copyMessage}
-          className="rounded-lg border border-gray-200 px-4 py-2 text-sm font-medium text-gray-700 transition hover:bg-gray-50"
+          className="rounded-lg border border-gray-200 dark:border-neutral-800 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 transition hover:bg-gray-50 dark:bg-neutral-900/50"
         >
           {copied ? "Copied ✓" : "Copy message"}
         </button>
@@ -63,7 +63,7 @@ export default function ShareActions({
         </button>
         <button
   onClick={() => generateBillPdf(result)}
-  className="rounded-lg border border-green-600 px-4 py-2 text-sm font-medium text-green-700 transition hover:bg-green-50"
+  className="rounded-lg border border-green-600 px-4 py-2 text-sm font-medium text-green-700 transition hover:bg-green-50 dark:bg-[#0a0a0a]"
 >
   Download PDF
 </button>

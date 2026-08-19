@@ -99,38 +99,38 @@ export default function BillItemForm({
   };
 
   return (
-    <section className="mt-6 rounded-2xl border border-gray-200 p-6">
-      <h2 className="text-xl font-semibold text-gray-900">Add bill items</h2>
-      <p className="mt-1 text-sm text-gray-500">
+    <section className="mt-6 rounded-2xl border border-gray-200 dark:border-neutral-800 p-6">
+      <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Add bill items</h2>
+      <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
         Enter each item and choose who ordered it.
       </p>
 
       <div className="mt-6 grid gap-4 sm:grid-cols-2">
         <div>
-          <label className="text-sm font-medium text-gray-700">Item name</label>
+          <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Item name</label>
           <input
             type="text"
             placeholder="e.g. Pizza"
             value={itemName}
             onChange={(e) => setItemName(e.target.value)}
-            className="mt-2 w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-green-500"
+            className="mt-2 w-full rounded-xl border border-gray-300 dark:border-neutral-700 px-4 py-3 text-gray-900 dark:text-white outline-none focus:border-green-500"
           />
         </div>
 
         <div>
-          <label className="text-sm font-medium text-gray-700">Price</label>
+          <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Price</label>
           <input
             type="number"
             placeholder="₹0"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
-            className="mt-2 w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-green-500"
+            className="mt-2 w-full rounded-xl border border-gray-300 dark:border-neutral-700 px-4 py-3 text-gray-900 dark:text-white outline-none focus:border-green-500"
           />
         </div>
       </div>
 
       <div className="mt-6">
-        <label className="flex cursor-pointer items-center gap-2 text-sm text-gray-700">
+        <label className="flex cursor-pointer items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
           <input
             type="checkbox"
             checked={isShared}
@@ -141,15 +141,15 @@ export default function BillItemForm({
       </div>
 
       <div className="mt-6">
-        <p className="text-sm font-medium text-gray-700">Who ordered this?</p>
+        <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Who ordered this?</p>
         <div className="mt-3 flex flex-wrap gap-3">
           {people.map((person) => (
             <label
               key={person.id}
               className={`flex items-center gap-2 rounded-xl border px-4 py-3 text-sm ${
                 isShared
-                  ? "cursor-not-allowed bg-gray-50 text-gray-400"
-                  : "cursor-pointer border-gray-200 text-gray-700"
+                  ? "cursor-not-allowed bg-gray-50 dark:bg-neutral-900/50 text-gray-400 dark:text-gray-500"
+                  : "cursor-pointer border-gray-200 dark:border-neutral-800 text-gray-700 dark:text-gray-300"
               }`}
             >
               <input
@@ -175,8 +175,8 @@ export default function BillItemForm({
       </button>
 
       {items.length > 0 && (
-        <div className="mt-8 border-t border-gray-200 pt-6">
-          <h3 className="font-semibold text-gray-900">Added items</h3>
+        <div className="mt-8 border-t border-gray-200 dark:border-neutral-800 pt-6">
+          <h3 className="font-semibold text-gray-900 dark:text-white">Added items</h3>
           <div className="mt-4 space-y-3">
             {items.map((item) => {
               const isUnassigned = !item.isShared && item.assignedTo.length === 0;
@@ -184,13 +184,13 @@ export default function BillItemForm({
                 <div
                   key={item.id}
                   className={`rounded-xl p-4 ${
-                    isUnassigned ? "bg-red-50 border border-red-200" : "bg-gray-50"
+                    isUnassigned ? "bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50" : "bg-gray-50 dark:bg-neutral-900/50"
                   }`}
                 >
                   <div className="flex items-start justify-between">
                     <div>
-                      <p className="font-medium text-gray-900">{item.name}</p>
-                      <p className={`mt-1 text-sm ${isUnassigned ? "text-red-600" : "text-gray-500"}`}>
+                      <p className="font-medium text-gray-900 dark:text-white">{item.name}</p>
+                      <p className={`mt-1 text-sm ${isUnassigned ? "text-red-600 dark:text-red-400" : "text-gray-500 dark:text-gray-400"}`}>
                         {item.isShared
                           ? "Shared by everyone"
                           : item.assignedTo.length > 0
@@ -203,11 +203,11 @@ export default function BillItemForm({
                     </div>
 
                     <div className="flex items-center gap-4">
-                      <p className="font-semibold text-gray-900">₹{item.price.toFixed(2)}</p>
+                      <p className="font-semibold text-gray-900 dark:text-white">₹{item.price.toFixed(2)}</p>
                       <button
                         type="button"
                         onClick={() => removeItem(item.id)}
-                        className="text-sm text-gray-400 hover:text-red-600"
+                        className="text-sm text-gray-400 dark:text-gray-500 hover:text-red-600"
                       >
                         Remove
                       </button>
@@ -220,12 +220,12 @@ export default function BillItemForm({
                       className={`text-xs font-medium px-3 py-1.5 rounded-full border ${
                         item.isShared
                           ? "bg-green-600 border-green-600 text-white"
-                          : "border-gray-300 text-gray-500 hover:border-green-300"
+                          : "border-gray-300 dark:border-neutral-700 text-gray-500 dark:text-gray-400 hover:border-green-300"
                       }`}
                     >
                       Shared by everyone
                     </button>
-                    <span className="text-xs text-gray-400">or assign to:</span>
+                    <span className="text-xs text-gray-400 dark:text-gray-500">or assign to:</span>
                     {people.map((person) => {
                       const active = !item.isShared && item.assignedTo.includes(person.id);
                       return (
@@ -236,7 +236,7 @@ export default function BillItemForm({
                           className={`text-xs font-medium px-3 py-1.5 rounded-full border ${
                             active
                               ? "bg-gray-900 border-gray-900 text-white"
-                              : "border-gray-300 text-gray-500 hover:border-green-300"
+                              : "border-gray-300 dark:border-neutral-700 text-gray-500 dark:text-gray-400 hover:border-green-300"
                           }`}
                         >
                           {person.name}

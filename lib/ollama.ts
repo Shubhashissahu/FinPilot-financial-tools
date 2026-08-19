@@ -27,9 +27,12 @@ Return ONLY a JSON object, no prose, no markdown fences, matching exactly this s
 
 Rules:
 - "restaurantName" is the business name printed at the top of the receipt. If you can't confidently identify one, use null — do NOT guess or invent a name.
-- "price" is the PER-UNIT price in rupees, as a plain number (no currency symbols, no commas).
+- Extract EVERY single food/product item listed on the receipt. Do not skip items.
+- "price" is the price in rupees for the item, as a plain number (no currency symbols, no commas).
+- **CRITICAL**: Do NOT confuse product codes, barcodes, or HSN codes (which are usually 6-8 digit integers like 21061000, 19053100) for the price. The actual price is usually a decimal number (e.g., 150.00, 80.00).
+- **CRITICAL**: If the receipt is in a tabular format, carefully identify the 'Unit Price', 'Gross Value', or 'Total Value' column for the price. Do NOT extract small numbers from 'Other Charges', 'Discount', or 'Tax' columns (e.g. 1.58, 2.26) as the price.
 - "quantity" defaults to 1 if not stated.
-- Skip lines that clearly aren't menu items (e.g. "Table No", "GSTIN", "Thank you").
+- Skip lines that clearly aren't menu items (e.g. "Table No", "GSTIN", "Thank you", subtotal lines).
 - "gstPercentage": if a tax/GST % is printed directly, use it. If only a GST amount is printed (not a %), estimate the % from that amount versus the subtotal. If you cannot determine it at all, use null — do NOT assume 0.
 - If you find no items, return { "restaurantName": null, "items": [], "gstPercentage": null }.
 

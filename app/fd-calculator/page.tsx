@@ -67,18 +67,18 @@ export default function FdCalculatorPage() {
   };
 
   return (
-    <main className="min-h-screen bg-gray-50 px-6 py-16">
+    <main className="min-h-screen bg-gray-50 dark:bg-neutral-900/50 px-6 py-16">
       <div className="mx-auto max-w-5xl">
-        <h1 className="text-4xl font-black text-gray-900">FD Calculator</h1>
-        <p className="mt-2 text-gray-500">
+        <h1 className="text-4xl font-black text-gray-900 dark:text-white">FD Calculator</h1>
+        <p className="mt-2 text-gray-500 dark:text-gray-400 dark:text-gray-500">
           Fixed Deposit maturity &amp; interest calculator
         </p>
 
         <div className="mt-10 grid gap-6 lg:grid-cols-[1fr_1fr]">
           {/* FD details card */}
-          <section className="rounded-2xl bg-white p-8 shadow-sm">
-            <h2 className="text-lg font-bold text-gray-900">FD details</h2>
-            <div className="mt-2 border-t border-gray-100" />
+          <section className="rounded-2xl bg-white dark:bg-neutral-900 p-8 shadow-sm">
+            <h2 className="text-lg font-bold text-gray-900 dark:text-white">FD details</h2>
+            <div className="mt-2 border-t border-gray-100 dark:border-neutral-800" />
 
             <SliderField
               label="Principal amount"
@@ -117,10 +117,10 @@ export default function FdCalculatorPage() {
             />
 
             <div className="mt-6">
-              <label className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+              <label className="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 dark:text-gray-500">
                 Compounding frequency
               </label>
-              <div className="mt-3 grid grid-cols-3 gap-2 rounded-lg bg-gray-100 p-1">
+              <div className="mt-3 grid grid-cols-3 gap-2 rounded-lg bg-gray-100 dark:bg-neutral-800 p-1">
                 {(Object.keys(FREQUENCY_N) as CompoundingFrequency[]).map((freq) => (
                   <button
                     key={freq}
@@ -128,8 +128,8 @@ export default function FdCalculatorPage() {
                     onClick={() => setFrequency(freq)}
                     className={`rounded-md py-2 text-sm font-medium transition ${
                       frequency === freq
-                        ? "bg-white text-gray-900 shadow-sm"
-                        : "text-gray-500 hover:text-gray-700"
+                        ? "bg-white dark:bg-neutral-900 text-gray-900 dark:text-white shadow-sm"
+                        : "text-gray-500 dark:text-gray-400 dark:text-gray-500 hover:text-gray-700 dark:text-gray-300"
                     }`}
                   >
                     {FREQUENCY_LABEL[freq]}
@@ -147,9 +147,9 @@ export default function FdCalculatorPage() {
               <StatCard label="Maturity" value={netMaturity} tone="green" compact />
             </div>
 
-            <section className="rounded-2xl bg-white p-6 shadow-sm">
-              <h2 className="text-lg font-bold text-gray-900">Maturity breakdown</h2>
-              <div className="mt-2 divide-y divide-gray-100 border-t border-gray-100">
+            <section className="rounded-2xl bg-white dark:bg-neutral-900 p-6 shadow-sm">
+              <h2 className="text-lg font-bold text-gray-900 dark:text-white">Maturity breakdown</h2>
+              <div className="mt-2 divide-y divide-gray-100 border-t border-gray-100 dark:border-neutral-800">
                 <SummaryLine label="Principal" value={`₹${fd.principal.toLocaleString("en-IN")}`} />
                 <SummaryLine
                   label="Total interest earned"
@@ -167,9 +167,9 @@ export default function FdCalculatorPage() {
                 />
               </div>
 
-              <div className="mt-4 rounded-xl bg-gray-50 p-4 text-sm text-gray-600">
+              <div className="mt-4 rounded-xl bg-gray-50 dark:bg-neutral-900/50 p-4 text-sm text-gray-600 dark:text-gray-400 dark:text-gray-500">
                 Effective annual yield:{" "}
-                <span className="font-semibold text-gray-900">
+                <span className="font-semibold text-gray-900 dark:text-white">
                   {fd.effectiveAnnualYield}%
                 </span>{" "}
                 ({FREQUENCY_LABEL[frequency].toLowerCase()} compounding)
@@ -178,7 +178,7 @@ export default function FdCalculatorPage() {
               <div className="mt-6 flex flex-wrap gap-3">
                 <button
                   onClick={() => generateFdPdf(fd, rate, tenureYears, FREQUENCY_LABEL[frequency].toLowerCase())}
-                  className="flex-1 rounded-lg border border-green-600 px-4 py-3 text-sm font-medium text-green-700 transition hover:bg-green-50"
+                  className="flex-1 rounded-lg border border-green-600 px-4 py-3 text-sm font-medium text-green-700 transition hover:bg-green-50 dark:bg-[#0a0a0a]"
                 >
                   Download PDF
                 </button>
@@ -194,9 +194,9 @@ export default function FdCalculatorPage() {
         </div>
 
         {/* Pie chart */}
-        <section className="mt-6 rounded-2xl bg-white p-8 shadow-sm">
-          <h2 className="text-lg font-bold text-gray-900">Principal vs. interest</h2>
-          <div className="mt-2 border-t border-gray-100" />
+        <section className="mt-6 rounded-2xl bg-white dark:bg-neutral-900 p-8 shadow-sm">
+          <h2 className="text-lg font-bold text-gray-900 dark:text-white">Principal vs. interest</h2>
+          <div className="mt-2 border-t border-gray-100 dark:border-neutral-800" />
           <div className="mt-6 flex flex-col items-center gap-8 sm:flex-row sm:justify-center">
             <PrincipalInterestPie principalShare={100 - interestShare} interestShare={interestShare} />
             <div className="flex gap-8">
@@ -234,7 +234,7 @@ function SliderField({
   return (
     <div className="mt-6 first:mt-6">
       <div className="flex items-center justify-between">
-        <label className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+        <label className="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 dark:text-gray-500">
           {label}
         </label>
         <span className="text-sm font-bold text-green-700">{display}</span>
@@ -248,7 +248,7 @@ function SliderField({
         onChange={(e) => onChange(Number(e.target.value))}
         className="mt-3 w-full accent-green-600"
       />
-      <div className="mt-1 flex justify-between text-xs text-gray-400">
+      <div className="mt-1 flex justify-between text-xs text-gray-400 dark:text-gray-500">
         <span>{minLabel}</span>
         <span>{maxLabel}</span>
       </div>
@@ -268,7 +268,7 @@ function StatCard({
   compact?: boolean;
 }) {
   const styles = {
-    green: { bg: "bg-green-50", label: "text-green-700", value: "text-green-700" },
+    green: { bg: "bg-green-50 dark:bg-[#0a0a0a]", label: "text-green-700", value: "text-green-700" },
     amber: { bg: "bg-amber-50", label: "text-amber-700", value: "text-amber-600" },
     blue: { bg: "bg-blue-50", label: "text-blue-700", value: "text-blue-700" },
   }[tone];
@@ -295,9 +295,9 @@ function SummaryLine({
   highlight?: boolean;
 }) {
   return (
-    <div className={`flex items-center justify-between py-3 px-2 -mx-2 rounded-lg ${highlight ? "bg-green-50" : ""}`}>
-      <span className="text-sm text-gray-500">{label}</span>
-      <span className={`text-sm font-bold ${highlight ? "text-green-700" : "text-gray-900"}`}>
+    <div className={`flex items-center justify-between py-3 px-2 -mx-2 rounded-lg ${highlight ? "bg-green-50 dark:bg-[#0a0a0a]" : ""}`}>
+      <span className="text-sm text-gray-500 dark:text-gray-400 dark:text-gray-500">{label}</span>
+      <span className={`text-sm font-bold ${highlight ? "text-green-700" : "text-gray-900 dark:text-white"}`}>
         {value}
       </span>
     </div>
@@ -358,8 +358,8 @@ function Legend({ color, label, value }: { color: string; label: string; value: 
     <div className="flex items-start gap-2">
       <span className="mt-1 h-3 w-3 shrink-0 rounded-full" style={{ backgroundColor: color }} />
       <div>
-        <p className="text-xs text-gray-500">{label}</p>
-        <p className="text-sm font-bold text-gray-900">{value}</p>
+        <p className="text-xs text-gray-500 dark:text-gray-400 dark:text-gray-500">{label}</p>
+        <p className="text-sm font-bold text-gray-900 dark:text-white">{value}</p>
       </div>
     </div>
   );
