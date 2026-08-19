@@ -154,21 +154,21 @@ export default function ReceiptUpload({
 
 
   return (
-    <section className="mt-10 rounded-2xl border border-green-200 bg-green-50 p-6">
+    <section className="mt-10 rounded-2xl border border-green-200 bg-green-50 dark:bg-[#0a0a0a] p-6">
 
       <span className="text-sm font-medium text-green-700">
         AI Receipt Scanner
       </span>
 
 
-      <h2 className="mt-2 text-xl font-semibold text-gray-900">
+      <h2 className="mt-2 text-xl font-semibold text-gray-900 dark:text-white">
         Upload your receipt
       </h2>
 
 
       <label
         htmlFor="receipt-upload"
-        className="mt-6 flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed border-green-300 bg-white px-6 py-8 text-center transition hover:border-green-600"
+        className="mt-6 flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed border-green-300 bg-white dark:bg-neutral-900 px-6 py-8 text-center transition hover:border-green-600"
       >
         <span className="text-4xl">📷</span>
 
@@ -176,7 +176,7 @@ export default function ReceiptUpload({
           Choose receipt image
         </span>
 
-        <span className="mt-1 text-sm text-gray-500">
+        <span className="mt-1 text-sm text-gray-500 dark:text-gray-400 dark:text-gray-500">
           JPEG, PNG or WebP (max 5MB)
         </span>
 
@@ -199,7 +199,7 @@ export default function ReceiptUpload({
       />
 
 
-      <p className="mt-4 text-sm text-gray-600">
+      <p className="mt-4 text-sm text-gray-600 dark:text-gray-400 dark:text-gray-500">
         We&rsquo;ll extract the bill items automatically.
       </p>
 

@@ -23,7 +23,7 @@ type CtcPeriod = "monthly" | "yearly";
 
 
 const inputClass =
-  "w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 outline-none focus:border-green-500 focus:ring-2 focus:ring-green-200";
+  "w-full rounded-lg border border-gray-300 dark:border-neutral-700 px-3 py-2 text-sm text-gray-900 dark:text-white outline-none focus:border-green-500 focus:ring-2 focus:ring-green-200";
 
 export default function CtcCalculatorPage() {
   const [ctcInput, setCtcInput] = useState("12,22,222");
@@ -100,41 +100,41 @@ export default function CtcCalculatorPage() {
 
 
   return (
-    <main className="min-h-screen bg-green-50 px-6 py-16">
+    <main className="min-h-screen bg-green-50 dark:bg-[#0a0a0a] px-6 py-16">
       <div className="mx-auto max-w-5xl">
         <h1 className="text-center text-4xl font-black text-green-700">CTC Calculator</h1>
-        <p className="mt-3 text-center text-gray-600">
+        <p className="mt-3 text-center text-gray-600 dark:text-gray-400 dark:text-gray-500">
           Estimate your take-home salary from your Cost to Company — New Tax Regime, FY 2026-27.
         </p>
 
         <div className="mt-10 grid gap-6 lg:grid-cols-2">
           {/* LEFT: inputs */}
-          <section className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
-            <label className="text-sm font-medium text-gray-700">Cost to Company (CTC)</label>
-            <div className="mt-2 flex items-center rounded-lg border border-gray-300 px-4 py-3 focus-within:border-green-500 focus-within:ring-2 focus-within:ring-green-200">
-              <span className="text-gray-400">₹</span>
+          <section className="rounded-2xl border border-gray-100 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6 shadow-sm">
+            <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Cost to Company (CTC)</label>
+            <div className="mt-2 flex items-center rounded-lg border border-gray-300 dark:border-neutral-700 px-4 py-3 focus-within:border-green-500 focus-within:ring-2 focus-within:ring-green-200">
+              <span className="text-gray-400 dark:text-gray-500">₹</span>
               <input
                 type="text"
                 inputMode="numeric"
                 value={ctcInput}
                 onChange={(e) => setCtcInput(formatWithCommas(e.target.value))}
                 placeholder={ctcPeriod === "yearly" ? "e.g. 12,00,000" : "e.g. 1,00,000"}
-                className="ml-2 flex-1 text-gray-900 placeholder:text-gray-400 outline-none"
+                className="ml-2 flex-1 text-gray-900 dark:text-white placeholder:text-gray-400 dark:text-gray-500 outline-none"
               />
-              <span className="text-sm text-gray-400">{ctcPeriod}</span>
+              <span className="text-sm text-gray-400 dark:text-gray-500">{ctcPeriod}</span>
             </div>
-            <p className="mt-1 text-xs text-gray-500">
+            <p className="mt-1 text-xs text-gray-500 dark:text-gray-400 dark:text-gray-500">
               Enter your {ctcPeriod} Cost to Company (CTC) amount in Indian Rupees.
             </p>
 
-            <div className="mt-3 grid grid-cols-2 gap-2 rounded-lg bg-gray-100 p-1">
+            <div className="mt-3 grid grid-cols-2 gap-2 rounded-lg bg-gray-100 dark:bg-neutral-800 p-1">
               {(["monthly", "yearly"] as CtcPeriod[]).map((period) => (
                 <button
                   key={period}
                   type="button"
                   onClick={() => setCtcPeriod(period)}
                   className={`rounded-md py-2 text-sm font-medium capitalize transition ${
-                    ctcPeriod === period ? "bg-green-600 text-white shadow-sm" : "text-gray-600 hover:text-gray-900"
+                    ctcPeriod === period ? "bg-green-600 text-white shadow-sm" : "text-gray-600 dark:text-gray-400 dark:text-gray-500 hover:text-gray-900 dark:text-white"
                   }`}
                 >
                   {period}
@@ -142,10 +142,10 @@ export default function CtcCalculatorPage() {
               ))}
             </div>
 
-            <p className="mt-3 text-xs text-gray-400">
+            <p className="mt-3 text-xs text-gray-400 dark:text-gray-500">
               Basic Salary auto-fills as whatever percentage remains after the components below ({basicPercent}% currently).
             </p>
-            {ctcEmpty && <p className="mt-2 text-xs font-medium text-gray-500">Enter your {ctcPeriod} CTC to see a breakdown.</p>}
+            {ctcEmpty && <p className="mt-2 text-xs font-medium text-gray-500 dark:text-gray-400 dark:text-gray-500">Enter your {ctcPeriod} CTC to see a breakdown.</p>}
             {ctcTooLow && (
               <p className="mt-2 text-xs font-medium text-red-600">
                 This CTC is too low to produce a meaningful result — fixed costs like Professional Tax (₹2,400/yr) exceed it.
@@ -161,14 +161,14 @@ export default function CtcCalculatorPage() {
               <div className="mt-4 space-y-5">
                 {percentFields.map(([label, value, onChange]) => (
                   <div key={label} className="flex items-center justify-between">
-                    <label className="text-sm text-gray-700">{label}</label>
+                    <label className="text-sm text-gray-700 dark:text-gray-300">{label}</label>
                     <input
                       type="number"
                       min={0}
                       max={100}
                       value={value}
                       onChange={(e) => onChange(Number(e.target.value))}
-                      className="w-20 rounded-lg border border-gray-300 px-2 py-1 text-right text-sm text-gray-900"
+                      className="w-20 rounded-lg border border-gray-300 dark:border-neutral-700 px-2 py-1 text-right text-sm text-gray-900 dark:text-white"
                     />
                   </div>
                 ))}
@@ -178,14 +178,14 @@ export default function CtcCalculatorPage() {
                   </p>
                 )}
 
-                <label className="flex items-center gap-2 text-sm text-gray-700">
+                <label className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
                   <input type="checkbox" checked={epfApplicable} onChange={(e) => setEpfApplicable(e.target.checked)} />
                   EPF Applicable
                 </label>
 
                 {epfApplicable && (
-                  <div className="rounded-lg bg-gray-50 p-4">
-                    <label className="text-sm font-medium text-gray-700">PF Wage Basis</label>
+                  <div className="rounded-lg bg-gray-50 dark:bg-neutral-900/50 p-4">
+                    <label className="text-sm font-medium text-gray-700 dark:text-gray-300">PF Wage Basis</label>
                     <select
                       value={pfWageCapped ? "capped" : "actual"}
                       onChange={(e) => setPfWageCapped(e.target.value === "capped")}
@@ -197,7 +197,7 @@ export default function CtcCalculatorPage() {
 
                     <div className="mt-4 grid grid-cols-2 gap-3">
                       <div>
-                        <label className="text-xs text-gray-500">Employee EPF %</label>
+                        <label className="text-xs text-gray-500 dark:text-gray-400 dark:text-gray-500">Employee EPF %</label>
                         <input
                           type="number"
                           value={employeeEpfPercent}
@@ -206,7 +206,7 @@ export default function CtcCalculatorPage() {
                         />
                       </div>
                       <div>
-                        <label className="text-xs text-gray-500">Employer EPF %</label>
+                        <label className="text-xs text-gray-500 dark:text-gray-400 dark:text-gray-500">Employer EPF %</label>
                         <input
                           type="number"
                           value={employerEpfPercent}
@@ -218,7 +218,7 @@ export default function CtcCalculatorPage() {
                   </div>
                 )}
 
-                <label className="flex items-center gap-2 text-sm text-gray-700">
+                <label className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
                   <input
                     type="checkbox"
                     checked={professionalTaxApplicable}
@@ -231,8 +231,8 @@ export default function CtcCalculatorPage() {
           </section>
 
           {/* RIGHT: results */}
-          <section className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
-            <h2 className="font-bold text-gray-900">Salary Breakdown · New Tax Regime FY 2026-27</h2>
+          <section className="rounded-2xl border border-gray-100 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6 shadow-sm">
+            <h2 className="font-bold text-gray-900 dark:text-white">Salary Breakdown · New Tax Regime FY 2026-27</h2>
             <ResultsTable
               result={result}
               epfApplicable={epfApplicable}

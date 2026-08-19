@@ -64,7 +64,7 @@ export function FaqAccordion() {
         </p>
       </div>
 
-      <div className="mt-4 divide-y divide-gray-200 rounded-2xl border border-gray-100 bg-white shadow-sm">
+      <div className="mt-4 divide-y divide-gray-200 rounded-2xl border border-gray-100 dark:border-neutral-800 bg-white dark:bg-neutral-900 shadow-sm">
         {FAQ_ITEMS.map((item, index) => (
           <div key={item.title}>
             <button
@@ -73,9 +73,9 @@ export function FaqAccordion() {
               className="flex w-full items-center justify-between px-6 py-4 text-left"
               aria-expanded={openFaq.has(index)}
             >
-              <span className="font-semibold text-gray-900">{item.title}</span>
+              <span className="font-semibold text-gray-900 dark:text-white">{item.title}</span>
               <svg
-                className={`h-4 w-4 shrink-0 text-gray-400 transition-transform ${openFaq.has(index) ? "rotate-180" : ""}`}
+                className={`h-4 w-4 shrink-0 text-gray-400 dark:text-gray-500 transition-transform ${openFaq.has(index) ? "rotate-180" : ""}`}
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -84,7 +84,7 @@ export function FaqAccordion() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
               </svg>
             </button>
-            {openFaq.has(index) && <div className="px-6 pb-5 text-sm leading-relaxed text-gray-600">{item.body}</div>}
+            {openFaq.has(index) && <div className="px-6 pb-5 text-sm leading-relaxed text-gray-600 dark:text-gray-400 dark:text-gray-500">{item.body}</div>}
           </div>
         ))}
       </div>

@@ -79,9 +79,9 @@ export default function PeopleInput({
   };
 
   return (
-    <section className="mt-10 rounded-2xl border border-gray-200 p-6">
-      <h2 className="text-xl font-semibold text-gray-900">Who&rsquo;s splitting?</h2>
-      <p className="mt-1 text-sm text-gray-500">Add everyone who is part of this bill.</p>
+    <section className="mt-10 rounded-2xl border border-gray-200 dark:border-neutral-800 p-6">
+      <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Who&rsquo;s splitting?</h2>
+      <p className="mt-1 text-sm text-gray-500 dark:text-gray-400 dark:text-gray-500">Add everyone who is part of this bill.</p>
 
       <form
         onSubmit={(e) => {
@@ -95,7 +95,7 @@ export default function PeopleInput({
           placeholder="Enter a name"
           value={personName}
           onChange={(e) => setPersonName(e.target.value)}
-          className="flex-1 rounded-xl border border-gray-300 px-4 py-3 text-gray-900 outline-none focus:border-green-500"
+          className="flex-1 rounded-xl border border-gray-300 dark:border-neutral-700 px-4 py-3 text-gray-900 dark:text-white outline-none focus:border-green-500"
         />
         <button
           type="submit"
@@ -111,7 +111,7 @@ export default function PeopleInput({
         {people.map((person) => (
           <div
             key={person.id}
-            className="flex items-center gap-2 rounded-full bg-green-50 px-4 py-2 text-green-700"
+            className="flex items-center gap-2 rounded-full bg-green-50 dark:bg-[#0a0a0a] px-4 py-2 text-green-700"
           >
             <span>{person.name}</span>
             <button

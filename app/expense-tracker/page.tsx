@@ -73,21 +73,21 @@ export default function ExpenseTrackerPage() {
   const maxCategoryAmount = Math.max(1, ...summary.categories.map((c) => c.amount));
 
   return (
-    <main className="min-h-screen bg-gray-50 px-6 py-16">
+    <main className="min-h-screen bg-gray-50 dark:bg-neutral-900/50 px-6 py-16">
       <div className="mx-auto max-w-4xl">
         <h1 className="text-center text-4xl font-black text-green-700">
           Expense Tracker
         </h1>
-        <p className="mt-3 text-center text-gray-600">
+        <p className="mt-3 text-center text-gray-600 dark:text-gray-400 dark:text-gray-500">
           See where your monthly income goes, and build toward a real
           emergency fund.
         </p>
 
         <div className="mt-10 grid gap-6 lg:grid-cols-2">
           {/* LEFT: inputs */}
-          <section className="space-y-6 rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
+          <section className="space-y-6 rounded-2xl border border-gray-100 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6 shadow-sm">
             <div>
-              <label className="text-sm font-medium text-gray-700">
+              <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
                 Monthly Income (₹)
               </label>
               <input
@@ -96,17 +96,17 @@ export default function ExpenseTrackerPage() {
                 value={income}
                 onChange={(e) => formatWithCommas(e.target.value, setIncome)}
                 placeholder="e.g. 70,000"
-                className="mt-2 w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 placeholder:text-gray-400 outline-none focus:border-green-500 focus:ring-2 focus:ring-green-200"
+                className="mt-2 w-full rounded-lg border border-gray-300 dark:border-neutral-700 px-4 py-3 text-gray-900 dark:text-white placeholder:text-gray-400 dark:text-gray-500 outline-none focus:border-green-500 focus:ring-2 focus:ring-green-200"
               />
             </div>
 
-            <div className="border-t border-gray-100 pt-5">
-              <p className="text-xs font-semibold uppercase tracking-wide text-gray-400">
+            <div className="border-t border-gray-100 dark:border-neutral-800 pt-5">
+              <p className="text-xs font-semibold uppercase tracking-wide text-gray-400 dark:text-gray-500">
                 Essential — necessities you can not easily cut
               </p>
               <div className="mt-3 space-y-3">
                 <MoneyField label="Rent" value={rent} onChange={(v) => formatWithCommas(v, setRent)} />
-                <label className="flex items-center gap-2 text-sm text-gray-700">
+                <label className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
                   <input type="checkbox" checked={hasEmi} onChange={(e) => setHasEmi(e.target.checked)} />
                   I have an EMI / debt payment
                 </label>
@@ -121,21 +121,21 @@ export default function ExpenseTrackerPage() {
               </div>
             </div>
 
-            <div className="border-t border-gray-100 pt-5">
-              <p className="text-xs font-semibold uppercase tracking-wide text-gray-400">
+            <div className="border-t border-gray-100 dark:border-neutral-800 pt-5">
+              <p className="text-xs font-semibold uppercase tracking-wide text-gray-400 dark:text-gray-500">
                 Discretionary — the flexible part of your spending
               </p>
               <div className="mt-3 space-y-3">
                 <MoneyField label="Shopping" value={shopping} onChange={(v) => formatWithCommas(v, setShopping)} />
                 <div>
-                  <label className="text-sm font-medium text-gray-700">Outings</label>
+                  <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Outings</label>
                   <div className="mt-2 space-y-2">
                     {outings.map((o, i) => (
-                      <div key={i} className="flex items-center justify-between rounded-lg bg-gray-50 px-3 py-2 text-sm">
-                        <span className="text-gray-700">{o.label}</span>
+                      <div key={i} className="flex items-center justify-between rounded-lg bg-gray-50 dark:bg-neutral-900/50 px-3 py-2 text-sm">
+                        <span className="text-gray-700 dark:text-gray-300">{o.label}</span>
                         <div className="flex items-center gap-3">
-                          <span className="font-medium text-gray-900">₹{o.amount}</span>
-                          <button onClick={() => removeOuting(i)} className="text-gray-400 transition hover:text-red-600">×</button>
+                          <span className="font-medium text-gray-900 dark:text-white">₹{o.amount}</span>
+                          <button onClick={() => removeOuting(i)} className="text-gray-400 dark:text-gray-500 transition hover:text-red-600">×</button>
                         </div>
                       </div>
                     ))}
@@ -146,7 +146,7 @@ export default function ExpenseTrackerPage() {
                       placeholder="e.g. Movie night"
                       value={outingLabel}
                       onChange={(e) => setOutingLabel(e.target.value)}
-                      className="flex-1 rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 outline-none focus:border-green-500"
+                      className="flex-1 rounded-lg border border-gray-300 dark:border-neutral-700 px-3 py-2 text-sm text-gray-900 dark:text-white placeholder:text-gray-400 dark:text-gray-500 outline-none focus:border-green-500"
                     />
                     <input
                       type="text"
@@ -154,7 +154,7 @@ export default function ExpenseTrackerPage() {
                       placeholder="₹ amount"
                       value={outingAmount}
                       onChange={(e) => formatWithCommas(e.target.value, setOutingAmount)}
-                      className="w-28 rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 outline-none focus:border-green-500"
+                      className="w-28 rounded-lg border border-gray-300 dark:border-neutral-700 px-3 py-2 text-sm text-gray-900 dark:text-white placeholder:text-gray-400 dark:text-gray-500 outline-none focus:border-green-500"
                     />
                     <button onClick={addOuting} className="rounded-lg bg-green-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-green-700">
                       Add
@@ -164,13 +164,13 @@ export default function ExpenseTrackerPage() {
               </div>
             </div>
 
-            <div className="border-t border-gray-100 pt-5">
-              <p className="text-xs font-semibold uppercase tracking-wide text-gray-400">
+            <div className="border-t border-gray-100 dark:border-neutral-800 pt-5">
+              <p className="text-xs font-semibold uppercase tracking-wide text-gray-400 dark:text-gray-500">
                 Savings tracking
               </p>
               <div className="mt-3 space-y-3">
                 <div>
-                  <label className="text-sm text-gray-700">
+                  <label className="text-sm text-gray-700 dark:text-gray-300">
                     Current emergency savings (₹)
                   </label>
                   <input
@@ -179,11 +179,11 @@ export default function ExpenseTrackerPage() {
                     value={currentSavings}
                     onChange={(e) => formatWithCommas(e.target.value, setCurrentSavings)}
                     placeholder="0"
-                    className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 outline-none focus:border-green-500"
+                    className="mt-1 w-full rounded-lg border border-gray-300 dark:border-neutral-700 px-3 py-2 text-sm text-gray-900 dark:text-white placeholder:text-gray-400 dark:text-gray-500 outline-none focus:border-green-500"
                   />
                 </div>
                 <div>
-                  <label className="text-sm text-gray-700">
+                  <label className="text-sm text-gray-700 dark:text-gray-300">
                     How much do you actually save each month? (₹)
                   </label>
                   <input
@@ -192,9 +192,9 @@ export default function ExpenseTrackerPage() {
                     value={actualSavings}
                     onChange={(e) => formatWithCommas(e.target.value, setActualSavings)}
                     placeholder="Leave blank to estimate from income − expenses"
-                    className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 outline-none focus:border-green-500"
+                    className="mt-1 w-full rounded-lg border border-gray-300 dark:border-neutral-700 px-3 py-2 text-sm text-gray-900 dark:text-white placeholder:text-gray-400 dark:text-gray-500 outline-none focus:border-green-500"
                   />
-                  <p className="mt-1 text-xs text-gray-400">
+                  <p className="mt-1 text-xs text-gray-400 dark:text-gray-500">
                     Optional, but more accurate than assuming you save
                     everything left over.
                   </p>
@@ -206,8 +206,8 @@ export default function ExpenseTrackerPage() {
           {/* RIGHT: results */}
           <div className="space-y-6">
             {/* Monthly financial picture */}
-            <section className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
-              <h2 className="font-semibold text-gray-900">Monthly Financial Picture</h2>
+            <section className="rounded-2xl border border-gray-100 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6 shadow-sm">
+              <h2 className="font-semibold text-gray-900 dark:text-white">Monthly Financial Picture</h2>
               <div className="mt-4 space-y-2 text-sm">
                 <PictureRow label="Income" value={summary.income} bold />
                 <PictureRow label="Essential expenses" value={summary.totalEssential} />
@@ -215,7 +215,7 @@ export default function ExpenseTrackerPage() {
                 <PictureRow label="Total spending" value={summary.totalExpenses} bold divider />
                 <PictureRow label="Available After Expenses" value={summary.availableAfterExpenses} tone="green" bold />
               </div>
-              <p className="mt-2 text-xs text-gray-400">
+              <p className="mt-2 text-xs text-gray-400 dark:text-gray-500">
                 {summary.availableAfterExpensesRate}% of income is left over
                 after tracked expenses — this is a ceiling, not what you
                 necessarily bank each month.
@@ -223,19 +223,19 @@ export default function ExpenseTrackerPage() {
             </section>
 
             {summary.categories.length > 0 && (
-              <section className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
-                <h2 className="font-semibold text-gray-900">Expense Breakdown</h2>
+              <section className="rounded-2xl border border-gray-100 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6 shadow-sm">
+                <h2 className="font-semibold text-gray-900 dark:text-white">Expense Breakdown</h2>
                 <div className="mt-4 space-y-3">
                   {summary.categories.map((c) => (
                     <div key={c.label}>
                       <div className="flex justify-between text-sm">
-                        <span className="text-gray-600">
+                        <span className="text-gray-600 dark:text-gray-400 dark:text-gray-500">
                           {c.label}
-                          {!c.essential && <span className="ml-1 text-xs text-gray-400">(discretionary)</span>}
+                          {!c.essential && <span className="ml-1 text-xs text-gray-400 dark:text-gray-500">(discretionary)</span>}
                         </span>
-                        <span className="font-medium text-gray-900">₹{c.amount.toLocaleString("en-IN")}</span>
+                        <span className="font-medium text-gray-900 dark:text-white">₹{c.amount.toLocaleString("en-IN")}</span>
                       </div>
-                      <div className="mt-1 h-2 rounded-full bg-gray-100">
+                      <div className="mt-1 h-2 rounded-full bg-gray-100 dark:bg-neutral-800">
                         <div
                           className={`h-2 rounded-full transition-all ${c.essential ? "bg-green-600" : "bg-amber-500"}`}
                           style={{ width: `${(c.amount / maxCategoryAmount) * 100}%` }}
@@ -249,28 +249,28 @@ export default function ExpenseTrackerPage() {
 
             {/* Emergency Fund health table */}
             {summary.totalEssential > 0 && (
-              <section className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
+              <section className="rounded-2xl border border-gray-100 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6 shadow-sm">
                 <div className="flex items-center justify-between">
-                  <h2 className="font-semibold text-gray-900">Emergency Fund</h2>
-                  <span className="text-xs text-gray-400">
+                  <h2 className="font-semibold text-gray-900 dark:text-white">Emergency Fund</h2>
+                  <span className="text-xs text-gray-400 dark:text-gray-500">
                     Based on essential expenses of ₹{summary.totalEssential.toLocaleString("en-IN")}/mo
                   </span>
                 </div>
 
-                <div className="mt-4 overflow-hidden rounded-xl border border-gray-100">
+                <div className="mt-4 overflow-hidden rounded-xl border border-gray-100 dark:border-neutral-800">
                   <table className="w-full text-sm">
-                    <thead className="bg-gray-50">
+                    <thead className="bg-gray-50 dark:bg-neutral-900/50">
                       <tr>
-                        <th className="px-4 py-2.5 text-left font-medium text-gray-500">Target</th>
-                        <th className="px-4 py-2.5 text-right font-medium text-gray-500">Amount</th>
-                        <th className="px-4 py-2.5 text-right font-medium text-gray-500">Status</th>
+                        <th className="px-4 py-2.5 text-left font-medium text-gray-500 dark:text-gray-400 dark:text-gray-500">Target</th>
+                        <th className="px-4 py-2.5 text-right font-medium text-gray-500 dark:text-gray-400 dark:text-gray-500">Amount</th>
+                        <th className="px-4 py-2.5 text-right font-medium text-gray-500 dark:text-gray-400 dark:text-gray-500">Status</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-100">
                       {summary.milestones.map((m) => (
                         <tr key={m.months}>
-                          <td className="px-4 py-3 text-gray-700">{m.label}</td>
-                          <td className="px-4 py-3 text-right font-medium text-gray-900">
+                          <td className="px-4 py-3 text-gray-700 dark:text-gray-300">{m.label}</td>
+                          <td className="px-4 py-3 text-right font-medium text-gray-900 dark:text-white">
                             ₹{m.target.toLocaleString("en-IN")}
                           </td>
                           <td className="px-4 py-3 text-right">
@@ -282,7 +282,7 @@ export default function ExpenseTrackerPage() {
                   </table>
                 </div>
 
-                <p className="mt-3 text-xs text-gray-400">
+                <p className="mt-3 text-xs text-gray-400 dark:text-gray-500">
                   You currently have ₹{summary.currentEmergencySavings.toLocaleString("en-IN")} saved.
                 </p>
               </section>
@@ -290,8 +290,8 @@ export default function ExpenseTrackerPage() {
 
             {summary.totalEssential > 0 && (
               <section className="rounded-2xl bg-blue-50 p-6">
-                <h2 className="font-semibold text-gray-900">Your Emergency Fund Goal</h2>
-                <p className="mt-1 text-xs text-gray-500">
+                <h2 className="font-semibold text-gray-900 dark:text-white">Your Emergency Fund Goal</h2>
+                <p className="mt-1 text-xs text-gray-500 dark:text-gray-400 dark:text-gray-500">
                   Based on your 3-month Essential fund of ₹
                   {summary.primaryGoal.toLocaleString("en-IN")}
                 </p>
@@ -301,13 +301,13 @@ export default function ExpenseTrackerPage() {
                 </p>
 
                 <div className="mt-2">
-                  <div className="h-3 rounded-full bg-white">
+                  <div className="h-3 rounded-full bg-white dark:bg-neutral-900">
                     <div
                       className="h-3 rounded-full bg-blue-600 transition-all"
                       style={{ width: `${Math.min(100, summary.progressPercent)}%` }}
                     />
                   </div>
-                  <p className="mt-1 text-sm text-gray-700">
+                  <p className="mt-1 text-sm text-gray-700 dark:text-gray-300">
                     ₹{summary.currentEmergencySavings.toLocaleString("en-IN")} / ₹
                     {summary.primaryGoal.toLocaleString("en-IN")} saved ·{" "}
                     <span className="font-medium text-blue-700">
@@ -326,7 +326,7 @@ export default function ExpenseTrackerPage() {
                     savings amount above to see a projection.
                   </p>
                 ) : (
-                  <p className="mt-3 text-sm text-gray-700">
+                  <p className="mt-3 text-sm text-gray-700 dark:text-gray-300">
                     You need ₹{summary.remainingToGoal.toLocaleString("en-IN")}{" "}
                     more to reach your 3-month emergency fund. At your
                     {summary.isEstimatedSavings ? " estimated" : " current"}{" "}
@@ -339,7 +339,7 @@ export default function ExpenseTrackerPage() {
                     </span>
                     .
                     {summary.isEstimatedSavings && (
-                      <span className="mt-1 block text-xs text-gray-500">
+                      <span className="mt-1 block text-xs text-gray-500 dark:text-gray-400 dark:text-gray-500">
                         Estimated from Available After Expenses — enter your
                         actual monthly savings above for a more accurate
                         number.
@@ -350,36 +350,36 @@ export default function ExpenseTrackerPage() {
 
                 <div className="mt-6 grid gap-4 border-t border-blue-100 pt-5 sm:grid-cols-2">
                   <div>
-                    <p className="text-sm font-semibold text-gray-900">
+                    <p className="text-sm font-semibold text-gray-900 dark:text-white">
                       🎯 Essential emergency fund
                     </p>
-                    <p className="mt-0.5 text-xs text-gray-500">
+                    <p className="mt-0.5 text-xs text-gray-500 dark:text-gray-400 dark:text-gray-500">
                       Covers only necessities
                     </p>
-                    <p className="mt-2 text-sm text-gray-700">
+                    <p className="mt-2 text-sm text-gray-700 dark:text-gray-300">
                       ₹{summary.totalEssential.toLocaleString("en-IN")} × 3 ={" "}
                       <span className="font-semibold text-blue-700">
                         ₹{summary.essentialFund3Month.toLocaleString("en-IN")}
                       </span>
                     </p>
-                    <p className="mt-1 text-xs text-gray-400">
+                    <p className="mt-1 text-xs text-gray-400 dark:text-gray-500">
                       6 months: ₹{summary.essentialFund6Month.toLocaleString("en-IN")}
                     </p>
                   </div>
                   <div>
-                    <p className="text-sm font-semibold text-gray-900">
+                    <p className="text-sm font-semibold text-gray-900 dark:text-white">
                       🎯 Full lifestyle emergency fund
                     </p>
-                    <p className="mt-0.5 text-xs text-gray-500">
+                    <p className="mt-0.5 text-xs text-gray-500 dark:text-gray-400 dark:text-gray-500">
                       Includes essential + recurring discretionary expenses
                     </p>
-                    <p className="mt-2 text-sm text-gray-700">
+                    <p className="mt-2 text-sm text-gray-700 dark:text-gray-300">
                       ₹{(summary.totalEssential + summary.totalDiscretionary).toLocaleString("en-IN")} × 3 ={" "}
                       <span className="font-semibold text-blue-700">
                         ₹{summary.lifestyleFund3Month.toLocaleString("en-IN")}
                       </span>
                     </p>
-                    <p className="mt-1 text-xs text-gray-400">
+                    <p className="mt-1 text-xs text-gray-400 dark:text-gray-500">
                       6 months: ₹{summary.lifestyleFund6Month.toLocaleString("en-IN")}
                     </p>
                   </div>
@@ -404,14 +404,14 @@ function MoneyField({
 }) {
   return (
     <div>
-      <label className="text-sm text-gray-700">{label} (₹)</label>
+      <label className="text-sm text-gray-700 dark:text-gray-300">{label} (₹)</label>
       <input
         type="text"
         inputMode="numeric"
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder="0"
-        className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 outline-none focus:border-green-500"
+        className="mt-1 w-full rounded-lg border border-gray-300 dark:border-neutral-700 px-3 py-2 text-sm text-gray-900 dark:text-white placeholder:text-gray-400 dark:text-gray-500 outline-none focus:border-green-500"
       />
     </div>
   );
@@ -431,11 +431,11 @@ function PictureRow({
   tone?: "green";
 }) {
   return (
-    <div className={`flex justify-between ${divider ? "border-t border-gray-100 pt-2" : ""}`}>
-      <span className="text-gray-600">{label}</span>
+    <div className={`flex justify-between ${divider ? "border-t border-gray-100 dark:border-neutral-800 pt-2" : ""}`}>
+      <span className="text-gray-600 dark:text-gray-400 dark:text-gray-500">{label}</span>
       <span
         className={`${bold ? "font-semibold" : "font-medium"} ${
-          tone === "green" ? "text-green-700" : "text-gray-900"
+          tone === "green" ? "text-green-700" : "text-gray-900 dark:text-white"
         }`}
       >
         ₹{value.toLocaleString("en-IN")}
@@ -462,7 +462,7 @@ function MilestoneStatus({ reached, percent }: { reached: boolean; percent: numb
   return (
     <span
       className={`inline-flex items-center gap-1.5 font-medium ${
-        isHalfway ? "text-blue-700" : "text-gray-500"
+        isHalfway ? "text-blue-700" : "text-gray-500 dark:text-gray-400 dark:text-gray-500"
       }`}
     >
       <span className={`h-2 w-2 rounded-full ${isHalfway ? "bg-blue-500" : "bg-gray-300"}`} />

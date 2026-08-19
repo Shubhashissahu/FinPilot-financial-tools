@@ -58,11 +58,11 @@ export default function SplitPage() {
   };
 
   return (
-    <main className="min-h-screen bg-white px-6 py-12">
+    <main className="min-h-screen bg-white dark:bg-[#0a0a0a] px-6 py-12">
       <div className="mx-auto max-w-3xl">
-        <h1 className="mt-8 text-3xl font-bold text-gray-900">Split your bill</h1>
+        <h1 className="mt-8 text-3xl font-bold text-gray-900 dark:text-white">Split your bill</h1>
 
-        <p className="mt-2 text-gray-600">
+        <p className="mt-2 text-gray-600 dark:text-gray-400 dark:text-gray-500">
           Add everyone and enter what they ordered.
         </p>
 
@@ -93,15 +93,15 @@ export default function SplitPage() {
 
         {results.length > 0 && (
           <section ref={resultsRef} className="mt-12">
-            <h2 className="text-2xl font-bold text-gray-900">Bill breakdown</h2>
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Bill breakdown</h2>
 
-            <p className="mt-2 text-gray-500">
+            <p className="mt-2 text-gray-500 dark:text-gray-400 dark:text-gray-500">
               Here&rsquo;s what everyone needs to pay.
             </p>
 
             <button
               onClick={() => generateFullBillPdf(results)}
-              className="mt-4 rounded-xl border border-green-600 px-4 py-2 text-sm font-medium text-green-700 transition hover:bg-green-50"
+              className="mt-4 rounded-xl border border-green-600 px-4 py-2 text-sm font-medium text-green-700 transition hover:bg-green-50 dark:bg-[#0a0a0a]"
             >
               Download Full PDF
             </button>
