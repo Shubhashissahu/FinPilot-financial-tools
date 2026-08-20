@@ -10,6 +10,7 @@ export function ThemeToggle() {
   return (
     <button
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+      suppressHydrationWarning
       className="relative inline-flex h-9 w-9 items-center justify-center rounded-md border border-gray-200 dark:border-neutral-800 bg-white dark:border-neutral-800 dark:bg-neutral-900 transition-colors hover:bg-gray-100 dark:hover:bg-neutral-800"
       aria-label="Toggle theme"
     >

@@ -1,114 +1,67 @@
-# FinanceKit
+# FinPilot (AI Bill Splitter)
 
-Your personal finance toolkit — bill splitting, tax planning, loan and investment calculators, and expense tracking, all in one fast, private app. No sign-up required.
+FinPilot is a comprehensive suite of personal finance and daily utility tools built with Next.js. It features an AI-powered receipt scanner, tax calculators, investment planners, and more—all wrapped in a modern, responsive UI with dark mode support.
 
-## Features
+## 🌟 Features
 
-### 🧾 Bill Splitter
-Split restaurant bills and shared expenses fairly.
-- Manual item entry with per-person or "shared by everyone" assignment
-- **AI receipt scanning** — upload a photo, OCR extracts line items automatically
-- GST and tip calculation, proportionally allocated per person
-- WhatsApp-ready share messages and per-person / full-bill PDF export
+- **AI Bill Splitter**: Upload a receipt, and let OCR (Tesseract.js) and AI (Ollama/OpenAI) automatically parse the items to split the bill among friends easily.
+- **Tax & Salary Calculators**: Calculate your income tax (New Regime, FY 2026-27) and break down your CTC to estimate in-hand salary.
+- **Investment Calculators**: Plan your financial future with SIP, EMI, and FD calculators.
+- **Daily Utilities**: Track your daily expenses and check live currency exchange rates.
+- **Dark Mode Support**: Seamlessly switch between light and dark themes.
 
-### 💱 Currency Converter
-Live exchange rates via the [Frankfurter](https://api.frankfurter.dev) API (European Central Bank data, updated daily, no API key required).
+## 🛠️ Tech Stack
 
-### 🧮 Tax Calculator
-Compares FY 2024-25 vs. the current FY 2026-27 New Tax Regime slabs, including Section 87A rebate and marginal relief.
+- **Framework**: [Next.js 16](https://nextjs.org/) (App Router, React 19)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+- **AI & OCR**: `ollama`, `openai`, `tesseract.js`
+- **Icons**: `lucide-react`
+- **Language**: TypeScript
 
-### 💼 CTC Calculator
-Breaks down Cost to Company into Basic, HRA, DA, LTA, Special Allowance, and Performance Bonus, then computes EPF, ESI, Professional Tax, and Income Tax to arrive at net take-home pay.
-
-### 🏦 EMI Calculator
-Standard reducing-balance loan EMI formula, with a monthly/yearly breakdown and a principal-vs-interest pie chart.
-
-### 📈 SIP Calculator
-Month-by-month simulation of a Systematic Investment Plan, including optional annual step-up.
-
-### 🏛️ FD Calculator
-Fixed Deposit maturity value using quarterly-compounded interest (the standard convention for Indian banks), including effective annual yield.
-
-### 💰 Expense Tracker
-- Categorizes spending into **Essential** (rent, EMI, food, transport, utilities, insurance) and **Discretionary** (shopping, outings)
-- Shows Income → Expenses → Available After Expenses at a glance
-- Calculates **two emergency fund targets**: Essential-only and Full Lifestyle, each at 3 and 6 months
-- Tracks progress toward your emergency fund goal with a live progress bar and time-to-goal projection (in days or months, based on your actual savings rate)
-
-## Tech Stack
-
-- **Framework:** Next.js (App Router), TypeScript
-- **Styling:** Tailwind CSS
-- **OCR:** Tesseract.js (receipt text extraction)
-- **AI parsing:** Ollama (local LLM, `llama3.2`) for structuring OCR text into receipt data
-- **PDF export:** jsPDF
-- **Exchange rates:** Frankfurter API
-
-## Getting Started
+## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js
-- [Ollama](https://ollama.com) installed locally, with the model pulled:
-  ```bash
-  ollama pull llama3.2
-  ollama serve
-  ```
+
+- Node.js (v20 or newer recommended)
+- Optional: [Ollama](https://ollama.com/) running locally for local AI inference, or an OpenAI API key.
 
 ### Installation
-```bash
-npm install
-npm run dev
-```
 
-Open [http://localhost:3000](http://localhost:3000).
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/Shubhashissahu/ai-bill-splitter.git
+   cd ai-bill-splitter
+   ```
 
-### Environment Variables
-Create a `.env.local` file (optional — these are the defaults):
-```
-OLLAMA_HOST=http://localhost:11434
-OLLAMA_MODEL=llama3.2
-```
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-## Project Structure
+3. **Environment Setup:**
+   Create a `.env.local` file in the root directory and configure your environment variables (e.g., API keys for OpenAI if using the cloud option).
 
-```
-app/
-  page.tsx                 → Landing page
-  split/                    → Bill Splitter
-  tax-calculator/           → Tax Calculator
-  ctc-calculator/           → CTC Calculator
-  emi-calculator/           → EMI Calculator
-  sip-calculator/           → SIP Calculator
-  fd-calculator/            → FD Calculator
-  currency-converter/       → Currency Converter
-  expense-tracker/          → Expense Tracker
-  api/receipt/route.ts      → Receipt OCR + AI parsing endpoint
+4. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
 
-components/
-  Navbar.tsx, Footer.tsx, Hero.tsx
-  BillItemForm.tsx, PeopleInput.tsx, TaxTipInput.tsx,
-  ReceiptUpload.tsx, PersonBreakdown.tsx, ShareActions.tsx
-  PieChart.tsx               → Reusable principal/interest chart
+5. **Open the app:**
+   Navigate to [http://localhost:3000](http://localhost:3000) in your browser.
 
-lib/
-  tools.ts                  → Single source of truth for the tool list
-                               (drives both the Navbar and homepage grid)
-  calculateSplit.ts, money.ts
-  taxCalculator.ts, ctcCalculator.ts, emiCalculator.ts,
-  sipCalculator.ts, fdCalculator.ts, expenseTracker.ts
-  ocr.ts, ollama.ts          → Receipt scanning pipeline
-  currencyApi.ts
-  generateBillPdf.ts, generateEmiPdf.ts, generateFdPdf.ts,
-  generateCtcPdf.ts          → PDF export helpers
-```
+## 🧰 Available Tools
 
-## Notes & Limitations
+| Category | Tool | Description |
+| :--- | :--- | :--- |
+| **Daily** | 🧾 Bill Splitter | Split restaurant bills |
+| **Daily** | 💱 Currency Converter | Live exchange rates |
+| **Daily** | 💰 Expense Tracker | Income vs. expenses |
+| **Tax** | 🧮 Tax Calculator | New regime, FY 2026-27 |
+| **Tax** | 💼 CTC Calculator | CTC to in-hand |
+| **Invest** | 🏦 EMI Calculator | Loan amortization |
+| **Invest** | 📈 SIP Calculator | Mutual fund growth |
+| **Invest** | 🏛️ FD Calculator | Fixed deposit maturity |
 
-- Tax and CTC calculators cover the **New Tax Regime only**.
-- Professional Tax in the CTC calculator is a simplified flat ₹200/month — actual state-wise slabs vary and aren't individually modeled.
-- Currency rates update once daily (not real-time) and cover ~30 major currencies.
-- This is a portfolio/personal project — figures are estimates, not financial, tax, or legal advice.
+## 📜 License
 
-## License
-
-Personal project — not licensed for redistribution.
+This project is licensed under the MIT License.
