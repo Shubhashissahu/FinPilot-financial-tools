@@ -71,6 +71,7 @@ export default function Navbar({ drawerOpen, onToggle, onClose }: NavbarProps) {
         <div className="mx-auto flex max-w-7xl items-center gap-4 px-6 py-4">
           <button
             onClick={onToggle}
+            suppressHydrationWarning
             aria-label={drawerOpen ? "Close menu" : "Open menu"}
             aria-expanded={drawerOpen}
             className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-gray-600 dark:text-gray-300 transition hover:bg-gray-100 dark:hover:bg-neutral-800 hover:text-gray-900 dark:hover:text-white active:scale-95"
@@ -159,6 +160,7 @@ export default function Navbar({ drawerOpen, onToggle, onClose }: NavbarProps) {
             <input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
+              suppressHydrationWarning
               placeholder="Search tools..."
               className="w-full bg-transparent text-sm text-white outline-none placeholder:text-gray-500 dark:text-gray-400 dark:text-gray-500"
             />
