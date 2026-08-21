@@ -58,6 +58,13 @@ export const tools: Tool[] = [
     icon: "🏛️",
     category: "Invest",
   },
+  {
+    href: "/rent-vs-buy",
+    label: "Rent vs Buy",
+    description: "Home loan affordability",
+    icon: "🏠",
+    category: "Invest",
+  },
   { href: "/expense-tracker", label: "Expense Tracker", description: "Income vs. expenses", icon: "💰", category: "Daily" },
 ];
 

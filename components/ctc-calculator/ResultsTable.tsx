@@ -82,8 +82,8 @@ export function ResultsTable({
         <Row label="Taxable Income" value={result.taxableIncome} muted />
         <Row label="Income Tax" value={-result.incomeTax} negative />
         <p className="mt-2 text-xs text-gray-400 dark:text-gray-500">
-          Standard Deduction only reduces taxable income for tax purposes — it isn't cash taken out of your
-          salary, so it's not included in the deductions below.
+          Standard Deduction only reduces taxable income for tax purposes — it isn&apos;t cash taken out of your
+          salary, so it&apos;s not included in the deductions below.
         </p>
       </BreakdownSection>
 
