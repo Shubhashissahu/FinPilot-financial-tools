@@ -1,6 +1,6 @@
 // lib/ctcCalculator.ts
 
-import { compareTax } from "@/lib/calculators/tax";
+import { calculateTaxForYear } from "@/lib/calculators/tax";
 
 export interface CtcBreakdown {
   basic: number;
@@ -41,8 +41,7 @@ export interface CtcInputs {
   professionalTaxApplicable: boolean;
 }
 
-export const STANDARD_DEDUCTION = 75000; // exported so taxCalculator.ts (or anything
-// else) can reference the same constant instead of each file hardcoding its own copy
+export const STANDARD_DEDUCTION = 75000; 
 const PF_WAGE_CEILING_MONTHLY = 15000;
 const ESI_WAGE_CEILING_MONTHLY = 21000;
 const ESI_EMPLOYEE_RATE = 0.0075;
@@ -131,13 +130,8 @@ export function calculateCtc(inputs: CtcInputs): CtcBreakdown {
   const standardDeduction = STANDARD_DEDUCTION;
   const taxableIncome = Math.max(0, round2(grossSalary - standardDeduction));
 
-  // Reuse the already-verified New Regime FY2026-27 tax logic rather than
-  // re-deriving slab math a third time in this codebase. compareTax applies
-  // its own standard deduction internally — taxableIncome above is shown
-  // for display only, and stays consistent with it as long as both files
-  // reference the same STANDARD_DEDUCTION export.
-  const { fy2026_27 } = compareTax(grossSalary);
-  const incomeTax = fy2026_27.totalTax;
+  const taxResult = calculateTaxForYear(grossSalary, "ty2026_27");
+  const incomeTax = taxResult.totalTax;
 
   const totalDeductions = round2(employeeEpf + employeeEsi + professionalTax + incomeTax);
   const netAnnualSalary = round2(grossSalary - totalDeductions);
