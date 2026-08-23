@@ -65,6 +65,13 @@ export const tools: Tool[] = [
     icon: "🏠",
     category: "Invest",
   },
+  {
+    href: "/prepayment-calculator",
+    label: "Prepayment Calculator",
+    description: "Loan payoff strategies",
+    icon: "⏱️",
+    category: "Invest",
+  },
   { href: "/expense-tracker", label: "Expense Tracker", description: "Income vs. expenses", icon: "💰", category: "Daily" },
 ];
 

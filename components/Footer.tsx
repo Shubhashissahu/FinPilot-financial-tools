@@ -10,6 +10,7 @@ const toolLinks = [
   { href: "/emi-calculator", label: "EMI Calculator" },
   { href: "/sip-calculator", label: "SIP Calculator" },
   { href: "/fd-calculator", label: "FD Calculator" },
+  { href: "/prepayment-calculator", label: "Prepayment Calculator" },
 ];
 
 const companyLinks = [
@@ -38,13 +39,13 @@ export default function Footer() {
             </Link>
 
             <p className="mt-5 max-w-md text-sm leading-6 text-gray-600 dark:text-gray-400">
-              Nine free financial tools in one place — split bills, calculate
+              Ten free financial tools in one place — split bills, calculate
               taxes, EMIs, SIPs, and more, without the spreadsheet math.
             </p>
 
             <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-gray-200 dark:border-neutral-800 bg-gray-100 dark:bg-neutral-900 px-4 py-2 text-xs text-gray-600 dark:text-gray-400">
               <span className="h-2 w-2 rounded-full bg-green-500" />
-              9 tools Free , No sign-up
+              10 tools Free , No sign-up
             </div>
           </div>
 
