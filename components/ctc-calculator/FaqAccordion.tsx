@@ -34,7 +34,7 @@ const FAQ_ITEMS: { title: string; body: React.ReactNode }[] = [
 ];
 
 export function FaqAccordion() {
-  const [openFaq, setOpenFaq] = useState<Set<number>>(new Set([1, 2, 3, 4]));
+  const [openFaq, setOpenFaq] = useState<Set<number>>(new Set());
 
   const toggleFaq = (index: number) =>
     setOpenFaq((prev) => {
@@ -49,22 +49,22 @@ export function FaqAccordion() {
 
   return (
     <>
-      <div className="mt-10 rounded-2xl bg-blue-50 p-6">
-        <h2 className="flex items-center gap-2 text-lg font-bold text-blue-900">
-          <span className="flex h-6 w-6 items-center justify-center rounded-full border border-blue-300 text-sm">?</span>
+      <div className="mt-10 rounded-2xl bg-blue-50 dark:bg-blue-900/20 p-6">
+        <h2 className="flex items-center gap-2 text-lg font-bold text-blue-900 dark:text-blue-200">
+          <span className="flex h-6 w-6 items-center justify-center rounded-full border border-blue-300 dark:border-blue-700 text-sm">?</span>
           Understanding Your CTC
         </h2>
-        <p className="mt-3 text-sm text-blue-800">
+        <p className="mt-3 text-sm text-blue-800 dark:text-blue-300/90">
           Cost to Company (CTC) is the total amount your employer spends on you annually, including all benefits and
           contributions.
         </p>
-        <p className="mt-2 text-sm text-blue-800">
+        <p className="mt-2 text-sm text-blue-800 dark:text-blue-300/90">
           Your take-home salary will be lower than your CTC due to various deductions and the fact that some components
           are non-monetary benefits.
         </p>
       </div>
 
-      <div className="mt-4 divide-y divide-gray-200 rounded-2xl border border-gray-100 dark:border-neutral-800 bg-white dark:bg-neutral-900 shadow-sm">
+      <div className="mt-4 divide-y divide-gray-200 dark:divide-neutral-800 rounded-2xl border border-gray-100 dark:border-neutral-800 bg-white dark:bg-neutral-900 shadow-sm">
         {FAQ_ITEMS.map((item, index) => (
           <div key={item.title}>
             <button
@@ -84,7 +84,17 @@ export function FaqAccordion() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
               </svg>
             </button>
-            {openFaq.has(index) && <div className="px-6 pb-5 text-sm leading-relaxed text-gray-600 dark:text-gray-400 dark:text-gray-500">{item.body}</div>}
+            <div
+              className={`grid transition-[grid-template-rows] duration-300 ease-in-out ${
+                openFaq.has(index) ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+              }`}
+            >
+              <div className="overflow-hidden">
+                <div className="px-6 pb-5 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+                  {item.body}
+                </div>
+              </div>
+            </div>
           </div>
         ))}
       </div>

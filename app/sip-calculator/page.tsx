@@ -20,7 +20,7 @@ export default function SipCalculatorPage() {
     <main className="min-h-screen bg-gray-50 dark:bg-neutral-900/50 px-6 py-12">
       <div className="mx-auto max-w-5xl">
         <h1 className="text-2xl font-bold text-gray-900 dark:text-white">SIP Calculator</h1>
-        <p className="mt-1 text-sm text-gray-500 dark:text-gray-400 dark:text-gray-500">
+        <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
           Systematic Investment Plan · Mutual Fund growth estimator
         </p>
 
@@ -91,32 +91,32 @@ export default function SipCalculatorPage() {
 
               <div className="mt-4 space-y-3 text-sm">
                 <div className="flex justify-between border-b border-gray-100 dark:border-neutral-800 pb-3">
-                  <span className="text-gray-500 dark:text-gray-400 dark:text-gray-500">Total invested</span>
+                  <span className="text-gray-500 dark:text-gray-400">Total invested</span>
                   <span className="font-medium text-gray-900 dark:text-white">
                     ₹{result.totalInvested.toLocaleString("en-IN")}
                   </span>
                 </div>
                 <div className="flex justify-between border-b border-gray-100 dark:border-neutral-800 pb-3">
-                  <span className="text-gray-500 dark:text-gray-400 dark:text-gray-500">Total gains</span>
+                  <span className="text-gray-500 dark:text-gray-400">Total gains</span>
                   <span className="font-medium text-gray-900 dark:text-white">
                     ₹{result.totalGains.toLocaleString("en-IN")}
                   </span>
                 </div>
                 <div className="flex justify-between border-b border-gray-100 dark:border-neutral-800 pb-3">
                   <span className="font-semibold text-gray-900 dark:text-white">Maturity value</span>
-                  <span className="font-semibold text-green-600">
+                  <span className="font-semibold text-green-600 dark:text-green-400">
                     {formatLakh(result.maturityValue)}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-500 dark:text-gray-400 dark:text-gray-500">Wealth ratio</span>
+                  <span className="text-gray-500 dark:text-gray-400">Wealth ratio</span>
                   <span className="font-medium text-gray-900 dark:text-white">{result.wealthRatio}×</span>
                 </div>
               </div>
             </section>
 
-            <section className="rounded-2xl bg-green-50 dark:bg-[#0a0a0a] p-6">
-              <p className="text-xs font-semibold uppercase tracking-wide text-green-700">
+            <section className="rounded-2xl bg-green-50 dark:bg-green-900/10 p-6">
+              <p className="text-xs font-semibold uppercase tracking-wide text-green-700 dark:text-green-500">
                 The power of compounding
               </p>
               <p className="mt-2 text-sm text-gray-700 dark:text-gray-300">
@@ -164,7 +164,7 @@ function SliderField({
   return (
     <div className="mt-6 first:mt-4">
       <div className="flex items-center justify-between">
-        <span className="text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400 dark:text-gray-500">
+        <span className="text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-300">
           {label}
         </span>
         <span className="text-sm font-semibold text-green-600">{displayValue}</span>
@@ -178,7 +178,7 @@ function SliderField({
         onChange={(e) => onChange(Number(e.target.value))}
         className="mt-3 w-full accent-green-600"
       />
-      <div className="mt-1 flex justify-between text-xs text-gray-400 dark:text-gray-500">
+      <div className="mt-1 flex justify-between text-xs text-gray-400">
         <span>{minLabel}</span>
         <span>{maxLabel}</span>
       </div>
@@ -196,9 +196,9 @@ function StatCard({
   tone: "blue" | "amber" | "green";
 }) {
   const toneClasses = {
-    blue: "bg-blue-50 text-blue-700",
-    amber: "bg-amber-50 text-amber-700",
-    green: "bg-green-50 dark:bg-[#0a0a0a] text-green-700",
+    blue: "bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300",
+    amber: "bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-300",
+    green: "bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400",
   }[tone];
 
   return (
