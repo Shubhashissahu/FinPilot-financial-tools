@@ -133,8 +133,8 @@ export default function CtcCalculatorPage() {
                   key={period}
                   type="button"
                   onClick={() => setCtcPeriod(period)}
-                  className={`rounded-md py-2 text-sm font-medium capitalize transition ${
-                    ctcPeriod === period ? "bg-green-600 text-white shadow-sm" : "text-gray-600 dark:text-gray-400 dark:text-gray-500 hover:text-gray-900 dark:text-white"
+                  className={`rounded-md py-2 text-sm font-medium capitalize transition-all duration-200 active:scale-95 ${
+                    ctcPeriod === period ? "bg-green-600 text-white shadow-sm" : "text-gray-600 dark:text-gray-400 dark:text-gray-500 hover:text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-neutral-700"
                   }`}
                 >
                   {period}
@@ -153,12 +153,17 @@ export default function CtcCalculatorPage() {
               </p>
             )}
 
-            <button onClick={() => setShowAdvanced((v) => !v)} className="mt-6 text-sm font-medium text-green-700 hover:underline">
+            <button onClick={() => setShowAdvanced((v) => !v)} className="mt-6 text-sm font-medium text-green-700 transition-colors hover:text-green-800 dark:text-green-500 dark:hover:text-green-400 hover:underline">
               {showAdvanced ? "Hide" : "Show"} Advanced Settings
             </button>
 
-            {showAdvanced && (
-              <div className="mt-4 space-y-5">
+            <div
+              className={`grid transition-[grid-template-rows] duration-300 ease-in-out ${
+                showAdvanced ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+              }`}
+            >
+              <div className="overflow-hidden">
+                <div className="mt-4 space-y-5 pb-1">
                 {percentFields.map(([label, value, onChange]) => (
                   <div key={label} className="flex items-center justify-between">
                     <label className="text-sm text-gray-700 dark:text-gray-300">{label}</label>
@@ -227,7 +232,8 @@ export default function CtcCalculatorPage() {
                   Professional Tax Applicable (simplified flat ₹200/month)
                 </label>
               </div>
-            )}
+            </div>
+          </div>
           </section>
 
           {/* RIGHT: results */}
@@ -246,9 +252,9 @@ export default function CtcCalculatorPage() {
 
         <FaqAccordion />
 
-        <div className="mt-4 rounded-2xl bg-amber-50 p-6">
-          <p className="font-semibold text-amber-800">Important Note</p>
-          <p className="mt-1 text-sm text-amber-700">
+        <div className="mt-4 rounded-2xl bg-amber-50 dark:bg-amber-900/20 p-6">
+          <p className="font-semibold text-amber-800 dark:text-amber-300">Important Note</p>
+          <p className="mt-1 text-sm text-amber-700 dark:text-amber-200/90">
             This calculator provides estimates based on standard deductions and tax rates. Actual figures may vary based
             on your specific situation, tax regime choice, and company policies.
           </p>

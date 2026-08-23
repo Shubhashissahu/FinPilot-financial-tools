@@ -48,7 +48,7 @@ export function ResultsTable({
   if (!showBreakdown) {
     return (
       <div className="mt-8 flex items-center justify-center rounded-xl border border-dashed border-gray-200 dark:border-neutral-800 py-16 text-center">
-        <p className="text-sm text-gray-500 dark:text-gray-400 dark:text-gray-500">
+        <p className="text-sm text-gray-500 dark:text-gray-400">
           {ctcEmpty ? "Your breakdown will appear here once you enter a CTC." : "Enter a higher CTC to see a valid breakdown."}
         </p>
       </div>
@@ -63,7 +63,7 @@ export function ResultsTable({
           ["Net Annual", result.netAnnualSalary],
         ].map(([label, value]) => (
           <div key={label} className="rounded-xl bg-green-50 dark:bg-[#0a0a0a] p-4">
-            <p className="text-xs text-gray-500 dark:text-gray-400 dark:text-gray-500">{label}</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400">{label}</p>
             <p className={`mt-1 text-xl font-bold ${(value as number) < 0 ? "text-red-600" : "text-green-700"}`}>
               ₹{(value as number).toLocaleString("en-IN")}
             </p>
@@ -81,7 +81,7 @@ export function ResultsTable({
         <Row label="Standard Deduction" value={-result.standardDeduction} negative />
         <Row label="Taxable Income" value={result.taxableIncome} muted />
         <Row label="Income Tax" value={-result.incomeTax} negative />
-        <p className="mt-2 text-xs text-gray-400 dark:text-gray-500">
+        <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
           Standard Deduction only reduces taxable income for tax purposes — it isn't cash taken out of your
           salary, so it's not included in the deductions below.
         </p>
@@ -101,7 +101,7 @@ export function ResultsTable({
 
       <button
         onClick={() => generateCtcPdf(annualCtc, result)}
-        className="mt-6 w-full rounded-lg bg-green-600 py-3 font-semibold text-white transition hover:bg-green-700"
+        className="mt-6 w-full rounded-lg bg-green-600 py-3 font-semibold text-white transition-all duration-200 hover:bg-green-700 active:scale-[0.98] active:bg-green-800 shadow-sm hover:shadow-md"
       >
         Download PDF
       </button>
@@ -112,7 +112,7 @@ export function ResultsTable({
 function BreakdownSection({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className="mt-6 border-t border-gray-100 dark:border-neutral-800 pt-4">
-      <p className="text-xs font-semibold uppercase tracking-wide text-gray-400 dark:text-gray-500">{title}</p>
+      <p className="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">{title}</p>
       <div className="mt-2 space-y-1.5">{children}</div>
     </div>
   );
@@ -133,8 +133,8 @@ function Row({
 }) {
   return (
     <div className="flex justify-between text-sm">
-      <span className={muted ? "text-gray-400 dark:text-gray-500" : "text-gray-600 dark:text-gray-400 dark:text-gray-500"}>{label}</span>
-      <span className={`${bold ? "font-semibold text-gray-900 dark:text-white" : "text-gray-800"} ${negative ? "text-red-600" : ""}`}>
+      <span className={muted ? "text-gray-500 dark:text-gray-400" : "text-gray-700 dark:text-gray-300"}>{label}</span>
+      <span className={`${bold ? "font-semibold text-gray-900 dark:text-white" : "text-gray-800 dark:text-gray-200"} ${negative ? "text-red-600 dark:text-red-400" : ""}`}>
         {negative && value < 0 ? "-" : ""}₹{Math.abs(value).toLocaleString("en-IN")}
       </span>
     </div>

@@ -86,7 +86,7 @@ export default function EmiCalculatorPage() {
     ? ((result.totalInterest / result.principal) * 100).toFixed(1)
     : "0.0";
 
-  const shareText = `EMI Calculation\n\nLoan Amount: ₹${result.principal.toLocaleString("en-IN")}\nMonthly EMI: ₹${result.monthlyEmi.toLocaleString("en-IN")}\nYearly Payment: ₹${result.yearlyPayment.toLocaleString("en-IN")}\nTotal Interest: ₹${result.totalInterest.toLocaleString("en-IN")}\nTotal Payment: ₹${result.totalPayment.toLocaleString("en-IN")}\n\nCalculated with SplitEasy`;
+  const shareText = `EMI Calculation\n\nLoan Amount: ₹${result.principal.toLocaleString("en-IN")}\nMonthly EMI: ₹${result.monthlyEmi.toLocaleString("en-IN")}\nYearly Payment: ₹${result.yearlyPayment.toLocaleString("en-IN")}\nTotal Interest: ₹${result.totalInterest.toLocaleString("en-IN")}\nTotal Payment: ₹${result.totalPayment.toLocaleString("en-IN")}\n\nCalculated by Finpilot`;
 
   const handleShare = async () => {
     try {
@@ -104,7 +104,7 @@ export default function EmiCalculatorPage() {
         <h1 className="text-center text-4xl font-black text-green-700">
           EMI Calculator
         </h1>
-        <p className="mt-4 text-center text-gray-600 dark:text-gray-400 dark:text-gray-500">
+        <p className="mt-4 text-center text-gray-600 dark:text-gray-400">
           Drag the sliders to see your EMI update instantly.
         </p>
 
@@ -199,16 +199,16 @@ export default function EmiCalculatorPage() {
             <table className="w-full text-sm">
               <thead className="sticky top-0 bg-white dark:bg-neutral-900">
                 <tr className="border-b border-gray-100 dark:border-neutral-800 text-left">
-                  <th className="py-3 text-xs font-semibold uppercase tracking-wide text-gray-400 dark:text-gray-500">
+                  <th className="py-3 text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
                     Year
                   </th>
-                  <th className="py-3 text-right text-xs font-semibold uppercase tracking-wide text-gray-400 dark:text-gray-500">
+                  <th className="py-3 text-right text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
                     Principal (₹)
                   </th>
-                  <th className="py-3 text-right text-xs font-semibold uppercase tracking-wide text-gray-400 dark:text-gray-500">
+                  <th className="py-3 text-right text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
                     Interest (₹)
                   </th>
-                  <th className="py-3 text-right text-xs font-semibold uppercase tracking-wide text-gray-400 dark:text-gray-500">
+                  <th className="py-3 text-right text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
                     Balance (₹)
                   </th>
                 </tr>
@@ -217,10 +217,10 @@ export default function EmiCalculatorPage() {
                 {schedule.map((row) => (
                   <tr key={row.year} className="border-b border-gray-50">
                     <td className="py-3 text-gray-700 dark:text-gray-300">Year {row.year}</td>
-                    <td className="py-3 text-right font-semibold text-green-600">
+                    <td className="py-3 text-right font-semibold text-green-600 dark:text-green-400">
                       {row.principalPaid.toLocaleString("en-IN")}
                     </td>
-                    <td className="py-3 text-right font-semibold text-amber-600">
+                    <td className="py-3 text-right font-semibold text-amber-600 dark:text-amber-400">
                       {row.interestPaid.toLocaleString("en-IN")}
                     </td>
                     <td className="py-3 text-right font-semibold text-gray-900 dark:text-white">
@@ -261,7 +261,7 @@ function SliderField({
   return (
     <div className="mt-6 first:mt-6">
       <div className="flex items-center justify-between">
-        <label className="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 dark:text-gray-500">
+        <label className="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
           {label}
         </label>
         <span className="text-sm font-bold text-green-700">{display}</span>
@@ -275,7 +275,7 @@ function SliderField({
         onChange={(e) => onChange(Number(e.target.value))}
         className="mt-3 w-full accent-green-600"
       />
-      <div className="mt-1 flex justify-between text-xs text-gray-400 dark:text-gray-500">
+      <div className="mt-1 flex justify-between text-xs text-gray-400">
         <span>{minLabel}</span>
         <span>{maxLabel}</span>
       </div>
@@ -293,9 +293,9 @@ function StatCard({
   tone: "green" | "amber" | "blue";
 }) {
   const styles = {
-    green: { bg: "bg-green-50 dark:bg-[#0a0a0a]", label: "text-green-700", value: "text-green-700" },
-    amber: { bg: "bg-amber-50", label: "text-amber-700", value: "text-amber-600" },
-    blue: { bg: "bg-blue-50", label: "text-blue-700", value: "text-blue-700" },
+    green: { bg: "bg-green-50 dark:bg-green-900/20", label: "text-green-700 dark:text-green-400", value: "text-green-700 dark:text-green-400" },
+    amber: { bg: "bg-amber-50 dark:bg-amber-900/20", label: "text-amber-700 dark:text-amber-300", value: "text-amber-600 dark:text-amber-300" },
+    blue: { bg: "bg-blue-50 dark:bg-blue-900/20", label: "text-blue-700 dark:text-blue-300", value: "text-blue-700 dark:text-blue-300" },
   }[tone];
 
   return (
@@ -320,9 +320,9 @@ function SummaryLine({
   highlight?: boolean;
 }) {
   return (
-    <div className={`flex items-center justify-between py-3 px-2 -mx-2 rounded-lg ${highlight ? "bg-green-50 dark:bg-[#0a0a0a]" : ""}`}>
-      <span className="text-sm text-gray-500 dark:text-gray-400 dark:text-gray-500">{label}</span>
-      <span className={`text-sm font-bold ${highlight ? "text-green-700" : "text-gray-900 dark:text-white"}`}>
+    <div className={`flex items-center justify-between py-3 px-2 -mx-2 rounded-lg ${highlight ? "bg-green-50 dark:bg-green-900/10" : ""}`}>
+      <span className="text-sm text-gray-500 dark:text-gray-400">{label}</span>
+      <span className={`text-sm font-bold ${highlight ? "text-green-700 dark:text-green-400" : "text-gray-900 dark:text-white"}`}>
         {value}
       </span>
     </div>
