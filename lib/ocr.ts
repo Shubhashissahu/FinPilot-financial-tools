@@ -1,5 +1,5 @@
 //lib/ocr
-import { createWorker, Worker } from "tesseract.js";
+import { createWorker, Worker, RecognizeResult } from "tesseract.js";
 import path from "path";
 
 let workerPromise: Promise<Worker> | null = null;
@@ -41,7 +41,7 @@ export async function extractText(file: File): Promise<string> {
   const { data } = (await Promise.race([
     worker.recognize(buffer),
     timeoutPromise,
-  ])) as any;
+  ])) as RecognizeResult;
 
 
   const text = data.text?.trim();
