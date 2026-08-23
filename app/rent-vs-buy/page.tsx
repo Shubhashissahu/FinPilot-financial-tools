@@ -165,7 +165,7 @@ export default function RentVsBuyPage() {
         <h1 className="text-center text-4xl font-black text-gray-900 dark:text-white">
           Home Loan Affordability
         </h1>
-        <p className="mt-4 text-center text-gray-600 dark:text-gray-400 dark:text-gray-500">
+        <p className="mt-4 text-center text-gray-600 dark:text-gray-400">
           Calculate your home loan affordability and see if renting or buying is better.
         </p>
 
@@ -289,11 +289,11 @@ export default function RentVsBuyPage() {
             <table className="w-full text-sm">
               <thead className="sticky top-0 bg-white dark:bg-[#1a1d24]">
                 <tr className="border-b border-gray-100 dark:border-gray-800/50 text-left">
-                  <th className="py-3 text-xs font-semibold uppercase tracking-wide text-gray-400 dark:text-gray-500">Year</th>
-                  <th className="py-3 text-right text-xs font-semibold uppercase tracking-wide text-gray-400 dark:text-gray-500">Property Value</th>
-                  <th className="py-3 text-right text-xs font-semibold uppercase tracking-wide text-gray-400 dark:text-gray-500">Remaining Loan</th>
-                  <th className="py-3 text-right text-xs font-semibold uppercase tracking-wide text-gray-400 dark:text-gray-500">Buying Net Worth</th>
-                  <th className="py-3 text-right text-xs font-semibold uppercase tracking-wide text-gray-400 dark:text-gray-500">Renting Net Worth</th>
+                  <th className="py-3 text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">Year</th>
+                  <th className="py-3 text-right text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">Property Value</th>
+                  <th className="py-3 text-right text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">Remaining Loan</th>
+                  <th className="py-3 text-right text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">Buying Net Worth</th>
+                  <th className="py-3 text-right text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">Renting Net Worth</th>
                 </tr>
               </thead>
               <tbody>
@@ -306,10 +306,10 @@ export default function RentVsBuyPage() {
                     <td className="py-3 text-right font-semibold text-red-500/80">
                       {row.remainingLoan.toLocaleString("en-IN")}
                     </td>
-                    <td className="py-3 text-right font-semibold text-green-600">
+                    <td className="py-3 text-right font-semibold text-green-600 dark:text-green-400">
                       {row.buyingNetWorth.toLocaleString("en-IN")}
                     </td>
-                    <td className="py-3 text-right font-semibold text-amber-600">
+                    <td className="py-3 text-right font-semibold text-amber-600 dark:text-amber-400">
                       {row.rentingNetWorth.toLocaleString("en-IN")}
                     </td>
                   </tr>
@@ -366,7 +366,7 @@ function SliderField({
   return (
     <div className="mt-6 first:mt-6">
       <div className="flex items-center justify-between">
-        <label className="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 dark:text-gray-500">
+        <label className="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
           {label}
         </label>
         <span className="text-sm font-bold text-green-700">{display}</span>
@@ -380,7 +380,7 @@ function SliderField({
         onChange={(e) => onChange(Number(e.target.value))}
         className="mt-3 w-full accent-green-600"
       />
-      <div className="mt-1 flex justify-between text-xs text-gray-400 dark:text-gray-500">
+      <div className="mt-1 flex justify-between text-xs text-gray-400">
         <span>{minLabel}</span>
         <span>{maxLabel}</span>
       </div>
@@ -390,9 +390,9 @@ function SliderField({
 
 function StatCard({ label, value, tone }: { label: string; value: number; tone: "green" | "amber" | "blue" }) {
   const styles = {
-    green: { bg: "bg-green-50 dark:bg-[#0a0a0a]", label: "text-green-600", value: "text-green-500" },
-    amber: { bg: "bg-amber-50 dark:bg-[#0a0a0a]", label: "text-orange-600", value: "text-orange-500" },
-    blue: { bg: "bg-blue-50 dark:bg-[#0a0a0a]", label: "text-blue-600", value: "text-blue-500" },
+    green: { bg: "bg-green-50 dark:bg-green-900/20", label: "text-green-700 dark:text-green-400", value: "text-green-700 dark:text-green-400" },
+    amber: { bg: "bg-amber-50 dark:bg-amber-900/20", label: "text-amber-700 dark:text-amber-300", value: "text-amber-600 dark:text-amber-300" },
+    blue: { bg: "bg-blue-50 dark:bg-blue-900/20", label: "text-blue-700 dark:text-blue-300", value: "text-blue-700 dark:text-blue-300" },
   }[tone];
 
   return (

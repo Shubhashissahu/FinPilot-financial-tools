@@ -125,6 +125,7 @@ export default function FdCalculatorPage() {
                   <button
                     key={freq}
                     type="button"
+                    suppressHydrationWarning
                     onClick={() => setFrequency(freq)}
                     className={`rounded-md py-2 text-sm font-medium transition ${
                       frequency === freq
@@ -178,12 +179,14 @@ export default function FdCalculatorPage() {
               <div className="mt-6 flex flex-wrap gap-3">
                 <button
                   onClick={() => generateFdPdf(fd, rate, tenureYears, FREQUENCY_LABEL[frequency].toLowerCase())}
+                  suppressHydrationWarning
                   className="flex-1 rounded-lg border border-green-600 px-4 py-3 text-sm font-medium text-green-700 transition hover:bg-green-50 dark:bg-[#0a0a0a]"
                 >
                   Download PDF
                 </button>
                 <button
                   onClick={handleShare}
+                  suppressHydrationWarning
                   className="flex-1 rounded-lg bg-green-600 px-4 py-3 text-sm font-medium text-white transition hover:bg-green-700"
                 >
                   {copied ? "Copied ✓" : "Share"}
