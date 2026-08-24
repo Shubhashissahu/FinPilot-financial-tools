@@ -11,6 +11,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import BackButton from "@/components/BackButton";
 
 const MIN_PROPERTY_VALUE = 1000000;
 const MAX_PROPERTY_VALUE = 100000000;
@@ -162,6 +163,7 @@ export default function RentVsBuyPage() {
   return (
     <main className="min-h-screen bg-gray-50 dark:bg-[#0f1117] px-6 py-16">
       <div className="mx-auto max-w-5xl">
+        <BackButton />
         <h1 className="text-center text-4xl font-black text-gray-900 dark:text-white">
           Home Loan Affordability
         </h1>

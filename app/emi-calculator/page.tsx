@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { calculateEmi } from "@/lib/calculators/emi";
 import { generateEmiPdf } from "@/lib/pdf/EmiPdf";
+import BackButton from "@/components/BackButton";
 
 const MIN_AMOUNT = 100000; // ₹1L
 const MAX_AMOUNT = 10000000; // ₹1Cr
@@ -101,6 +102,7 @@ export default function EmiCalculatorPage() {
   return (
     <main className="min-h-screen bg-gray-50 dark:bg-neutral-900/50 px-6 py-16">
       <div className="mx-auto max-w-5xl">
+        <BackButton />
         <h1 className="text-center text-4xl font-black text-green-700">
           EMI Calculator
         </h1>

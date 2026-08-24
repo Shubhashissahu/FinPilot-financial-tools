@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { calculateSip, formatLakh } from "@/lib/calculators/sip";
+import BackButton from "@/components/BackButton";
 
 export default function SipCalculatorPage() {
   const [monthlyAmount, setMonthlyAmount] = useState(10000);
@@ -19,6 +20,7 @@ export default function SipCalculatorPage() {
   return (
     <main className="min-h-screen bg-gray-50 dark:bg-neutral-900/50 px-6 py-12">
       <div className="mx-auto max-w-5xl">
+        <BackButton />
         <h1 className="text-2xl font-bold text-gray-900 dark:text-white">SIP Calculator</h1>
         <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
           Systematic Investment Plan · Mutual Fund growth estimator

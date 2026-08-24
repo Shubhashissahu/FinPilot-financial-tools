@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { calculateFd } from "@/lib/calculators/fd";
 import { generateFdPdf } from "@/lib/pdf/FdPdf";
+import BackButton from "@/components/BackButton";
 
 const MIN_PRINCIPAL = 1000;
 const MAX_PRINCIPAL = 5000000; // ₹50L
@@ -69,6 +70,7 @@ export default function FdCalculatorPage() {
   return (
     <main className="min-h-screen bg-gray-50 dark:bg-neutral-900/50 px-6 py-16">
       <div className="mx-auto max-w-5xl">
+        <BackButton />
         <h1 className="text-4xl font-black text-gray-900 dark:text-white">FD Calculator</h1>
         <p className="mt-2 text-gray-500 dark:text-gray-400">
           Fixed Deposit maturity &amp; interest calculator

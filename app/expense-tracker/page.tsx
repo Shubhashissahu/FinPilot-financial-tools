@@ -3,6 +3,7 @@
 
 import { useState, useMemo } from "react";
 import { calculateExpenses, ExpenseInputs } from "@/lib/finance/expenseTracker";
+import BackButton from "@/components/BackButton";
 
 function progressHeadline(percent: number): string {
   if (percent >= 100) return "🎉 Goal reached!";
@@ -75,6 +76,7 @@ export default function ExpenseTrackerPage() {
   return (
     <main className="min-h-screen bg-gray-50 dark:bg-neutral-900/50 px-6 py-16">
       <div className="mx-auto max-w-4xl">
+        <BackButton />
         <h1 className="text-center text-4xl font-black text-green-700">
           Expense Tracker
         </h1>
