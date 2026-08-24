@@ -72,6 +72,13 @@ export const tools: Tool[] = [
     icon: "⏱️",
     category: "Invest",
   },
+  {
+    href: "/savings-goal-calculator",
+    label: "Savings Goal",
+    description: "Time to reach target",
+    icon: "🎯",
+    category: "Invest",
+  },
   { href: "/expense-tracker", label: "Expense Tracker", description: "Income vs. expenses", icon: "💰", category: "Daily" },
 ];
 
