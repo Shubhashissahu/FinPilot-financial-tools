@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { calculatePrepayment } from "@/lib/calculators/prepayment";
 import { FaqAccordion } from "@/components/prepayment-calculator/FaqAccordion";
 import Link from "next/link";
+import BackButton from "@/components/BackButton";
 
 const MIN_AMOUNT = 100000;
 const MAX_AMOUNT = 50000000; // ₹5Cr
@@ -34,11 +35,7 @@ export default function PrepaymentCalculatorPage() {
   return (
     <main className="min-h-screen bg-gray-50 dark:bg-neutral-900/50 px-6 py-16">
       <div className="mx-auto max-w-5xl">
-        <div className="mb-8">
-          <Link href="/" className="text-sm font-medium text-green-700 hover:underline dark:text-green-500">
-            ← Back to tools
-          </Link>
-        </div>
+        <BackButton />
         <h1 className="text-center text-4xl font-black text-green-700">
           Loan Prepayment Calculator
         </h1>

@@ -3,6 +3,7 @@
 
 import { useState } from "react";
 import { calculateTaxForYear, TAX_YEARS, TaxResult } from "@/lib/calculators/tax";
+import BackButton from "@/components/BackButton";
 
 export default function TaxCalculatorPage() {
   const [yearId, setYearId] = useState("ty2026_27");
@@ -50,6 +51,7 @@ export default function TaxCalculatorPage() {
   return (
     <main className="min-h-screen bg-gray-50 dark:bg-neutral-950 px-6 py-16">
       <div className="mx-auto max-w-4xl">
+        <BackButton />
         <h1 className="text-center text-4xl font-black text-gray-900 dark:text-white">
           New Tax Regime Calculator
         </h1>

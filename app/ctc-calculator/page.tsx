@@ -4,6 +4,7 @@ import { useState, useMemo } from "react";
 import { calculateCtc, CtcInputs } from "@/lib/calculators/ctcCalculator";
 import { FaqAccordion } from "@/components/ctc-calculator/FaqAccordion";
 import { ResultsTable } from "@/components/ctc-calculator/ResultsTable";
+import BackButton from "@/components/BackButton";
 const DEFAULTS = {
   hraPercent: 20,
   daPercent: 10,
@@ -102,6 +103,7 @@ export default function CtcCalculatorPage() {
   return (
     <main className="min-h-screen bg-green-50 dark:bg-[#0a0a0a] px-6 py-16">
       <div className="mx-auto max-w-5xl">
+        <BackButton />
         <h1 className="text-center text-4xl font-black text-green-700">CTC Calculator</h1>
         <p className="mt-3 text-center text-gray-600 dark:text-gray-400 dark:text-gray-500">
           Estimate your take-home salary from your Cost to Company — New Tax Regime, FY 2026-27.

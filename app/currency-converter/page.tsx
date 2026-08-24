@@ -6,6 +6,7 @@ import {
   convertCurrency,
   ConversionResult,
 } from "@/lib/currencyApi";
+import BackButton from "@/components/BackButton";
 
 export default function CurrencyConverterPage() {
   const [currencies, setCurrencies] = useState<Record<string, string>>({});
@@ -65,6 +66,7 @@ export default function CurrencyConverterPage() {
   return (
     <main className="min-h-screen bg-green-50 dark:bg-[#0a0a0a] px-6 py-16">
       <div className="mx-auto max-w-2xl">
+        <BackButton />
         <h1 className="text-center text-4xl font-black text-green-700">
           Currency Converter
         </h1>

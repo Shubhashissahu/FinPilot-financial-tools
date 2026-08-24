@@ -13,6 +13,7 @@ import { calculateSplit } from "@/lib/calculators/calculateSplit";
 import { generateFullBillPdf } from "@/lib/pdf/BillPdf";
 
 import { BillItem, Person, PersonBillResult } from "@/types/bill";
+import BackButton from "@/components/BackButton";
 
 export default function SplitPage() {
   const [people, setPeople] = useState<Person[]>([]);
@@ -60,6 +61,7 @@ export default function SplitPage() {
   return (
     <main className="min-h-screen bg-white dark:bg-[#0a0a0a] px-6 py-12">
       <div className="mx-auto max-w-3xl">
+        <BackButton />
         <h1 className="mt-8 text-3xl font-bold text-gray-900 dark:text-white">Split your bill</h1>
 
         <p className="mt-2 text-gray-600 dark:text-gray-400 dark:text-gray-500">
