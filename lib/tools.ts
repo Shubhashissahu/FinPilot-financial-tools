@@ -38,6 +38,13 @@ export const tools: Tool[] = [
     category: "Tax",
   },
   {
+    href: "/gst-calculator",
+    label: "GST Calculator",
+    description: "Inclusive & Exclusive GST",
+    icon: "📊",
+    category: "Tax",
+  },
+  {
     href: "/emi-calculator",
     label: "EMI Calculator",
     description: "Loan amortization",
