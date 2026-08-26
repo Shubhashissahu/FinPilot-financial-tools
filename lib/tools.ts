@@ -59,6 +59,13 @@ export const tools: Tool[] = [
     category: "Invest",
   },
   {
+    href: "/nps-calculator",
+    label: "NPS Calculator",
+    description: "Retirement & pension planner",
+    icon: "👴",
+    category: "Invest",
+  },
+  {
     href: "/fd-calculator",
     label: "FD Calculator",
     description: "Fixed deposit maturity",
