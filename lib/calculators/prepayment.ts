@@ -88,7 +88,7 @@ export function calculatePrepayment(
 
   if (balance > 0) {
     while (balance > 0.01 && months < 1200) {
-      let interestForMonth = balance * monthlyRate;
+      const interestForMonth = round2(balance * monthlyRate);
       totalInterest += interestForMonth;
       
       let actualPayment = payment;

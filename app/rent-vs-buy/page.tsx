@@ -161,19 +161,19 @@ export default function RentVsBuyPage() {
   }, [propertyValue, downPayment, interestRate, tenureYears, monthlyRent]);
 
   return (
-    <main className="min-h-screen bg-gray-50 dark:bg-[#0f1117] px-6 py-16">
+    <main className="min-h-screen bg-[#F7FAF8] dark:bg-[#0a0a0a] px-4 sm:px-6 py-10 sm:py-16">
       <div className="mx-auto max-w-5xl">
         <BackButton />
-        <h1 className="text-center text-4xl font-black text-gray-900 dark:text-white">
-          Home Loan Affordability
+        <h1 className="text-center text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+          Rent vs Buy Calculator
         </h1>
-        <p className="mt-4 text-center text-gray-600 dark:text-gray-400">
-          Calculate your home loan affordability and see if renting or buying is better.
+        <p className="mt-2 text-center text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+          Calculate your home loan affordability and compare renting vs buying net worth.
         </p>
 
-        <div className="mt-10 grid gap-6 lg:grid-cols-[1fr_1fr]">
+        <div className="mt-8 grid gap-6 lg:grid-cols-[1fr_1fr]">
           {/* Inputs Section */}
-          <section className="rounded-2xl bg-white dark:bg-[#1a1d24] p-8 shadow-sm">
+          <section className="rounded-2xl border border-slate-200/80 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6 sm:p-8 shadow-xs">
             <h2 className="text-lg font-bold text-gray-900 dark:text-white">Your Financial Details</h2>
             <div className="mt-2 border-t border-gray-100 dark:border-gray-800/50" />
 
@@ -269,7 +269,7 @@ export default function RentVsBuyPage() {
                   tickFormatter={(value) => `₹${(value / 100000).toFixed(0)}L`}
                 />
                 <Tooltip 
-                  formatter={(value: any) => [`₹${Number(value).toLocaleString("en-IN")}`, undefined]}
+                  formatter={(value: unknown) => [`₹${Number(value).toLocaleString("en-IN")}`, undefined]}
                   labelFormatter={(label) => `Year ${label}`}
                   contentStyle={{ backgroundColor: '#1f2937', borderColor: '#374151', color: '#f3f4f6' }}
                   itemStyle={{ color: '#f3f4f6' }}

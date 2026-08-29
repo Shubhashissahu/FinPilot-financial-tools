@@ -49,17 +49,17 @@ export default function TaxCalculatorPage() {
   const currentConfig = TAX_YEARS[yearId];
 
   return (
-    <main className="min-h-screen bg-gray-50 dark:bg-neutral-950 px-6 py-16">
+    <main className="min-h-screen bg-[#F7FAF8] dark:bg-[#0a0a0a] px-4 sm:px-6 py-10 sm:py-16">
       <div className="mx-auto max-w-4xl">
         <BackButton />
-        <h1 className="text-center text-4xl font-black text-gray-900 dark:text-white">
+        <h1 className="text-center text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
           New Tax Regime Calculator
         </h1>
-        <p className="mt-4 text-center text-gray-600 dark:text-gray-400">
-          Calculate your income tax liability under the new tax regime.
+        <p className="mt-2 text-center text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+          Calculate your income tax liability under the new tax regime (FY 2026-27).
         </p>
 
-        <section className="mt-10 rounded-2xl border border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-8 shadow-sm">
+        <section className="mt-8 rounded-2xl border border-slate-200/80 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6 sm:p-8 shadow-xs">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between border-b border-gray-200 dark:border-neutral-800 pb-6 mb-6">
             <h2 className="flex items-center gap-2 text-xl font-bold text-gray-900 dark:text-white">
               🧮 Tax Calculator
@@ -257,8 +257,8 @@ export default function TaxCalculatorPage() {
                 Marginal relief protects taxpayers from situations where earning slightly more income results in a disproportionately massive tax hike. There are two distinct types:
               </p>
               <ul className="mt-3 space-y-2 text-sm text-gray-600 dark:text-gray-400 list-disc pl-5">
-                <li><strong>Rebate Threshold Relief (87A):</strong> If you earn just above the ₹7L or ₹12L rebate limit, your tax liability jumps because you lose the entire rebate. Marginal relief caps your tax so you don't pay more in tax than the additional income you earned above the threshold.</li>
-                <li><strong>Surcharge Threshold Relief:</strong> Surcharges apply on the entire tax amount once your income crosses ₹50L, ₹1Cr, etc. Marginal relief limits the total tax+surcharge so it doesn't exceed the tax at the threshold plus the extra income earned.</li>
+                <li><strong>Rebate Threshold Relief (87A):</strong> If you earn just above the ₹7L or ₹12L rebate limit, your tax liability jumps because you lose the entire rebate. Marginal relief caps your tax so you don&apos;t pay more in tax than the additional income you earned above the threshold.</li>
+                <li><strong>Surcharge Threshold Relief:</strong> Surcharges apply on the entire tax amount once your income crosses ₹50L, ₹1Cr, etc. Marginal relief limits the total tax+surcharge so it doesn&apos;t exceed the tax at the threshold plus the extra income earned.</li>
               </ul>
             </section>
 
