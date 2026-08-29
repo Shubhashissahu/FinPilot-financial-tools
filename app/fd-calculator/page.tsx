@@ -68,17 +68,17 @@ export default function FdCalculatorPage() {
   };
 
   return (
-    <main className="min-h-screen bg-gray-50 dark:bg-neutral-900/50 px-6 py-16">
+    <main className="min-h-screen bg-[#F7FAF8] dark:bg-[#0a0a0a] px-4 sm:px-6 py-10 sm:py-16">
       <div className="mx-auto max-w-5xl">
         <BackButton />
-        <h1 className="text-4xl font-black text-gray-900 dark:text-white">FD Calculator</h1>
-        <p className="mt-2 text-gray-500 dark:text-gray-400">
-          Fixed Deposit maturity &amp; interest calculator
+        <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">FD Calculator</h1>
+        <p className="mt-2 text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+          Fixed Deposit maturity &amp; interest yield calculator
         </p>
 
-        <div className="mt-10 grid gap-6 lg:grid-cols-[1fr_1fr]">
+        <div className="mt-8 grid gap-6 lg:grid-cols-[1fr_1fr]">
           {/* FD details card */}
-          <section className="rounded-2xl bg-white dark:bg-neutral-900 p-8 shadow-sm">
+          <section className="rounded-2xl border border-slate-200/80 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6 sm:p-8 shadow-xs">
             <h2 className="text-lg font-bold text-gray-900 dark:text-white">FD details</h2>
             <div className="mt-2 border-t border-gray-100 dark:border-neutral-800" />
 

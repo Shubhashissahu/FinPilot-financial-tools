@@ -59,12 +59,12 @@ export default function SplitPage() {
   };
 
   return (
-    <main className="min-h-screen bg-white dark:bg-[#0a0a0a] px-6 py-12">
+    <main className="min-h-screen bg-[#F7FAF8] dark:bg-[#0a0a0a] px-4 sm:px-6 py-10 sm:py-16">
       <div className="mx-auto max-w-3xl">
         <BackButton />
-        <h1 className="mt-8 text-3xl font-bold text-gray-900 dark:text-white">Split your bill</h1>
+        <h1 className="mt-4 text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">Split your bill</h1>
 
-        <p className="mt-2 text-gray-600 dark:text-gray-400 dark:text-gray-500">
+        <p className="mt-2 text-xs sm:text-sm text-slate-600 dark:text-slate-400">
           Add everyone and enter what they ordered.
         </p>
 

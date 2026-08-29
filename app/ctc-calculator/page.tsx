@@ -101,17 +101,17 @@ export default function CtcCalculatorPage() {
 
 
   return (
-    <main className="min-h-screen bg-green-50 dark:bg-[#0a0a0a] px-6 py-16">
+    <main className="min-h-screen bg-[#F7FAF8] dark:bg-[#0a0a0a] px-4 sm:px-6 py-10 sm:py-16">
       <div className="mx-auto max-w-5xl">
         <BackButton />
-        <h1 className="text-center text-4xl font-black text-green-700">CTC Calculator</h1>
-        <p className="mt-3 text-center text-gray-600 dark:text-gray-400 dark:text-gray-500">
+        <h1 className="text-center text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">CTC Calculator</h1>
+        <p className="mt-2 text-center text-xs sm:text-sm text-slate-600 dark:text-slate-400">
           Estimate your take-home salary from your Cost to Company — New Tax Regime, FY 2026-27.
         </p>
 
-        <div className="mt-10 grid gap-6 lg:grid-cols-2">
+        <div className="mt-8 grid gap-6 lg:grid-cols-2">
           {/* LEFT: inputs */}
-          <section className="rounded-2xl border border-gray-100 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6 shadow-sm">
+          <section className="rounded-2xl border border-slate-200/80 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6 shadow-xs">
             <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Cost to Company (CTC)</label>
             <div className="mt-2 flex items-center rounded-lg border border-gray-300 dark:border-neutral-700 px-4 py-3 focus-within:border-green-500 focus-within:ring-2 focus-within:ring-green-200">
               <span className="text-gray-400 dark:text-gray-500">₹</span>

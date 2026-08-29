@@ -49,17 +49,17 @@ export default function GstCalculatorPage() {
   };
 
   return (
-    <main className="min-h-screen bg-gray-50 dark:bg-[#0a0a0a] py-6 md:py-10 text-gray-900 dark:text-gray-100">
-      <div className="mx-auto max-w-4xl px-6">
+    <main className="min-h-screen bg-[#F7FAF8] dark:bg-[#0a0a0a] px-4 sm:px-6 py-10 sm:py-16 text-slate-900 dark:text-slate-100">
+      <div className="mx-auto max-w-4xl">
         <BackButton />
-        <h1 className="mt-6 text-3xl font-black tracking-tight text-gray-900 dark:text-white">
+        <h1 className="mt-4 text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
           GST Calculator
         </h1>
-        <p className="mt-2 text-gray-600 dark:text-gray-400">
+        <p className="mt-2 text-xs sm:text-sm text-slate-600 dark:text-slate-400">
           Calculate GST amount and original price based on inclusive or exclusive tax rates.
         </p>
 
-        <section className="mt-8 rounded-2xl border border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900/50 p-6 md:p-8 shadow-sm backdrop-blur-sm">
+        <section className="mt-8 rounded-2xl border border-slate-200/80 dark:border-neutral-800 bg-white dark:bg-neutral-900/50 p-6 md:p-8 shadow-xs backdrop-blur-xs">
           <div className="grid gap-6 sm:grid-cols-3">
             <div>
               <label className="mb-2 block text-sm font-semibold text-gray-700 dark:text-gray-300">

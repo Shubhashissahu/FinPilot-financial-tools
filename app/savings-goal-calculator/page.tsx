@@ -63,23 +63,24 @@ export default function SavingsGoalPage() {
   if (months > 0 || years === 0) timeString += `${months} month${months > 1 ? "s" : ""}`;
 
   return (
-    <main className="min-h-screen bg-gray-50 dark:bg-[#0a0a0a] px-6 py-16">
+    <main className="min-h-screen bg-[#F7FAF8] dark:bg-[#0a0a0a] px-4 sm:px-6 py-10 sm:py-16">
       <div className="mx-auto max-w-5xl">
         <BackButton />
-        <h1 className="text-center text-4xl font-black text-green-700">Savings Goal Calculator</h1>
-        <p className="mt-4 text-center text-gray-600 dark:text-gray-400">
-          Figure out how much to save each month — or how long it'll take at the rate you're already saving.
+        <h1 className="text-center text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">Savings Goal Calculator</h1>
+        <p className="mt-2 text-center text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+          Figure out how much to save each month — or how long it will take at your current pace.
         </p>
 
-        <div className="mt-8 flex flex-wrap justify-center gap-3">
+        <div className="mt-8 flex flex-wrap justify-center gap-2.5">
           {GOAL_PRESETS.map((preset) => (
             <button
               key={preset.label}
               onClick={() => handlePresetClick(preset)}
-              className={`flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition-all ${activePreset === preset.label
-                  ? "border-green-600 bg-green-50 text-green-700 dark:border-green-500/50 dark:bg-green-900/20 dark:text-green-400"
-                  : "border-gray-200 bg-white text-gray-600 hover:border-green-300 dark:border-neutral-800 dark:bg-neutral-900 dark:text-gray-400 dark:hover:border-green-800"
-                }`}
+              className={`flex items-center gap-2 rounded-xl border px-3.5 py-2 text-xs sm:text-sm font-medium transition-all ${
+                activePreset === preset.label
+                  ? "border-emerald-500 bg-emerald-50 text-emerald-800 dark:border-emerald-500/50 dark:bg-emerald-950/40 dark:text-emerald-300 shadow-2xs"
+                  : "border-slate-200/80 bg-white text-slate-700 hover:border-emerald-300 dark:border-neutral-800 dark:bg-neutral-900 dark:text-slate-300 dark:hover:border-neutral-700"
+              }`}
             >
               <span>{preset.icon}</span>
               {preset.label}
@@ -87,8 +88,8 @@ export default function SavingsGoalPage() {
           ))}
         </div>
 
-        <div className="mt-10 grid gap-6 lg:grid-cols-[1fr_1fr]">
-          <section className="rounded-2xl bg-white dark:bg-neutral-900 p-8 shadow-sm">
+        <div className="mt-8 grid gap-6 lg:grid-cols-[1fr_1fr]">
+          <section className="rounded-2xl border border-slate-200/80 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6 sm:p-8 shadow-xs">
             <h2 className="text-lg font-bold text-gray-900 dark:text-white">Your Goal</h2>
             <div className="mt-2 border-t border-gray-100 dark:border-neutral-800" />
 
@@ -182,8 +183,8 @@ export default function SavingsGoalPage() {
               </p>
               {interestRate >= 10 && (
                 <p className="mt-1 text-xs text-amber-600 dark:text-amber-400">
-                  ⚠️ Market-linked returns above ~8-9% aren't guaranteed — this projection assumes a
-                  consistent rate that real equity/mutual fund investments don't provide year to year.
+                  ⚠️ Market-linked returns above ~8-9% aren&apos;t guaranteed — this projection assumes a
+                  consistent rate that real equity/mutual fund investments don&apos;t provide year to year.
                 </p>
               )}
             </div>
@@ -195,7 +196,7 @@ export default function SavingsGoalPage() {
                 <p className="text-sm font-medium uppercase tracking-wider">Time to reach your goal</p>
                 <p className="mt-2 text-3xl font-black">100+ years</p>
                 <p className="mt-2 text-sm">
-                  At this contribution rate, this goal isn't realistically reachable — try increasing
+                  At this contribution rate, this goal isn&apos;t realistically reachable — try increasing
                   your monthly savings or return rate.
                 </p>
               </div>
@@ -262,7 +263,7 @@ export default function SavingsGoalPage() {
                   <YAxis stroke="#9ca3af" tickFormatter={(v) => `₹${(v / 1000).toFixed(0)}k`} />
                   <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#374151" opacity={0.2} />
                   <Tooltip
-                    formatter={(value: any) => [`₹${Number(value).toLocaleString("en-IN")}`, undefined]}
+                    formatter={(value: unknown) => [`₹${Number(value).toLocaleString("en-IN")}`, undefined]}
                     labelFormatter={(label) => `Year ${label}`}
                     contentStyle={{ backgroundColor: '#1f2937', borderColor: '#374151', color: '#f3f4f6', borderRadius: '8px' }}
                     itemStyle={{ color: '#f3f4f6' }}

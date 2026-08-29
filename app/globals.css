@@ -3,24 +3,71 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #fafafa; /* light background */
-  --foreground: #171717; /* dark text */
+  --background: #F7FAF8; /* warm off-white background */
+  --foreground: #172033; /* crisp dark slate text */
+  --card: #FFFFFF;
+  --card-foreground: #172033;
+  --border: #E2E8F0;
+  --primary: #00A859;
+  --primary-hover: #008F4C;
+  --muted: #64748B;
+  --subtle-green: #ECFDF5;
 }
 
 .dark {
   --background: #0a0a0a; /* deep black */
   --foreground: #ededed; /* light text */
+  --card: #141414;
+  --card-foreground: #ededed;
+  --border: #262626;
+  --primary: #00A859;
+  --primary-hover: #00BF65;
+  --muted: #94A3B8;
+  --subtle-green: rgba(0, 168, 89, 0.12);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-border: var(--border);
+  --color-finpilot: var(--primary);
+  --font-sans: var(--font-plus-jakarta), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+/* Custom scrollbar for smooth fintech aesthetics */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+

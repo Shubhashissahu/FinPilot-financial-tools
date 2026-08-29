@@ -64,24 +64,24 @@ export default function CurrencyConverterPage() {
   };
 
   return (
-    <main className="min-h-screen bg-green-50 dark:bg-[#0a0a0a] px-6 py-16">
+    <main className="min-h-screen bg-[#F7FAF8] dark:bg-[#0a0a0a] px-4 sm:px-6 py-10 sm:py-16">
       <div className="mx-auto max-w-2xl">
         <BackButton />
-        <h1 className="text-center text-4xl font-black text-green-700">
+        <h1 className="text-center text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
           Currency Converter
         </h1>
-        <p className="mt-4 text-center text-gray-600 dark:text-gray-400 dark:text-gray-500">
-          Live exchange rates, updated daily via the European Central Bank.
+        <p className="mt-2 text-center text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+          Live foreign exchange rates, updated daily via the European Central Bank.
         </p>
 
-        <section className="mt-10 rounded-2xl bg-white dark:bg-neutral-900 p-8 shadow-sm">
+        <section className="mt-8 rounded-2xl border border-slate-200/80 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6 sm:p-8 shadow-xs">
           {loadingCurrencies ? (
-            <p className="text-sm text-gray-500 dark:text-gray-400 dark:text-gray-500">Loading currencies…</p>
+            <p className="text-sm text-slate-500 dark:text-slate-400">Loading currencies…</p>
           ) : listError ? (
             <p className="text-sm text-red-600">{listError}</p>
           ) : (
             <>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label className="block text-xs font-semibold uppercase tracking-wide text-slate-700 dark:text-slate-300">
                 Amount
               </label>
               <input
@@ -90,18 +90,18 @@ export default function CurrencyConverterPage() {
                 step="0.01"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
-                className="mt-2 w-full rounded-lg border border-gray-300 dark:border-neutral-700 px-4 py-3 text-gray-900 dark:text-white placeholder:text-gray-400 dark:text-gray-500 outline-none focus:border-green-500 focus:ring-2 focus:ring-green-200"
+                className="mt-2 w-full rounded-xl border border-slate-300 dark:border-neutral-700 bg-white dark:bg-neutral-950 px-4 py-3 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/10"
               />
 
-              <div className="mt-6 flex items-end gap-3">
+              <div className="mt-5 flex items-end gap-3">
                 <div className="flex-1">
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                  <label className="block text-xs font-semibold uppercase tracking-wide text-slate-700 dark:text-slate-300">
                     From
                   </label>
                   <select
                     value={from}
                     onChange={(e) => setFrom(e.target.value)}
-                    className="mt-2 w-full rounded-lg border border-gray-300 dark:border-neutral-700 px-4 py-3 text-gray-900 dark:text-white outline-none focus:border-green-500 focus:ring-2 focus:ring-green-200"
+                    className="mt-2 w-full rounded-xl border border-slate-300 dark:border-neutral-700 bg-white dark:bg-neutral-950 px-4 py-3 text-slate-900 dark:text-white outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/10 text-sm font-medium"
                   >
                     {Object.entries(currencies).map(([code, name]) => (
                       <option key={code} value={code}>
@@ -115,19 +115,19 @@ export default function CurrencyConverterPage() {
                   type="button"
                   onClick={swapCurrencies}
                   aria-label="Swap currencies"
-                  className="mb-1 rounded-lg border border-gray-300 dark:border-neutral-700 px-3 py-3 text-gray-600 dark:text-gray-400 dark:text-gray-500 transition hover:border-green-400 hover:text-green-600"
+                  className="mb-0.5 rounded-xl border border-slate-300 dark:border-neutral-700 bg-slate-50 dark:bg-neutral-950 px-3.5 py-3 text-slate-700 dark:text-slate-300 transition hover:border-emerald-500 hover:text-emerald-700 dark:hover:text-emerald-400 active:scale-95"
                 >
                   ⇄
                 </button>
 
                 <div className="flex-1">
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                  <label className="block text-xs font-semibold uppercase tracking-wide text-slate-700 dark:text-slate-300">
                     To
                   </label>
                   <select
                     value={to}
                     onChange={(e) => setTo(e.target.value)}
-                    className="mt-2 w-full rounded-lg border border-gray-300 dark:border-neutral-700 px-4 py-3 text-gray-900 dark:text-white outline-none focus:border-green-500 focus:ring-2 focus:ring-green-200"
+                    className="mt-2 w-full rounded-xl border border-slate-300 dark:border-neutral-700 bg-white dark:bg-neutral-950 px-4 py-3 text-slate-900 dark:text-white outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/10 text-sm font-medium"
                   >
                     {Object.entries(currencies).map(([code, name]) => (
                       <option key={code} value={code}>
@@ -143,7 +143,7 @@ export default function CurrencyConverterPage() {
               <button
                 onClick={handleConvert}
                 disabled={converting}
-                className="mt-6 w-full rounded-lg bg-green-600 py-3 font-semibold text-white transition hover:bg-green-700 disabled:cursor-not-allowed disabled:opacity-50"
+                className="mt-6 w-full rounded-xl bg-[#00A859] py-3.5 font-semibold text-white shadow-xs transition hover:bg-[#008F4C] active:scale-98 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {converting ? "Converting…" : "Convert"}
               </button>
@@ -152,14 +152,14 @@ export default function CurrencyConverterPage() {
         </section>
 
         {result && (
-          <section className="mt-8 rounded-2xl bg-white dark:bg-neutral-900 p-8 text-center shadow-sm">
-            <p className="text-sm text-gray-500 dark:text-gray-400 dark:text-gray-500">
+          <section className="mt-6 rounded-2xl border border-emerald-200/80 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6 sm:p-8 text-center shadow-xs">
+            <p className="text-xs sm:text-sm font-medium text-slate-500 dark:text-slate-400">
               {result.amount.toLocaleString()} {result.from} =
             </p>
-            <p className="mt-2 text-4xl font-bold text-green-700">
+            <p className="mt-2 text-3xl sm:text-4xl font-extrabold text-[#00A859] dark:text-emerald-400">
               {result.convertedAmount.toLocaleString()} {result.to}
             </p>
-            <p className="mt-3 text-sm text-gray-500 dark:text-gray-400 dark:text-gray-500">
+            <p className="mt-3 text-xs text-slate-500 dark:text-slate-400">
               1 {result.from} = {result.rate} {result.to} · as of {result.date}
             </p>
           </section>

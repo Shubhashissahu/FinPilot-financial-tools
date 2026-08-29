@@ -23,39 +23,46 @@ const companyLinks = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-gray-900 dark:text-white">
-      <div className="mx-auto max-w-7xl px-6 py-14 lg:px-8">
-        {/* Main Footer */}
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
-          {/* Brand */}
-          <div className="lg:col-span-2">
-            <Link href="/" className="group inline-flex items-center gap-2.5 text-2xl font-extrabold tracking-tight">
-              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-green-500 to-emerald-700 text-base font-bold text-white shadow-md shadow-green-600/25 transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-105">
+    <footer className="border-t border-slate-200/80 dark:border-neutral-800/80 bg-white dark:bg-neutral-950 text-slate-900 dark:text-white">
+      <div className="mx-auto max-w-7xl px-6 py-10 lg:px-8">
+        {/* Main Footer Grid */}
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+          {/* Brand Column */}
+          <div className="lg:col-span-2 space-y-3">
+            <Link href="/" className="group inline-flex items-center gap-2.5">
+              <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 via-emerald-600 to-teal-700 text-sm font-extrabold text-white shadow-xs">
                 ₹
-              </span>
-              <span>
+              </div>
+              <span className="text-xl font-bold tracking-tight text-slate-900 dark:text-white">
                 FinPilot
               </span>
             </Link>
 
-            <p className="mt-5 max-w-md text-sm leading-6 text-gray-600 dark:text-gray-400">
-              Ten free financial tools in one place — split bills, calculate
-              taxes, EMIs, SIPs, and more, without the spreadsheet math.
+            <p className="max-w-sm text-xs sm:text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+              Simple financial tools for everyday decisions. Calculate taxes, EMIs, SIP compounding, and split bills — fast, free, and private.
             </p>
 
-            <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-gray-200 dark:border-neutral-800 bg-gray-100 dark:bg-neutral-900 px-4 py-2 text-xs text-gray-600 dark:text-gray-400">
-              <span className="h-2 w-2 rounded-full bg-green-500" />
-              10 tools Free , No sign-up
+            <div className="inline-flex items-center gap-2 rounded-full border border-slate-200/80 dark:border-neutral-800 bg-slate-50 dark:bg-neutral-900 px-3 py-1 text-[11px] font-medium text-slate-600 dark:text-slate-400">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+              </span>
+              13+ Tools · 100% Free · No Sign-up
             </div>
           </div>
 
-          {/* Tools */}
+          {/* Tools Column */}
           <div>
-            <h3 className="text-sm font-semibold text-gray-900 dark:text-white">Tools</h3>
-            <ul className="mt-5 space-y-3 text-sm text-gray-600 dark:text-gray-400">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white">
+              Tools
+            </h3>
+            <ul className="mt-3 grid grid-cols-1 gap-2 text-xs sm:text-sm text-slate-600 dark:text-slate-400">
               {toolLinks.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="transition hover:text-green-600 dark:hover:text-green-400">
+                  <Link
+                    href={link.href}
+                    className="transition-colors hover:text-emerald-600 dark:hover:text-emerald-400"
+                  >
                     {link.label}
                   </Link>
                 </li>
@@ -63,13 +70,18 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Company */}
+          {/* Company Column */}
           <div>
-            <h3 className="text-sm font-semibold text-gray-900 dark:text-white">Company</h3>
-            <ul className="mt-5 space-y-3 text-sm text-gray-600 dark:text-gray-400">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white">
+              Company
+            </h3>
+            <ul className="mt-3 space-y-2 text-xs sm:text-sm text-slate-600 dark:text-slate-400">
               {companyLinks.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="transition hover:text-green-600 dark:hover:text-green-400">
+                  <Link
+                    href={link.href}
+                    className="transition-colors hover:text-emerald-600 dark:hover:text-emerald-400"
+                  >
                     {link.label}
                   </Link>
                 </li>
@@ -79,20 +91,20 @@ export default function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="my-10 h-px bg-gray-200 dark:bg-neutral-800" />
+        <div className="my-6 h-px bg-slate-200/70 dark:border-neutral-800/80" />
 
         {/* Bottom Footer */}
-        <div className="flex flex-col gap-4 text-sm text-gray-500 dark:text-gray-400 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} FinPilot. All rights reserved.</p>
+        <div className="flex flex-col gap-3 text-xs text-slate-500 dark:text-slate-400 sm:flex-row sm:items-center sm:justify-between">
+          <p>© 2026 FinPilot. All rights reserved.</p>
 
           <div className="flex items-center gap-5">
-            <Link href="/privacy" className="transition hover:text-gray-700 dark:hover:text-gray-300">
+            <Link href="/privacy" className="transition hover:text-slate-800 dark:hover:text-slate-200">
               Privacy
             </Link>
-            <Link href="/terms" className="transition hover:text-gray-700 dark:hover:text-gray-300">
+            <Link href="/terms" className="transition hover:text-slate-800 dark:hover:text-slate-200">
               Terms
             </Link>
-            <Link href="/contact" className="transition hover:text-gray-700 dark:hover:text-gray-300">
+            <Link href="/contact" className="transition hover:text-slate-800 dark:hover:text-slate-200">
               Contact
             </Link>
           </div>
@@ -100,4 +112,4 @@ export default function Footer() {
       </div>
     </footer>
   );
-}
+}

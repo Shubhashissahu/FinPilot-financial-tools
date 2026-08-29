@@ -39,17 +39,17 @@ export default function NpsCalculatorPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-gray-50 dark:bg-neutral-900/50 px-6 py-12">
+    <main className="min-h-screen bg-[#F7FAF8] dark:bg-[#0a0a0a] px-4 sm:px-6 py-10 sm:py-16">
       <div className="mx-auto max-w-5xl">
         <BackButton />
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">NPS Calculator</h1>
-        <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+        <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">NPS Calculator</h1>
+        <p className="mt-2 text-xs sm:text-sm text-slate-600 dark:text-slate-400">
           National Pension System · Plan your retirement corpus and pension
         </p>
 
         <div className="mt-8 grid gap-6 lg:grid-cols-[1fr_1fr]">
           {/* LEFT: inputs */}
-          <section className="rounded-2xl bg-white dark:bg-neutral-900 p-6 shadow-sm space-y-6">
+          <section className="rounded-2xl border border-slate-200/80 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6 sm:p-8 shadow-xs space-y-5">
             <h2 className="font-semibold text-gray-900 dark:text-white">Investment details</h2>
 
             <InputField
@@ -187,7 +187,7 @@ export default function NpsCalculatorPage() {
               <div className="flex-1 space-y-4">
                 <h2 className="text-2xl font-bold text-gray-900 dark:text-white">What is NPS?</h2>
                 <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                  NPS stands for National Pension Scheme. As the name suggests, it is a scheme via which Indians can secure their finances post-retirement. It aims to help you grow your corpus via small monthly investments that won't burn a hole in your pocket. Anyone between the ages of 18 and 60 can invest in the NPS given that they comply with the KYC guidelines.
+                  NPS stands for National Pension Scheme. As the name suggests, it is a scheme via which Indians can secure their finances post-retirement. It aims to help you grow your corpus via small monthly investments that won&apos;t burn a hole in your pocket. Anyone between the ages of 18 and 60 can invest in the NPS given that they comply with the KYC guidelines.
                 </p>
               </div>
               <div className="hidden md:flex h-32 w-32 flex-shrink-0 items-center justify-center rounded-full bg-[#fdece7] dark:bg-orange-900/20 text-6xl shadow-inner border border-orange-100 dark:border-neutral-800">
